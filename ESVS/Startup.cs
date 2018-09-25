@@ -10,6 +10,7 @@ namespace ESVS
 {
     public class Startup
     {
+        //Здесь был Виталя
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
