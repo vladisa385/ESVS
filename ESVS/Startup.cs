@@ -10,7 +10,7 @@ namespace ESVS
 {
     public class Startup
     {
-        //Здесь был Владислав
+        //Здесь был Владислав и Кирилл
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
