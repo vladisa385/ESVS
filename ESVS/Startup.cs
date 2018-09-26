@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Builder;
+п»їusing Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
@@ -10,7 +10,7 @@ namespace ESVS
 {
     public class Startup
     {
-        //Здесь был Виталя
+        //Р—РґРµСЃСЊ Р±С‹Р» Р’Р»Р°РґРёСЃР»Р°РІ
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
