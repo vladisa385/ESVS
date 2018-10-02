@@ -5,12 +5,22 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Linq;
+/// <summary>
+/// Slava ukraini, snizu primer raboti s bazoy
+/// Cmock v pisu
+/// </summary>
 
 namespace ESVS
 {
     public class Startup
     {
+/*<<<<<<< HEAD
+        //����� ��� ������
+=======
         //Здесь был Владислав
+>>>>>>> 313283140eb5113771245cda6fc58844d754fd3c*/
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -67,5 +77,30 @@ namespace ESVS
                 }
             });
         }
+
+        ///Пример работы с базой
+        /*static void Main(string[] args)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                // создаем два объекта User
+                User user1 = new User { Name = "Tom", Age = 33 };
+                User user2 = new User { Name = "Alice", Age = 26 };
+
+                // добавляем их в бд
+                db.Users.Add(user1);
+                db.Users.Add(user2);
+                db.SaveChanges();
+
+                // получаем объекты из бд и выводим на консоль
+                var users = db.Users.ToList();
+                Console.WriteLine("Users list:");
+                foreach (User u in users)
+                {
+                    Console.WriteLine($"{u.Id}.{u.Name} - {u.Age}");
+                }
+            }
+            Console.Read();
+        }*/
     }
 }
