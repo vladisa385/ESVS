@@ -16,11 +16,7 @@ namespace ESVS
 {
     public class Startup
     {
-/*<<<<<<< HEAD
-        //����� ��� ������
-=======
-        //Здесь был Владислав
->>>>>>> 313283140eb5113771245cda6fc58844d754fd3c*/
+        //Здесь был Владислав и Кирилл
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
