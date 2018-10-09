@@ -156,18 +156,5 @@ namespace ESVS.Controllers
             }
         }
 
-        [Authorize(Roles = "admin")]
-        [HttpDelete("UpdateUserLevel/{userId}")]
-        [ProducesResponseType(200)]
-        [ProducesResponseType(401)]
-        [ProducesResponseType(403)]
-        [ProducesResponseType(404)]
-        public async Task<IActionResult> UpdateUserLevelAsync(string userId, [FromServices]IUpdateUserLevelCommand command)
-        {
-            UserResponse response = await command.ExecuteAsync(userId);
-            return response == null ? (IActionResult)NotFound($"User with id: {userId} not found") : Ok(response);
-
-        }
-
     }
 }
