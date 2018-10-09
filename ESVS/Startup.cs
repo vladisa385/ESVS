@@ -7,6 +7,16 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
+using AutoMapper;
+using DataAccess.DbImplementation.Users;
+using DataAccess.Users;
+using DB;
+using Entities;
+using Microsoft.EntityFrameworkCore;
+using Swashbuckle.AspNetCore.Swagger;
+using License = System.ComponentModel.License;
+
 /// <summary>
 /// Slava ukraini, snizu primer raboti s bazoy
 /// Cmock v pisu
@@ -27,7 +37,42 @@ namespace ESVS
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+           
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            RegisterQueriesAndCommands(services);
+            services.AddHttpContextAccessor();
+            services.AddMvc();
+            services.AddAutoMapper(typeof(Startup));
+            //services.AddAutoMapper();
+            var connection = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connection));
+            services.AddIdentity<User, Role>()
+                .AddEntityFrameworkStores<AppDbContext>();
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.Events.OnRedirectToLogin = context =>
+                {
+                    context.Response.StatusCode = 401;
+                    return Task.CompletedTask;
+                };
+                options.Events.OnRedirectToAccessDenied = context =>
+                {
+                    context.Response.StatusCode = 403;
+                    return Task.CompletedTask;
+                };
+            });
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info
+                {
+                    Title = "ESVS",
+                    Version = "v1",
+                    Description = "ESVS",
+                    TermsOfService = "None",
+                  
+                });
+            });
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -39,27 +84,23 @@ namespace ESVS
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Error");
-                app.UseHsts();
-            }
-
             app.UseHttpsRedirection();
+           
+            app.UseDefaultFiles();
             app.UseStaticFiles();
-            app.UseSpaStaticFiles();
+            app.UseAuthentication(
 
-            app.UseMvc(routes =>
+            );
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+
+            app.UseSwaggerUI(c =>
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller}/{action=Index}/{id?}");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
 
+            app.UseMvc();
             app.UseSpa(spa =>
             {
                 // To learn more about options for serving an Angular SPA from ASP.NET Core,
@@ -74,29 +115,20 @@ namespace ESVS
             });
         }
 
-        ///Пример работы с базой
-        /*static void Main(string[] args)
+        private void RegisterQueriesAndCommands(IServiceCollection services)
         {
-            using (ApplicationContext db = new ApplicationContext())
-            {
-                // создаем два объекта User
-                User user1 = new User { Name = "Tom", Age = 33 };
-                User user2 = new User { Name = "Alice", Age = 26 };
+            services
 
-                // добавляем их в бд
-                db.Users.Add(user1);
-                db.Users.Add(user2);
-                db.SaveChanges();
 
-                // получаем объекты из бд и выводим на консоль
-                var users = db.Users.ToList();
-                Console.WriteLine("Users list:");
-                foreach (User u in users)
-                {
-                    Console.WriteLine($"{u.Id}.{u.Name} - {u.Age}");
-                }
-            }
-            Console.Read();
-        }*/
+                .AddScoped<ICreateUserCommand, CreateUserCommand>()
+                .AddScoped<ILogOffUserCommand, LogOffUserCommand>()
+                .AddScoped<ILoginUserCommand, LoginUserCommand>()
+                .AddScoped<IChangeUserPasswordCommand, ChangeUserPasswordCommand>()
+                .AddScoped<IUpdateUserCommand, UpdateUserCommand>()
+                .AddScoped<IUserQuery, UserQuery>()
+                .AddScoped<IUsersListQuery, UsersListQuery>()
+                .AddScoped<IDeleteUserCommand, DeleteUserCommand>();
+
+        }
     }
 }

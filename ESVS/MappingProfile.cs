@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Entities;
 using ViewModel.Users;
 
 namespace ESVS
@@ -17,7 +18,6 @@ namespace ESVS
                 .ForMember(d => d.FirstName, o => o.MapFrom(src => src.FirstName))
                 .ForMember(d => d.LastName, o => o.MapFrom(src => src.LastName))
                 .ForMember(d => d.Gender, o => o.MapFrom(src => src.Gender))
-                .ForMember(d => d.AboutYourself, o => o.MapFrom(src => src.AboutYourself))
                  .ForMember(d => d.LastName, o => o.MapFrom(src => src.LastName))
       
 

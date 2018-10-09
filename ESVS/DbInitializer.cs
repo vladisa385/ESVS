@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Entities;
 using Microsoft.AspNetCore.Identity;
 
 namespace ESVS
