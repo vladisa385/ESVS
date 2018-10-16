@@ -32,7 +32,7 @@ namespace DataAccess.DbImplementation.Users
 
             var foundUser = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
 
-           
+
             foundUser.FirstName = request.FirstName;
             foundUser.LastName = request.LastName;
             foundUser.Gender = request.Gender;

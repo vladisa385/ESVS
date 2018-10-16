@@ -25,26 +25,26 @@ namespace DataAccess.DbImplementation.Users
             _mapper = mapper;
             _context = context;
         }
-        public async Task<UserResponse> ExecuteAsync(CreateUserRequest request)
+        public async Task<RoleResponse> ExecuteAsync(CreateRoleRequest request)
         {
-            User user = new User
+            Role role = new Role
             {
-                Email = request.Email,
-                UserName = request.Email,
+                Name = request.Name,
+                RoleDescription = request.RoleDescription,
 
 
             };
 
             // добавляем пользователя
 
-            var result = await _userManager.CreateAsync(user, request.Password);
+            var result = await _roleManager.CreateAsync(role);
             // установка куки
             if (!result.Succeeded)
                 throw new CannotCreateUserExeption(result.Errors);
 
-            await _signInManager.SignInAsync(user, false);
-            await _userManager.AddToRoleAsync(user, "user");
-            return _mapper.Map<User, UserResponse>(user);
+            await _signInManager.SignInAsync(role, false);
+
+            return _mapper.Map<Role, RoleResponse>(role);
 
         }
     }

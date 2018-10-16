@@ -127,7 +127,9 @@ namespace ESVS
                 .AddScoped<IUpdateUserCommand, UpdateUserCommand>()
                 .AddScoped<IUserQuery, UserQuery>()
                 .AddScoped<IUsersListQuery, UsersListQuery>()
-                .AddScoped<IDeleteUserCommand, DeleteUserCommand>();
+                .AddScoped<IDeleteUserCommand, DeleteUserCommand>()
+                .AddScoped<IDeleteRoleCommand, DeleteRoleCommand>();
+
 
         }
     }
