@@ -125,7 +125,7 @@ namespace ESVS.Controllers
                 return BadRequest(ModelState);
             try
             {
-                UserResponse response = await command.ExecuteAsync(role);
+                RoleResponse response = await command.ExecuteAsync(role);
                 return CreatedAtRoute("GetSingleRole", new { roleId = response.Id }, response);
 
             }
