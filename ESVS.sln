@@ -5,15 +5,17 @@ VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESVS", "ESVS\ESVS.csproj", "{0F864D65-185B-4E7F-8FF3-68C5322238F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB", "DB\DB.csproj", "{868A1F8A-E3A4-4E54-B2C4-F94A7254B588}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DB", "DB\DB.csproj", "{868A1F8A-E3A4-4E54-B2C4-F94A7254B588}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{673DDAE9-875C-4200-B4F1-B9D103A16ED0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{673DDAE9-875C-4200-B4F1-B9D103A16ED0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{6EE71053-B76E-4909-9F27-9D4A7CCD8649}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{6EE71053-B76E-4909-9F27-9D4A7CCD8649}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModel", "ViewModel\ViewModel.csproj", "{F457678A-A718-4C99-8C61-884F051DA317}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ViewModel", "ViewModel\ViewModel.csproj", "{F457678A-A718-4C99-8C61-884F051DA317}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.DbImplementation", "DataAccess.DbImplementation\DataAccess.DbImplementation.csproj", "{6486C2AB-5BE3-4161-AAB3-B0535FCB9ED0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess.DbImplementation", "DataAccess.DbImplementation\DataAccess.DbImplementation.csproj", "{6486C2AB-5BE3-4161-AAB3-B0535FCB9ED0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitTests", "XUnitTests\XUnitTests.csproj", "{0B77D1B9-7174-43AF-AC9A-6FD9D7C5197E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{6486C2AB-5BE3-4161-AAB3-B0535FCB9ED0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6486C2AB-5BE3-4161-AAB3-B0535FCB9ED0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6486C2AB-5BE3-4161-AAB3-B0535FCB9ED0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B77D1B9-7174-43AF-AC9A-6FD9D7C5197E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B77D1B9-7174-43AF-AC9A-6FD9D7C5197E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B77D1B9-7174-43AF-AC9A-6FD9D7C5197E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B77D1B9-7174-43AF-AC9A-6FD9D7C5197E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
