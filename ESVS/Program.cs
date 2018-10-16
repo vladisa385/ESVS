@@ -16,7 +16,7 @@ namespace ESVS
     public class Program
     {
         public static async Task Main(string[] args)
-        {
+        {//Danya is a pidoooor
             var host = BuildWebHost(args);
             using (var scope = host.Services.CreateScope())
             {
