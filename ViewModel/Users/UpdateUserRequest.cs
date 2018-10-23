@@ -14,9 +14,8 @@ namespace ViewModel.Users
         public string LastName { get; set; }
         [Display(Name = "Пол")]
         public bool Gender { get; set; }
-        [Display(Name = "Описание")]
-        [MinLength(100), MaxLength(1000)]
-        public string AboutYourself { get; set; }
+
+
         [Display(Name = "Аватар")]
         public IFormFile Avatar { get; set; }
     }

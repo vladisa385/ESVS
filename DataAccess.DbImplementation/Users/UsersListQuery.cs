@@ -33,11 +33,7 @@ namespace DataAccess.DbImplementation.Users
             {
                 query = query.Where(p => p.LastName.StartsWith(filter.LastName));
             }
-            if (filter.AboutYourself != null)
-            {
-                query = query.Where(p => p.AboutYourself.Contains(filter.AboutYourself));
-            }
-            
+      
             return query;
         }
 

@@ -9,6 +9,5 @@ namespace ViewModel.Users
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public bool Gender { get; set; }
-        public string AboutYourself { get; set; }
     }
 }

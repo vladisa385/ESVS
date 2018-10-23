@@ -22,8 +22,7 @@ namespace ViewModel.Users
         [Required]
 
         public bool Gender { get; set; }
-        [MinLength(100), MaxLength(1000)]
-        public string AboutYourself { get; set; }
+      
 
     }
 }

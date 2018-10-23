@@ -39,9 +39,11 @@ namespace ESVS
         {
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            RegisterQueriesAndCommands(services);
+            
             services.AddHttpContextAccessor();
+            // Auto Mapper Configurations
             services.AddAutoMapper(typeof(Startup));
+            RegisterQueriesAndCommands(services);
             var connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connection));
             services.AddIdentity<User, Role>()
@@ -70,7 +72,7 @@ namespace ESVS
 
                 });
             });
-
+          
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -115,8 +117,6 @@ namespace ESVS
         private void RegisterQueriesAndCommands(IServiceCollection services)
         {
             services
-
-
                 .AddScoped<ICreateUserCommand, CreateUserCommand>()
                 .AddScoped<ILogOffUserCommand, LogOffUserCommand>()
                 .AddScoped<ILoginUserCommand, LoginUserCommand>()
@@ -125,6 +125,7 @@ namespace ESVS
                 .AddScoped<IUserQuery, UserQuery>()
                 .AddScoped<IUsersListQuery, UsersListQuery>()
                 .AddScoped<IDeleteUserCommand, DeleteUserCommand>()
+                .AddScoped<ICreateRoleCommand, CreateRoleCommand>()
                 .AddScoped<IDeleteRoleCommand, DeleteRoleCommand>();
 
 
