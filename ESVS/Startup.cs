@@ -41,12 +41,11 @@ namespace ESVS
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             RegisterQueriesAndCommands(services);
             services.AddHttpContextAccessor();
-
-
-
+            services.AddAutoMapper(typeof(Startup));
+            var connection = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connection));
             services.AddIdentity<User, Role>()
-             .AddEntityFrameworkStores<AppDbContext>();
-
+                .AddEntityFrameworkStores<AppDbContext>();
             services.ConfigureApplicationCookie(options =>
             {
                 options.Events.OnRedirectToLogin = context =>
