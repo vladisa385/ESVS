@@ -6,7 +6,6 @@ namespace ViewModel.Users
     {
         [Required]
         [Display(Name = "Name")]
-        [EmailAddress]
         public string Name { get; set; }
 
         [Required]
