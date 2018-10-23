@@ -17,7 +17,7 @@ namespace ESVS
                 .Build();
             var builder = new DbContextOptionsBuilder<AppDbContext>();
             var connectionString = configuration.GetConnectionString("DefaultConnection");
-            builder.UseSqlServer(connectionString);
+            builder.UseNpgsql(connectionString);
             return new AppDbContext(builder.Options);
         }
     }

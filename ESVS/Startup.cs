@@ -37,17 +37,15 @@ namespace ESVS
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-           
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             RegisterQueriesAndCommands(services);
             services.AddHttpContextAccessor();
-            services.AddMvc();
-            services.AddAutoMapper(typeof(Startup));
-            //services.AddAutoMapper();
-            var connection = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connection));
+
+
+
             services.AddIdentity<User, Role>()
-                .AddEntityFrameworkStores<AppDbContext>();
+             .AddEntityFrameworkStores<AppDbContext>();
 
             services.ConfigureApplicationCookie(options =>
             {
@@ -70,7 +68,7 @@ namespace ESVS
                     Version = "v1",
                     Description = "ESVS",
                     TermsOfService = "None",
-                  
+
                 });
             });
 
@@ -85,7 +83,7 @@ namespace ESVS
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseHttpsRedirection();
-           
+
             app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseAuthentication(
