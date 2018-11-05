@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -16,7 +16,7 @@ namespace ESVS
     public class Program
     {
         public static async Task Main(string[] args)
-        {//Hmmm!
+        {//Hmmm Danya-сыч!
             var host = BuildWebHost(args);
             using (var scope = host.Services.CreateScope())
             {
