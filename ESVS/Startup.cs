@@ -9,6 +9,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using DataAccess.DbImplementation.Roles;
 using DataAccess.DbImplementation.Users;
 using DataAccess.Users;
 using DB;
@@ -39,7 +40,7 @@ namespace ESVS
         {
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            
+
             services.AddHttpContextAccessor();
             // Auto Mapper Configurations
             services.AddAutoMapper(typeof(Startup));
@@ -72,7 +73,7 @@ namespace ESVS
 
                 });
             });
-          
+
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -125,6 +126,9 @@ namespace ESVS
                 .AddScoped<IUserQuery, UserQuery>()
                 .AddScoped<IUsersListQuery, UsersListQuery>()
                 .AddScoped<IDeleteUserCommand, DeleteUserCommand>()
+                //.AddScoped<IRoleQuery, RoleQuery>()
+                //.AddScoped<IRolesListQuery, RolesListQuery>()
+                //.AddScoped<IUpdateRoleCommand, UpdateRoleCommand>()
                 .AddScoped<ICreateRoleCommand, CreateRoleCommand>()
                 .AddScoped<IDeleteRoleCommand, DeleteRoleCommand>();
 

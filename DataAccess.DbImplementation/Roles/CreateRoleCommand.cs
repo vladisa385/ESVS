@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using AutoMapper;
 using DataAccess.Users;
 using Entities;
 using Microsoft.AspNetCore.Identity;
 using ViewModel.Users;
 
-namespace DataAccess.DbImplementation.Users
+namespace DataAccess.DbImplementation.Roles
 {
     public class CreateRoleCommand : ICreateRoleCommand
     {

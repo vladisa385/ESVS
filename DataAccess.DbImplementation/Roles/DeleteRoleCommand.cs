@@ -5,7 +5,7 @@ using Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace DataAccess.DbImplementation.Users
+namespace DataAccess.DbImplementation.Roles
 {
     public class DeleteRoleCommand : IDeleteRoleCommand
     {
