@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ViewModel.Users
+namespace ViewModel.Roles
 {
     public class RoleFilter
     {

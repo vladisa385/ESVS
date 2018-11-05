@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Http;
 
-namespace ViewModel.Users
+namespace ViewModel.Roles
 {
     public class UpdateRoleRequest
     {

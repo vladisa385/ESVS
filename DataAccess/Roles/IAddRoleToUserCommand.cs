@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
+using ViewModel.Roles;
 
-namespace DataAccess.Users
+namespace DataAccess.Roles
 {
     public interface IAddRoleToUserCommand
     {
-        Task ExecuteAsync(Guid roleId,Guid userId );
+        Task<RoleResponse> ExecuteAsync(Guid roleId, Guid userId);
     }
 }

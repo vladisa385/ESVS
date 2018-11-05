@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using DataAccess.DbImplementation.Roles;
 using DataAccess.DbImplementation.Users;
+using DataAccess.Roles;
 using DataAccess.Users;
 using DB;
 using Entities;
@@ -129,8 +130,8 @@ namespace ESVS
                 //.AddScoped<IRoleQuery, RoleQuery>()
                 //.AddScoped<IRolesListQuery, RolesListQuery>()
                 //.AddScoped<IUpdateRoleCommand, UpdateRoleCommand>()
-                //.AddScoped<IAddRoleToUserCommand, AddRoleToUserCommand>()
-                //.AddScoped<IRemoveRoleFromUserCommand, RemoveRoleFromUserCommand>()
+                .AddScoped<IAddRoleToUserCommand, AddRoleToUserCommand>()
+                .AddScoped<IRemoveRoleFromUserCommand, RemoveRoleFromUserCommand>()
                 .AddScoped<ICreateRoleCommand, CreateRoleCommand>()
                 .AddScoped<IDeleteRoleCommand, DeleteRoleCommand>();
 

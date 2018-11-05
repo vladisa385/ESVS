@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 
-namespace DataAccess.Users
+namespace DataAccess.Roles
 {
     public class CannotCreateRoleExeption : Exception
     {

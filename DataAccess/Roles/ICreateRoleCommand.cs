@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using ViewModel.Roles;
 using ViewModel.Users;
 
-namespace DataAccess.Users
+namespace DataAccess.Roles
 {
     public interface ICreateRoleCommand
     {

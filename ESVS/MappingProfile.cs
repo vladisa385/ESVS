@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Entities;
+using ViewModel.Roles;
 using ViewModel.Users;
 
 namespace ESVS

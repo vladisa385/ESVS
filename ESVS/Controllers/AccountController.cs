@@ -71,7 +71,7 @@ namespace ESVS.Controllers
         }
 
 
-        [HttpPost("UpdateUser")]
+        [HttpPut("UpdateUser")]
         [ProducesResponseType(201, Type = typeof(UserResponse))]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
@@ -98,7 +98,7 @@ namespace ESVS.Controllers
         }
 
 
-        [HttpPost("ChangeUserPassword")]
+        [HttpPut("ChangeUserPassword")]
         [ProducesResponseType(201, Type = typeof(UserResponse))]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
@@ -124,7 +124,7 @@ namespace ESVS.Controllers
 
         }
 
-        [HttpPost("Login")]
+        [HttpPut("Login")]
         [ProducesResponseType(200, Type = typeof(UserResponse))]
         [ProducesResponseType(400)]
         public async Task<IActionResult> Login(LoginUserRequest user, [FromServices] ILoginUserCommand command)
@@ -145,7 +145,7 @@ namespace ESVS.Controllers
 
 
 
-        [HttpPost("LogOff")]
+        [HttpPut("LogOff")]
         [ProducesResponseType(200)]
         [ProducesResponseType(401)]
         [Authorize]

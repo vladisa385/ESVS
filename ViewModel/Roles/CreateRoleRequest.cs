@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ViewModel.Users
+namespace ViewModel.Roles
 {
     public class CreateRoleRequest
     {

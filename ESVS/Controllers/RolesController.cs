@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DataAccess.Roles;
 using DataAccess.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ViewModel;
+using ViewModel.Roles;
 using ViewModel.Users;
 
 namespace ESVS.Controllers
@@ -58,7 +60,7 @@ namespace ESVS.Controllers
             }
         }
 
-        [HttpPost("UpdateRole")]
+        [HttpPut("UpdateRole")]
         [ProducesResponseType(201, Type = typeof(UserResponse))]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
@@ -102,5 +104,30 @@ namespace ESVS.Controllers
             }
         }
 
-    }
+
+
+        [HttpPut("{roleId}/users/{userId}")]
+        [Authorize(Roles = "admin")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public async Task<IActionResult> AddRoleToUserAsync(Guid roleId, Guid userId, [FromServices]IAddRoleToUserCommand command)
+        {
+            RoleResponse response = await command.ExecuteAsync(roleId, userId);
+            return response == null ? (IActionResult)NotFound() : Ok(response);
+        }
+
+
+        [HttpDelete("{roleId}/users/{userId}")]
+        [ProducesResponseType(204)]
+        [Authorize(Roles = "admin")]
+        [ProducesResponseType(400)]
+        public async Task<IActionResult> RemoveRoleFromUserAsync(Guid roleId, Guid userId, [FromServices] IRemoveRoleFromUserCommand command)
+        {
+            await command.ExecuteAsync(roleId, userId);
+            return NoContent();
+        }
+    
+
+}
 }

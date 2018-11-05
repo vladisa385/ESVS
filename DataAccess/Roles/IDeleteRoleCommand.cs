@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.Users
+namespace DataAccess.Roles
 {
     public interface IDeleteRoleCommand
     {
