@@ -129,7 +129,7 @@ namespace ESVS
                 .AddScoped<IDeleteUserCommand, DeleteUserCommand>()
                 .AddScoped<IRoleQuery, RoleQuery>()
                 .AddScoped<IRolesListQuery, RolesListQuery>()
-                //.AddScoped<IUpdateRoleCommand, UpdateRoleCommand>()
+                .AddScoped<IUpdateRoleCommand, UpdateRoleCommand>()
                 .AddScoped<IAddRoleToUserCommand, AddRoleToUserCommand>()
                 .AddScoped<IRemoveRoleFromUserCommand, RemoveRoleFromUserCommand>()
                 .AddScoped<ICreateRoleCommand, CreateRoleCommand>()

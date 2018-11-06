@@ -60,18 +60,18 @@ namespace ESVS.Controllers
             }
         }
 
-        [HttpPut("UpdateRole")]
+        [HttpPut("UpdateRole/{roleId}")]
         [ProducesResponseType(201, Type = typeof(UserResponse))]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
         [Authorize]
-        public async Task<IActionResult> UpdateRole(UpdateRoleRequest role, [FromServices] IUpdateRoleCommand command)
+        public async Task<IActionResult> UpdateRole(Guid roleId,UpdateRoleRequest role, [FromServices] IUpdateRoleCommand command)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             try
             {
-                RoleResponse response = await command.ExecuteAsync(role);
+                RoleResponse response = await command.ExecuteAsync(roleId,role);
                 return CreatedAtRoute("GetSingleRole", new { roleId = response.Id }, response);
 
             }
