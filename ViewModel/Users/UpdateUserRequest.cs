@@ -13,7 +13,7 @@ namespace ViewModel.Users
         [MinLength(5), MaxLength(40)]
         public string LastName { get; set; }
         [Display(Name = "Пол")]
-        public bool Gender { get; set; }
+        public bool IsMen { get; set; }
 
 
         [Display(Name = "Аватар")]
