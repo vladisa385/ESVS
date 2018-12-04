@@ -19,6 +19,20 @@ namespace DB.Migrations
                 .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
+            modelBuilder.Entity("Entities.CatalogOfCatalogs", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CatalogOfCatalogsDescription");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CatalogOfCatalogs");
+                });
+
             modelBuilder.Entity("Entities.Role", b =>
                 {
                     b.Property<Guid>("Id")
