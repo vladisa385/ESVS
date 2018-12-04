@@ -1,0 +1,33 @@
+#pic {
+  background-image: url("../../assets/img/1.jpg");
+  background-size: cover;
+  height: 40vh;
+  border-bottom: 2px solid #5cace1;
+}
+#title {
+  font-size: 22px;
+}
+#maincont {
+  background: #dadfe1;
+  padding: 0 !important;
+}
+#cont {
+  padding: 15px;
+}
+#calendar {
+  padding-top: 17px;
+}
+#aboutbtn {
+  padding-left: 22px;
+  padding-right: 22px;
+  background-color: #5cace1;
+  border-color: #5cace1;
+
+}
+#aboutbtn:hover {
+  background-color: #419ae1;
+}
+hr {
+  background-color: white;
+  height: 1px;
+}

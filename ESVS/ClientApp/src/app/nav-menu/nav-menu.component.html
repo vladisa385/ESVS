@@ -1,33 +1,13 @@
-<div class='main-nav'>
-    <div class='navbar navbar-inverse'>
-        <div class='navbar-header'>
-            <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse' [attr.aria-expanded]='isExpanded' (click)='toggle()'>
-                <span class='sr-only'>Toggle navigation</span>
-                <span class='icon-bar'></span>
-                <span class='icon-bar'></span>
-                <span class='icon-bar'></span>
-            </button>
-            <a class='navbar-brand' [routerLink]='["/"]'>ESVS</a>
-        </div>
-        <div class='clearfix'></div>
-        <div class='navbar-collapse collapse' [ngClass]='{ "in": isExpanded }'>
-            <ul class='nav navbar-nav'>
-                <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
-                    <a [routerLink]='["/"]' (click)='collapse()'>
-                        <span class='glyphicon glyphicon-home'></span> Home
-                    </a>
-                </li>
-                <li [routerLinkActive]='["link-active"]'>
-                    <a [routerLink]='["/counter"]' (click)='collapse()'>
-                        <span class='glyphicon glyphicon-education'></span> Counter
-                    </a>
-                </li>
-                <li [routerLinkActive]='["link-active"]'>
-                    <a [routerLink]='["/fetch-data"]' (click)='collapse()'>
-                        <span class='glyphicon glyphicon-th-list'></span> Fetch data
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
+<nav class="navbar navbar-expand-lg py-0">
+  <a class="navbar-brand order-md-last py-0 ml-auto">
+    <span class="navbar-text py-0" id="brand">
+      ЕДИНАЯ СИСТЕМА ВЕДЕНИЯ<br>СПРАВОЧНИКОВ
+    </span>
+    <img src="../../assets/img/logo.png" id="logo">
+  </a>
+  <ul class="navbar-nav mx-auto" routerLinkActive="active">
+    <li class="nav-item py-0"><a class="nav-link" routerLink="">Главная</a></li>
+    <li class="nav-item py-0"><a class="nav-link" routerLink="about">Описание системы</a></li>
+    <li class="nav-item py-0"><a class="nav-link" routerLink="contacts">Контакты</a></li>
+  </ul>
+</nav>

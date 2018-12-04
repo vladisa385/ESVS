@@ -1,0 +1,20 @@
+#pic {
+  background-image: url("../../assets/img/3.jpg");
+  background-size: cover;
+  height: 40vh;
+  border-bottom: 2px solid #5cace1;
+}
+#title {
+  font-size: 22px;
+}
+#maincont {
+  background: #dadfe1;
+  padding: 0 !important;
+}
+#cont {
+  padding: 15px;
+}
+hr {
+  background-color: white;
+  height: 1px;
+}

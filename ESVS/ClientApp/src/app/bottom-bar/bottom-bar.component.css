@@ -1,0 +1,15 @@
+#bottom-bar {
+  background-color: #35495d;
+  padding: 0 10px 1px 10px;
+}
+#links a {
+  color: white;
+}
+p {
+  color: white;
+  font-size: 13px;
+}
+hr {
+  background-color: white;
+  height: 1px;
+}

@@ -1,0 +1,25 @@
+#pic {
+  background-image: url("../../assets/img/2.jpg");
+  background-size: cover;
+  height: 40vh;
+  border-bottom: 2px solid #5cace1;
+}
+#title {
+  font-size: 22px;
+}
+#maincont {
+  background: #dadfe1;
+  padding: 0 !important;
+}
+#cont {
+  padding: 15px;
+}
+#promo {
+  max-height: 100%;
+  max-width: 100%;
+  border: solid #5cace1;
+}
+hr {
+  background-color: white;
+  height: 1px;
+}
