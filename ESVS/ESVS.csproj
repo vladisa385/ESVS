@@ -38,6 +38,10 @@
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
     <Content Remove="$(SpaRoot)**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+    <None Remove="ClientApp\src\assets\fonts\**" />
+    <Content Remove="ClientApp\src\assets\fonts\**" />
+    <None Remove="ClientApp\src\app\sign-in\**" />
+    <Content Remove="ClientApp\src\app\sign-in\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -50,6 +54,13 @@
 
   <ItemGroup>
     <Compile Remove="EmptyClass.cs" />
+    <Compile Remove="ClientApp\src\assets\fonts\**" />
+    <Compile Remove="ClientApp\src\app\sign-in\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="ClientApp\src\assets\fonts\**" />
+    <EmbeddedResource Remove="ClientApp\src\app\sign-in\**" />
   </ItemGroup>
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->

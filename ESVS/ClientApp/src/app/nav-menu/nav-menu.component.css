@@ -148,9 +148,20 @@
 }
 
 #logo {
-  height: 15%;
-  width: 15%;
+  height: 20%;
+  width: 20%;
+  margin-bottom: 7px;
 }
 #brand {
   font-size: 11px;
+}
+#nav-items {
+  margin: auto;
+}
+.item {
+  padding-top: 22px;
+  padding-bottom: 22px;
+}
+#brands {
+  margin-top: 7px;
 }
