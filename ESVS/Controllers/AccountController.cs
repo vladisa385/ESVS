@@ -20,7 +20,7 @@ namespace ESVS.Controllers
         // UpdateRole like a UpdateUser +
         // AddRoleToUser/{roleId} & /{userId}
         // DeleteRoleToUser/{roleId} & /{userId}
-
+      
         [HttpGet("GetList")]
         [Authorize]
         [ProducesResponseType(401)]
@@ -154,6 +154,8 @@ namespace ESVS.Controllers
             await command.ExecuteAsync();
             return Ok();
         }
+
+
 
         [Authorize(Roles = "admin")]
         [HttpDelete("Delete/{userId}")]

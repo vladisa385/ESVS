@@ -1,4 +1,5 @@
-﻿/*using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using AutoMapper;
 using DataAccess.Roles;
 using Entities;
@@ -26,12 +27,12 @@ namespace DataAccess.DbImplementation.Roles
 
             _appEnvironment = appEnvironment;
         }
-        public async Task<RoleResponse> ExecuteAsync(UpdateRoleRequest request)
+        public async Task<RoleResponse> ExecuteAsync(Guid roleId,UpdateRoleRequest request)
         {
 
 
-            var foundRole = await _roleManager.GetRoleIdAsync(_httpContextAccessor.HttpContext.Role);
-
+            var foundRole = await _roleManager.FindByIdAsync(roleId.ToString());
+            if (foundRole == null) return null;
 
             foundRole.Name = request.Name;
             foundRole.RoleDescription = request.RoleDescription;
@@ -42,4 +43,4 @@ namespace DataAccess.DbImplementation.Roles
 
         }
     }
-}*/
+}
