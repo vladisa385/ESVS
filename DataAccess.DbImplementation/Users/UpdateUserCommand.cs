@@ -35,7 +35,7 @@ namespace DataAccess.DbImplementation.Users
 
             foundUser.FirstName = request.FirstName;
             foundUser.LastName = request.LastName;
-            foundUser.Gender = request.Gender;
+            foundUser.Gender = request.IsMen;
             //if (request.Avatar != null)
             //{
             //    string basedir = _appEnvironment.WebRootPath + "/Users/";

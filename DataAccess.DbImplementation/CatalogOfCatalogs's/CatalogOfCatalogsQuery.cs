@@ -1,32 +1,30 @@
-﻿/*using System;
+﻿using System;
 using System.Threading.Tasks;
+using AutoMapper.QueryableExtensions;
+using DataAccess.Roles;
+using DB;
 using Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using ViewModel.Roles;
 using ViewModel;
 
 namespace DataAccess.DbImplementation
 {
     public class CatalogOfCatalogsQuery : ICatalogOfCatalogsQuery
     {
-        private readonly CatalogOfCatalogsManager<CatalogOfCatalogs> _catalogofcatalogsManager;
-
-        public CatalogOfCatalogsQuery(catalogOfCatalogsManager<CatalogOfCatalogs> catalogofcatalogsManager)
+        private readonly AppDbContext _context;
+        public CatalogOfCatalogsQuery(AppDbContext dbContext)
         {
-            _catalogofcatalogsManager = catalogofcatalogsManager;
+            _context = dbContext;
         }
 
         public async Task<CatalogOfCatalogsResponse> RunAsync(Guid catalogofcatalogsId)
         {
-
-            CatalogOfCatalogsResponse response = await _catalogofcatalogsManager.CatalogOfCatalogs_s.Include("Recipies")
-                .Include("Recipies")
-                .Include("Reviews")
-                .Include("CheapPlaces")
-                .Include("RateReviews")
-                .Include("RateCheapPlaces")
+            CatalogOfCatalogsResponse response = await _context.CatalogOfCatalogs
                 .ProjectTo<CatalogOfCatalogsResponse>()
                 .FirstOrDefaultAsync(p => p.Id == catalogofcatalogsId);
             return response;
         }
     }
 }
-*/

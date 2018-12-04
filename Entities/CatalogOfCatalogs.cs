@@ -7,6 +7,9 @@ namespace Entities
     public class CatalogOfCatalogs
     {
         public Guid Id { get; set; }
-        //get ,get all,create,update,delete
+        public string Name { get; set; }
+  
+        public string CatalogOfCatalogsDescription { get; set; }
+       
     }
 }

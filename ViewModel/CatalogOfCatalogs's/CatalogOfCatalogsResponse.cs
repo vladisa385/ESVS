@@ -11,5 +11,7 @@ namespace ViewModel
         public string Name { get; set; }
         [Required]
         public string CatalogOfCatalogsDescription { get; set; }
+
+        public int CatalogOfCatalogsCount { get; set; }
     }
 }

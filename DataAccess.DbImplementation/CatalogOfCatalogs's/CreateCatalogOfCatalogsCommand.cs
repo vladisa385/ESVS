@@ -1,45 +1,32 @@
-﻿/*using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using AutoMapper;
 using DataAccess.Roles;
 using DataAccess.Users;
+using DB;
 using Entities;
 using Microsoft.AspNetCore.Identity;
 using ViewModel.Roles;
 using ViewModel;
 
+
 namespace DataAccess.DbImplementation
 {
     public class CreateCatalogOfCatalogsCommand : ICreateCatalogOfCatalogsCommand
     {
-        private readonly RoleManager<Role> _roleManager;
+        private readonly AppDbContext _context;
         private readonly IMapper _mapper;
 
-        public CreateRoleCommand(
-            RoleManager<Role> roleManager,
-            IMapper mapper)
+        public CreateCatalogOfCatalogsCommand(AppDbContext dbContext, IMapper mapper)
         {
-            _roleManager = roleManager;
+            _context = dbContext;
             _mapper = mapper;
         }
-        public async Task<RoleResponse> ExecuteAsync(CreateRoleRequest request)
+        public async Task<CatalogOfCatalogsResponse> ExecuteAsync(CreateCatalogOfCatalogsRequest request)
         {
-            Role role = new Role
-            {
-                Name = request.Name,
-                RoleDescription = request.RoleDescription,
-
-
-            };
-
-            // добавляем пользователя
-
-            var result = await _roleManager.CreateAsync(role);
-            // установка куки
-            if (!result.Succeeded)
-                throw new CannotCreateUserExeption(result.Errors);
-
-            return _mapper.Map<Role, RoleResponse>(role);
-
+            var catalogofcatalogs = _mapper.Map<CreateCatalogOfCatalogsRequest, CatalogOfCatalogs>(request);
+            await _context.AddAsync(catalogofcatalogs);
+            await _context.SaveChangesAsync();
+            return _mapper.Map<CatalogOfCatalogs, CatalogOfCatalogsResponse>(catalogofcatalogs);
         }
     }
-}*/
+}

@@ -2,6 +2,7 @@
 using Entities;
 using ViewModel.Roles;
 using ViewModel.Users;
+using ViewModel;
 
 namespace ESVS
 {
@@ -10,6 +11,10 @@ namespace ESVS
     {
         public MappingProfile()
         {
+
+            CreateMap<CatalogOfCatalogs, CatalogOfCatalogsResponse>();
+            CreateMap<CreateCatalogOfCatalogsRequest, CatalogOfCatalogs>();
+            CreateMap<UpdateCatalogOfCatalogsRequest, CatalogOfCatalogs>();
 
 
             CreateMap<User, UserResponse>()

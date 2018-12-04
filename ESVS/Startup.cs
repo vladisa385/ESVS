@@ -9,6 +9,8 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using DataAccess;
+using DataAccess.DbImplementation;
 using DataAccess.DbImplementation.Roles;
 using DataAccess.DbImplementation.Users;
 using DataAccess.Roles;
@@ -134,11 +136,11 @@ namespace ESVS
                 .AddScoped<IRemoveRoleFromUserCommand, RemoveRoleFromUserCommand>()
                 .AddScoped<ICreateRoleCommand, CreateRoleCommand>()
                 .AddScoped<IDeleteRoleCommand, DeleteRoleCommand>()
-                /*.AddScoped<ICatalogOfCatalogsQuery, CatalogOfCatalogsQuery>()
-                .AddScoped<ICatalogOfCatalogsListQuery, CatalogOfCatalogsListQuery>()
+                .AddScoped<ICatalogOfCatalogsQuery, CatalogOfCatalogsQuery>()
                 .AddScoped<IUpdateCatalogOfCatalogsCommand, UpdateCatalogOfCatalogsCommand>()
                 .AddScoped<ICreateCatalogOfCatalogsCommand, CreateCatalogOfCatalogsCommand>()
-                .AddScoped<IDeleteCatalogOfCatalogsCommand, DeleteCatalogOfCatalogsCommand>()*/;
+                .AddScoped<IDeleteCatalogOfCatalogsCommand, DeleteCatalogOfCatalogsCommand>()
+                .AddScoped<ICatalogOfCatalogsListQuery, CatalogOfCatalogsListQuery>();
 
 
         }
