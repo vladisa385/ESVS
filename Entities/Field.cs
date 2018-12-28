@@ -16,6 +16,6 @@ namespace Entities
 
         public Guid CatalogOfCatalogId { get; set; }
 
-        public CatalogOfCatalogs CatalogOfCatalog { get; set; }
+        public Catalog Catalog { get; set; }
     }
 }
