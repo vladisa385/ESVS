@@ -15,7 +15,7 @@ namespace Entities
 
         public Guid? ParentId { get; set; }
 
-        public Catalog Parent { get; set; }
+        public Catalogs Parent { get; set; }
 
     }
 }

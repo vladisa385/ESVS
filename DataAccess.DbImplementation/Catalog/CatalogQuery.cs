@@ -11,18 +11,18 @@ using ViewModel;
 
 namespace DataAccess.DbImplementation
 {
-    public class CatalogOfCatalogsQuery : ICatalogOfCatalogsQuery
+    public class CatalogsQuery : ICatalogsQuery
     {
         private readonly AppDbContext _context;
-        public CatalogOfCatalogsQuery(AppDbContext dbContext)
+        public CatalogsQuery(AppDbContext dbContext)
         {
             _context = dbContext;
         }
 
-        public async Task<CatalogOfCatalogsResponse> RunAsync(Guid catalogofcatalogsId)
+        public async Task<CatalogsResponse> RunAsync(Guid catalogofcatalogsId)
         {
-            CatalogOfCatalogsResponse response = await _context.CatalogOfCatalogs
-                .ProjectTo<CatalogOfCatalogsResponse>()
+            CatalogsResponse response = await _context.Catalogs
+                .ProjectTo<CatalogsResponse>()
                 .FirstOrDefaultAsync(p => p.Id == catalogofcatalogsId);
             return response;
         }

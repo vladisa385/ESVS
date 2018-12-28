@@ -10,9 +10,12 @@
     <Compile Remove="Migrations\20181016101150_2.cs" />
     <Compile Remove="Migrations\20181016154755_3.cs" />
     <Compile Remove="Migrations\20181016161444_4.cs" />
+    <Compile Remove="Migrations\20181023075429_5.cs" />
     <Compile Remove="Migrations\20181023092232_1.cs" />
     <Compile Remove="Migrations\20181204080258_8.cs" />
     <Compile Remove="Migrations\20181204080448_8.cs" />
+    <Compile Remove="Migrations\20181204080802_8.cs" />
+    <Compile Remove="Migrations\20181228155858_9.cs" />
   </ItemGroup>
 
   <ItemGroup>

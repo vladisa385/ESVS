@@ -2,10 +2,10 @@
 
 namespace ViewModel
 {
-    public class CatalogOfCatalogsFilter
+    public class CatalogsFilter
     {
         public Guid? Id { get; set; }
         public string Name { get; set; }
-        public string CatalogOfCatalogsDescription { get; set; }
+        public string CatalogsDescription { get; set; }
     }
 }

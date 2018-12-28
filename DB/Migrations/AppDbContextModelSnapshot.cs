@@ -19,18 +19,22 @@ namespace DB.Migrations
                 .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            modelBuilder.Entity("Entities.CatalogOfCatalogs", b =>
+            modelBuilder.Entity("Entities.Catalogs", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("CatalogOfCatalogsDescription");
+                    b.Property<string>("CatalogDescription");
 
                     b.Property<string>("Name");
 
+                    b.Property<Guid?>("ParentId");
+
                     b.HasKey("Id");
 
-                    b.ToTable("CatalogOfCatalogs");
+                    b.HasIndex("ParentId");
+
+                    b.ToTable("Catalogs");
                 });
 
             modelBuilder.Entity("Entities.Role", b =>
@@ -199,6 +203,13 @@ namespace DB.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("Entities.Catalogs", b =>
+                {
+                    b.HasOne("Entities.Catalogs", "Parent")
+                        .WithMany()
+                        .HasForeignKey("ParentId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>

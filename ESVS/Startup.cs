@@ -136,11 +136,11 @@ namespace ESVS
                 .AddScoped<IRemoveRoleFromUserCommand, RemoveRoleFromUserCommand>()
                 .AddScoped<ICreateRoleCommand, CreateRoleCommand>()
                 .AddScoped<IDeleteRoleCommand, DeleteRoleCommand>()
-                .AddScoped<ICatalogOfCatalogsQuery, CatalogOfCatalogsQuery>()
-                .AddScoped<IUpdateCatalogOfCatalogsCommand, UpdateCatalogOfCatalogsCommand>()
-                .AddScoped<ICreateCatalogOfCatalogsCommand, CreateCatalogOfCatalogsCommand>()
-                .AddScoped<IDeleteCatalogOfCatalogsCommand, DeleteCatalogOfCatalogsCommand>()
-                .AddScoped<ICatalogOfCatalogsListQuery, CatalogOfCatalogsListQuery>();
+                .AddScoped<ICatalogsQuery, CatalogsQuery>()
+                .AddScoped<IUpdateCatalogsCommand, UpdateCatalogsCommand>()
+                .AddScoped<ICreateCatalogsCommand, CreateCatalogsCommand>()
+                .AddScoped<IDeleteCatalogsCommand, DeleteCatalogsCommand>()
+                .AddScoped<ICatalogsListQuery, CatalogsListQuery>();
 
 
         }

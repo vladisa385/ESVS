@@ -11,22 +11,22 @@ using ViewModel;
 
 namespace DataAccess.DbImplementation
 {
-    public class CreateCatalogOfCatalogsCommand : ICreateCatalogOfCatalogsCommand
+    public class CreateCatalogsCommand : ICreateCatalogsCommand
     {
         private readonly AppDbContext _context;
         private readonly IMapper _mapper;
 
-        public CreateCatalogOfCatalogsCommand(AppDbContext dbContext, IMapper mapper)
+        public CreateCatalogsCommand(AppDbContext dbContext, IMapper mapper)
         {
             _context = dbContext;
             _mapper = mapper;
         }
-        public async Task<CatalogOfCatalogsResponse> ExecuteAsync(CreateCatalogOfCatalogsRequest request)
+        public async Task<CatalogsResponse> ExecuteAsync(CreateCatalogsRequest request)
         {
-            var catalogofcatalogs = _mapper.Map<CreateCatalogOfCatalogsRequest, CatalogOfCatalogs>(request);
+            var catalogofcatalogs = _mapper.Map<CreateCatalogsRequest, Catalogs>(request);
             await _context.AddAsync(catalogofcatalogs);
             await _context.SaveChangesAsync();
-            return _mapper.Map<CatalogOfCatalogs, CatalogOfCatalogsResponse>(catalogofcatalogs);
+            return _mapper.Map<Catalogs, CatalogsResponse>(catalogofcatalogs);
         }
     }
 }

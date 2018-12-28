@@ -2,7 +2,7 @@
 
 namespace ViewModel
 {
-    public class CreateCatalogOfCatalogsRequest
+    public class CreateCatalogsRequest
     {
         [Required]
         [Display(Name = "Name")]
@@ -10,6 +10,6 @@ namespace ViewModel
 
         [Required]
         [Display(Name = "Description")]
-        public string CatalogOfCatalogsDescription { get; set; }
+        public string CatalogsDescription { get; set; }
     }
 }

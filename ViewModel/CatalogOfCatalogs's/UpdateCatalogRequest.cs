@@ -2,13 +2,13 @@
 
 namespace ViewModel
 {
-    public class UpdateCatalogOfCatalogsRequest
+    public class UpdateCatalogsRequest
     {
         [Display(Name = "Имя")]
         [MinLength(5), MaxLength(40)]
         public string Name { get; set; }
         [Display(Description = "Описание")]
         [MinLength(5), MaxLength(40)]
-        public string CatalogOfCatalogsDescription { get; set; }
+        public string CatalogsDescription { get; set; }
     }
 }

@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Identity;
 
 namespace DataAccess
 {
-    public class CannotCreateCatalogOfCatalogsExeption : Exception
+    public class CannotCreateCatalogsExeption : Exception
     {
         public IEnumerable<IdentityError> Errors { get; set; }
-        public CannotCreateCatalogOfCatalogsExeption(IEnumerable<IdentityError> errors) : base("Catalog of catalogs cannot be created")
+        public CannotCreateCatalogsExeption(IEnumerable<IdentityError> errors) : base("Catalog of catalogs cannot be created")
         {
             Errors = errors;
         }

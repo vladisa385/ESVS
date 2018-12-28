@@ -8,16 +8,16 @@ using ViewModel;
 
 namespace DataAccess.DbImplementation
 {
-    public class CatalogOfCatalogsListQuery : ICatalogOfCatalogsListQuery
+    public class CatalogsListQuery : ICatalogsListQuery
     {
         /*private readonly AppDbContext _context;
-        public CatalogOfCatalogsListQuery(AppDbContext tasksContext)
+        public CatalogsListQuery(AppDbContext tasksContext)
         {
             _context = tasksContext;
 
         }
 
-        private IQueryable<CatalogOfCatalogsResponse> ApplyFilter(IQueryable<CatalogOfCatalogsResponse> query, CatalogOfCatalogsFilter filter)
+        private IQueryable<CatalogsResponse> ApplyFilter(IQueryable<CatalogsResponse> query, CatalogsFilter filter)
         {
             if (filter.Id != null)
             {
@@ -32,10 +32,10 @@ namespace DataAccess.DbImplementation
             return query;
         }
 
-        public async Task<ListResponse<CatalogOfCatalogsResponse>> RunAsync(CatalogOfCatalogsFilter filter, ListOptions options)
+        public async Task<ListResponse<CatalogsResponse>> RunAsync(CatalogsFilter filter, ListOptions options)
         {
-            IQueryable<CatalogOfCatalogsResponse> query = _context.Users //nado CatalogOfCatalogss
-                .ProjectTo<CatalogOfCatalogsResponse>();
+            IQueryable<CatalogsResponse> query = _context.Users //nado Catalogss
+                .ProjectTo<CatalogsResponse>();
             query = ApplyFilter(query, filter);
             int totalCount = await query.CountAsync();
             if (options.Sort == null)
@@ -45,7 +45,7 @@ namespace DataAccess.DbImplementation
 
             query = options.ApplySort(query);
             query = options.ApplyPaging(query);
-            return new ListResponse<CatalogOfCatalogsResponse>
+            return new ListResponse<CatalogsResponse>
             {
                 Items = await query.ToListAsync(),
                 Page = options.Page,
@@ -56,13 +56,13 @@ namespace DataAccess.DbImplementation
         }*/
         private readonly AppDbContext _context;
         private readonly IMapper _mapper;
-        public CatalogOfCatalogsListQuery(AppDbContext tasksContext, IMapper mapper)
+        public CatalogsListQuery(AppDbContext tasksContext, IMapper mapper)
         {
             _context = tasksContext;
             _mapper = mapper;
         }
 
-        private IQueryable<CatalogOfCatalogsResponse> ApplyFilter(IQueryable<CatalogOfCatalogsResponse> query, CatalogOfCatalogsFilter filter)
+        private IQueryable<CatalogsResponse> ApplyFilter(IQueryable<CatalogsResponse> query, CatalogsFilter filter)
         {
             if (filter.Id != null)
             {
@@ -77,10 +77,10 @@ namespace DataAccess.DbImplementation
             return query;
         }
 
-        public async Task<ListResponse<CatalogOfCatalogsResponse>> RunAsync(CatalogOfCatalogsFilter filter, ListOptions options)
+        public async Task<ListResponse<CatalogsResponse>> RunAsync(CatalogsFilter filter, ListOptions options)
         {
-            IQueryable<CatalogOfCatalogsResponse> query = _context.CatalogOfCatalogs.Include("CatalogOfCatalogs")
-                .ProjectTo<CatalogOfCatalogsResponse>();
+            IQueryable<CatalogsResponse> query = _context.Catalogs.Include("Catalogs")
+                .ProjectTo<CatalogsResponse>();
             query = ApplyFilter(query, filter);
             int totalCount = await query.CountAsync();
             if (options.Sort == null)
@@ -90,7 +90,7 @@ namespace DataAccess.DbImplementation
 
             query = options.ApplySort(query);
             query = options.ApplyPaging(query);
-            return new ListResponse<CatalogOfCatalogsResponse>
+            return new ListResponse<CatalogsResponse>
             {
                 Items = await query.ToListAsync(),
                 Page = options.Page,

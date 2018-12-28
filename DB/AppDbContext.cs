@@ -7,7 +7,7 @@ namespace DB
 {
     public class AppDbContext : IdentityDbContext<User, Role, Guid>
     {
-        public DbSet<CatalogOfCatalogs> CatalogOfCatalogs { get; set; }
+        public DbSet<Catalogs> Catalogs { get; set; }
         public AppDbContext(DbContextOptions<AppDbContext> options)
            : base(options)
         {

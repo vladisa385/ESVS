@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess
 {
-    public interface IDeleteCatalogOfCatalogsCommand
+    public interface IDeleteCatalogsCommand
     {
         Task ExecuteAsync(Guid catalogofcatalogsId);
     }
