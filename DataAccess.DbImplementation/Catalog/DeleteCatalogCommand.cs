@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.DbImplementation
 {
-    public class DeleteCatalogsCommand : IDeleteCatalogsCommand 
+    public class DeleteCatalogsCommand : IDeleteCatalogsCommand
     {
         private readonly AppDbContext _context;
 
@@ -20,7 +20,7 @@ namespace DataAccess.DbImplementation
         }
         public async Task ExecuteAsync(Guid catalogofcatalogsId)
         {
-            Catalogs catalogofcatalogsToDelete = await _context.Catalogs.FirstOrDefaultAsync(p => p.Id == catalogofcatalogsId);
+            Catalog catalogofcatalogsToDelete = await _context.Catalogs.FirstOrDefaultAsync(p => p.Id == catalogofcatalogsId);
             /*if (catalogofcatalogsToDelete?.CheapPlaces?.Count > 0)
             {
                 throw new CannotDeleteCityWithCheapPlacesExeption();

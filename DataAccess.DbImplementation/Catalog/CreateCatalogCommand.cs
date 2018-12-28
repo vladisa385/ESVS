@@ -23,10 +23,10 @@ namespace DataAccess.DbImplementation
         }
         public async Task<CatalogsResponse> ExecuteAsync(CreateCatalogsRequest request)
         {
-            var catalogofcatalogs = _mapper.Map<CreateCatalogsRequest, Catalogs>(request);
+            var catalogofcatalogs = _mapper.Map<CreateCatalogsRequest, Catalog>(request);
             await _context.AddAsync(catalogofcatalogs);
             await _context.SaveChangesAsync();
-            return _mapper.Map<Catalogs, CatalogsResponse>(catalogofcatalogs);
+            return _mapper.Map<Catalog, CatalogsResponse>(catalogofcatalogs);
         }
     }
 }

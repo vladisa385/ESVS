@@ -6,6 +6,7 @@ namespace Entities
 {
     public class Role : IdentityRole<Guid>
     {
+        [Required, MinLength(100), MaxLength(1000)]
         public string RoleDescription { get; set; }
     }
 }

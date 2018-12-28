@@ -12,9 +12,9 @@ namespace ESVS
         public MappingProfile()
         {
 
-            CreateMap<Catalogs, CatalogsResponse>();
-            CreateMap<CreateCatalogsRequest, Catalogs>();
-            CreateMap<UpdateCatalogsRequest, Catalogs>();
+            CreateMap<Catalog, CatalogsResponse>();
+            CreateMap<CreateCatalogsRequest, Catalog>();
+            CreateMap<UpdateCatalogsRequest, Catalog>();
 
 
             CreateMap<User, UserResponse>()
