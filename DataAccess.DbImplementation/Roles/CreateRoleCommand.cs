@@ -5,7 +5,6 @@ using DataAccess.Users;
 using Entities;
 using Microsoft.AspNetCore.Identity;
 using ViewModel.Roles;
-using ViewModel.Users;
 
 namespace DataAccess.DbImplementation.Roles
 {

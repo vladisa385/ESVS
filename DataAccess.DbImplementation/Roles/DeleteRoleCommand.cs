@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using DataAccess.Roles;
-using DataAccess.Users;
 using Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

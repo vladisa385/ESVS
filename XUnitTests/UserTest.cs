@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Text;
 using DataAccess.Roles;
 using DataAccess.Users;
-using ESVS;
 using ESVS.Controllers;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using ViewModel;

@@ -6,7 +6,6 @@ using DB;
 using Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using ViewModel.Roles;
 
 namespace DataAccess.DbImplementation.Roles

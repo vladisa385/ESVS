@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AutoMapper.QueryableExtensions;
-using DataAccess.Roles;
 using DB;
-using Entities;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using ViewModel.Roles;
 using ViewModel;
 
 namespace DataAccess.DbImplementation

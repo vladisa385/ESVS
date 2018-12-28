@@ -1,12 +1,9 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using DataAccess;
@@ -19,7 +16,6 @@ using DB;
 using Entities;
 using Microsoft.EntityFrameworkCore;
 using Swashbuckle.AspNetCore.Swagger;
-using License = System.ComponentModel.License;
 
 /// <summary>
 /// Slava ukraini, snizu primer raboti s bazoy

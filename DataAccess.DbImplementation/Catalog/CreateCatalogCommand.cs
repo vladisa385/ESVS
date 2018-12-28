@@ -1,11 +1,7 @@
 ﻿using System.Threading.Tasks;
 using AutoMapper;
-using DataAccess.Roles;
-using DataAccess.Users;
 using DB;
 using Entities;
-using Microsoft.AspNetCore.Identity;
-using ViewModel.Roles;
 using ViewModel;
 
 

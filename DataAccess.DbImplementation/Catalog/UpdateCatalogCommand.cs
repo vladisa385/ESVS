@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AutoMapper;
-using DataAccess.Roles;
 using Entities;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
-using ViewModel.Roles;
 using ViewModel;
 using DB;
 using Microsoft.EntityFrameworkCore;

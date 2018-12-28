@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using DataAccess;
 using Microsoft.AspNetCore.Mvc;
-using DataAccess.Roles;
-using DataAccess.Users;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using ViewModel;
-using ViewModel.Roles;
-using ViewModel.Users;
 
 namespace ESVS.Controllers
 {

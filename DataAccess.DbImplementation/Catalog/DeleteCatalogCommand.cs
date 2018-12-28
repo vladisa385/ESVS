@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-using DataAccess.Roles;
-using DataAccess.Users;
-using DataAccess;
 using Entities;
 using DB;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.DbImplementation

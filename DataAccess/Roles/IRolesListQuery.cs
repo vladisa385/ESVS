@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using ViewModel;
 using ViewModel.Roles;
-using ViewModel.Users;
 
 namespace DataAccess.Roles
 {
