@@ -4,18 +4,18 @@ using System.Text;
 
 namespace Entities
 {
-    public class CatalogOfCatalogs
+    public class Catalog
     {
 
         public Guid Id { get; set; }
 
         public string Name { get; set; }
-  
-        public string CatalogOfCatalogsDescription { get; set; }
+
+        public string CatalogDescription { get; set; }
 
         public Guid? ParentId { get; set; }
 
-        public CatalogOfCatalogs Parent { get; set; }
+        public Catalog Parent { get; set; }
 
     }
 }
