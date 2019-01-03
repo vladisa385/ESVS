@@ -8,13 +8,13 @@ namespace Entities
     public class Folder
     {
         [Required]
-        public Guid Id { get; set; }
+        public Guid Guid { get; set; }
 
         [Required, MinLength(5), MaxLength(100)]
         public string Name { get; set; }
 
         [Required, MinLength(100), MaxLength(1000)]
-        public string Description { get; set; }
+        public string Text { get; set; }
 
         public Guid ParentFolderId { get; set; }
 
