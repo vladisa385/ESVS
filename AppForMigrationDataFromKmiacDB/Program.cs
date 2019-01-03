@@ -6,7 +6,7 @@ namespace AppForMigrationDataFromKmiacDB
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello Wor5ld!");
+            Console.WriteLine("Hello 4World!");
         }
     }
 }
