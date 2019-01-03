@@ -13,15 +13,11 @@ namespace Entities
         public string Name { get; set; }
 
         [Required, MinLength(100), MaxLength(1000)]
-        public string Description { get; set; }
+        public string Text { get; set; }
 
         public Guid? ParentId { get; set; }
 
         public Catalog Parent { get; set; }
-
-        public Guid FolderId { get; set; }
-
-        public Folder Folder { get; set; }
 
         public ICollection<Field> Fields { get; set; }
 

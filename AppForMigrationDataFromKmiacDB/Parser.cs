@@ -2,9 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using ViewModel.Kmiac;
 
 namespace AppForMigrationDataFromKmiacDB
 {
@@ -18,13 +18,24 @@ namespace AppForMigrationDataFromKmiacDB
 
         }
 
-        public async Task<ICollection<T>> GetEntities<T>(string url, Func<string, string> filter)
+        public ICollection<T> GetEntities<T>(string url, Func<string, string> filter)
         {
-            var rawData = await _client.GetStringAsync(url);
+            var rawData = _client.GetStringAsync(url).Result;
             var resultData = filter.Invoke(rawData);
             return JsonConvert.DeserializeObject<ICollection<T>>(resultData);
         }
 
+        public ICollection<Catalog> GetCatalogs(string url)
+        {
+            return GetEntities<Catalog>(url,
+                x => JsonConvert.DeserializeObject<JObject>(x)["children"].ToString());
+        }
+
+        public ICollection<Field> GetFields(string url)
+        {
+            return GetEntities<Field>(url,
+                x => JsonConvert.DeserializeObject<JObject>(x)["fields"].ToString());
+        }
 
     }
 }
