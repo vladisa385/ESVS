@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ViewModel", "ViewModel\View
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess.DbImplementation", "DataAccess.DbImplementation\DataAccess.DbImplementation.csproj", "{6486C2AB-5BE3-4161-AAB3-B0535FCB9ED0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitTests", "XUnitTests\XUnitTests.csproj", "{0B77D1B9-7174-43AF-AC9A-6FD9D7C5197E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnitTests", "XUnitTests\XUnitTests.csproj", "{0B77D1B9-7174-43AF-AC9A-6FD9D7C5197E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppForMigrationDataFromKmiacDB", "AppForMigrationDataFromKmiacDB\AppForMigrationDataFromKmiacDB.csproj", "{7C567141-1A79-48D3-85ED-6321C35F0158}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{0B77D1B9-7174-43AF-AC9A-6FD9D7C5197E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B77D1B9-7174-43AF-AC9A-6FD9D7C5197E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B77D1B9-7174-43AF-AC9A-6FD9D7C5197E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C567141-1A79-48D3-85ED-6321C35F0158}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C567141-1A79-48D3-85ED-6321C35F0158}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C567141-1A79-48D3-85ED-6321C35F0158}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C567141-1A79-48D3-85ED-6321C35F0158}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
