@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Text;
 
 namespace Entities
 {
-    public class Catalog
+    public class Folder
     {
         [Required]
         public Guid Id { get; set; }
@@ -15,18 +16,12 @@ namespace Entities
         [Required, MinLength(100), MaxLength(1000)]
         public string Description { get; set; }
 
-        public Guid? ParentId { get; set; }
+        public Guid ParentFolderId { get; set; }
 
-        public Catalog Parent { get; set; }
+        public Folder ParentFolder { get; set; }
 
-        public Guid FolderId { get; set; }
+        public ICollection<Folder> ChildFolders { get; set; }
 
-        public Folder Folder { get; set; }
-
-        public ICollection<Field> Fields { get; set; }
-
-        public ICollection<Catalog> ChildCatalogs { get; set; }
-
-
+        public ICollection<Catalog> Catalogs { get; set; }
     }
 }

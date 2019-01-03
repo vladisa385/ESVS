@@ -12,6 +12,11 @@ namespace Entities
         [MinLength(5), MaxLength(40)]
         public string Name { get; set; }
 
+        public int Lenght { get; set; }
+
+        [Required]
+        public bool CanBeNull { get; set; }
+
         public Type Type { get; set; }
 
         [Required]
