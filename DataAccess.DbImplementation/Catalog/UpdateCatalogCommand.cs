@@ -24,13 +24,11 @@ namespace DataAccess.DbImplementation
         public async Task<CatalogsResponse> ExecuteAsync(Guid typefoodId, UpdateCatalogsRequest request)
         {
             Catalog foundCatalogs = await _context.Catalogs.FirstOrDefaultAsync(t => t.Id == typefoodId);
-            if (foundCatalogs != null)
-            {
-                Catalog mappedCatalogs = _mapper.Map<UpdateCatalogsRequest, Catalog>(request);
-                mappedCatalogs.Id = typefoodId;
-                _context.Entry(foundCatalogs).CurrentValues.SetValues(mappedCatalogs);
-                await _context.SaveChangesAsync();
-            }
+            if (foundCatalogs == null) return _mapper.Map<Catalog, CatalogsResponse>(foundCatalogs);
+            Catalog mappedCatalogs = _mapper.Map<UpdateCatalogsRequest, Catalog>(request);
+            mappedCatalogs.Id = typefoodId;
+            _context.Entry(foundCatalogs).CurrentValues.SetValues(mappedCatalogs);
+            await _context.SaveChangesAsync();
             return _mapper.Map<Catalog, CatalogsResponse>(foundCatalogs);
         }
     }

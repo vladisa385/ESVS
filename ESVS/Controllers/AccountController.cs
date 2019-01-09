@@ -11,16 +11,7 @@ namespace ESVS.Controllers
     [Route("api/[controller]")]
     public class AccountController : Controller
     {
-        //200 - OK
-        //400 - 
-        // CreateRole like a Register +
-        // GetListRoles like a GetList +
-        // GetRoles/{roleId} like a Get/{userId} +
-        // DeleteRole/{roleId} like a Delete/{userId} +
-        // UpdateRole like a UpdateUser +
-        // AddRoleToUser/{roleId} & /{userId}
-        // DeleteRoleToUser/{roleId} & /{userId}
-      
+
         [HttpGet("GetList")]
         [Authorize]
         [ProducesResponseType(401)]

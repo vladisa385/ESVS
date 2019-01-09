@@ -17,10 +17,6 @@ namespace DataAccess.DbImplementation
         public async Task ExecuteAsync(Guid catalogofcatalogsId)
         {
             Catalog catalogofcatalogsToDelete = await _context.Catalogs.FirstOrDefaultAsync(p => p.Id == catalogofcatalogsId);
-            /*if (catalogofcatalogsToDelete?.CheapPlaces?.Count > 0)
-            {
-                throw new CannotDeleteCityWithCheapPlacesExeption();
-            }*/
 
             if (catalogofcatalogsToDelete != null)
             {
