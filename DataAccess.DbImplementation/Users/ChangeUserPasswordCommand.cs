@@ -32,7 +32,7 @@ namespace DataAccess.DbImplementation.Users
             if (!result.Succeeded)
             {
 
-                throw new CannotChangePasswordExeption(result.Errors);
+                throw new UserCredentialsException(result.Errors);
 
             }
             return _mapper.Map<User, UserResponse>(foundUser);

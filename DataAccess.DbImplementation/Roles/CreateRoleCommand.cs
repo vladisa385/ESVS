@@ -35,7 +35,7 @@ namespace DataAccess.DbImplementation.Roles
             var result = await _roleManager.CreateAsync(role);
             // установка куки
             if (!result.Succeeded)
-                throw new CannotCreateUserExeption(result.Errors);
+                throw new UserCredentialsException(result.Errors);
 
             return _mapper.Map<Role, RoleResponse>(role);
 
