@@ -34,8 +34,6 @@ namespace ESVS.Controllers
             return response == null ? (IActionResult)NotFound() : Ok(response);
         }
 
-
-
         [HttpPost("Register")]
         [ProducesResponseType(201, Type = typeof(UserResponse))]
         [ProducesResponseType(400)]
@@ -46,18 +44,16 @@ namespace ESVS.Controllers
             try
             {
                 UserResponse response = await command.ExecuteAsync(user);
-                return CreatedAtRoute("GetSingleUser", new { userId = response?.Id }, response);
-
+                var result = CreatedAtRoute(
+                    "GetSingleUser",
+                    new { userId = response?.Id },
+                    response);
+                return result;
             }
             catch (UserCredentialsException exception)
             {
-                foreach (var error in exception.Errors)
-                {
-                    ModelState.AddModelError(exception.Message, error.Description);
-                }
-                return BadRequest(ModelState);
+                return BadRequest(exception.Errors);
             }
-
         }
 
 
@@ -73,16 +69,15 @@ namespace ESVS.Controllers
             try
             {
                 UserResponse response = await command.ExecuteAsync(user);
-                return CreatedAtRoute("GetSingleUser", new { userId = response.Id }, response);
-
+                var result = CreatedAtRoute(
+                    "GetSingleUser",
+                    new { userId = response.Id },
+                    response);
+                return result;
             }
             catch (UserCredentialsException exception)
             {
-                foreach (var error in exception.Errors)
-                {
-                    ModelState.AddModelError(exception.Message, error.Description);
-                }
-                return BadRequest(ModelState);
+                return BadRequest(exception);
             }
 
         }
@@ -93,22 +88,21 @@ namespace ESVS.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
         [Authorize]
-        public async Task<IActionResult> ChangeUserPassword(ChangePasswordUserRequest user, [FromServices] IChangeUserPasswordCommand command)
+        public async Task<IActionResult> ChangeUserPassword(ChangeUserPasswordRequest user, [FromServices] IChangeUserPasswordCommand command)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             try
             {
                 UserResponse response = await command.ExecuteAsync(user);
-                return CreatedAtRoute("GetSingleUser", new { userId = response.Id }, response);
-
+                var result = CreatedAtRoute(
+                    "GetSingleUser",
+                    new { userId = response.Id },
+                    response);
+                return result;
             }
             catch (UserCredentialsException exception)
             {
-                foreach (var error in exception.Errors)
-                {
-                    ModelState.AddModelError(exception.Message, error.Description);
-                }
                 return BadRequest(ModelState);
             }
 
@@ -132,7 +126,6 @@ namespace ESVS.Controllers
             }
 
         }
-
 
         [HttpPut("LogOff")]
         [ProducesResponseType(200)]

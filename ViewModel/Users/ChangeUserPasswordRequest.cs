@@ -2,7 +2,7 @@
 
 namespace ViewModel.Users
 {
-    public class ChangePasswordUserRequest
+    public class ChangeUserPasswordRequest
     {
         [Required]
         [DataType(DataType.Password)]

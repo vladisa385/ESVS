@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DataAccess.DbImplementation.Users;
 using DataAccess.Users;
 using ESVS.Controllers;
 using Microsoft.AspNetCore.Identity;
@@ -80,7 +81,6 @@ namespace ESVSMainUnitTests
 
         }
 
-
         [Fact]
         public async void RegisterWithBadModel()
         {
@@ -92,7 +92,6 @@ namespace ESVSMainUnitTests
 
             Assert.IsType<BadRequestObjectResult>(result);
         }
-
 
         [Fact]
         public async void RegisterBadModelWithExceptionFromCommand()
@@ -107,7 +106,6 @@ namespace ESVSMainUnitTests
             Assert.IsType<BadRequestObjectResult>(result);
 
         }
-
 
         [Fact]
         public async void LoginWithOkModel()
@@ -129,7 +127,6 @@ namespace ESVSMainUnitTests
 
         }
 
-
         [Fact]
         public async void LoginWithBadModel()
         {
@@ -141,7 +138,6 @@ namespace ESVSMainUnitTests
 
             Assert.IsType<BadRequestObjectResult>(result);
         }
-
 
         [Fact]
         public async void LoginBadModelWithExceptionFromCommand()
@@ -178,7 +174,6 @@ namespace ESVSMainUnitTests
 
         }
 
-
         [Fact]
         public async void UpdateUserWithBadModel()
         {
@@ -190,7 +185,6 @@ namespace ESVSMainUnitTests
 
             Assert.IsType<BadRequestObjectResult>(result);
         }
-
 
         [Fact]
         public async void UpdateUserBadModelWithExceptionFromCommand()
@@ -206,6 +200,51 @@ namespace ESVSMainUnitTests
 
         }
 
+        [Fact]
+        public async void ChangeUserPasswordUserWithOkModel()
+        {
+            var mock = new Mock<IChangeUserPasswordCommand>();
+            var user = new ChangeUserPasswordRequest();
+
+            mock.Setup(u => u.ExecuteAsync(user)).ReturnsAsync(
+                new UserResponse()
+                {
+                    Id = Guid.NewGuid()
+                }
+                );
+
+            var result = await Controller.ChangeUserPassword(user, mock.Object);
+
+            var viewResult = Assert.IsType<CreatedAtRouteResult>(result);
+            Assert.IsType<UserResponse>(viewResult.Value);
+
+        }
+
+        [Fact]
+        public async void ChangeUserPasswordWithBadModel()
+        {
+            var mock = new Mock<IChangeUserPasswordCommand>();
+            var user = new ChangeUserPasswordRequest();
+            Controller.ModelState.AddModelError("Email", "Required");
+
+            var result = await Controller.ChangeUserPassword(user, mock.Object);
+
+            Assert.IsType<BadRequestObjectResult>(result);
+        }
+
+        [Fact]
+        public async void ChangeUserPasswordWithExceptionFromCommand()
+        {
+            var mock = new Mock<IChangeUserPasswordCommand>();
+            var userRequest = new ChangeUserPasswordRequest();
+            mock.Setup(u => u.ExecuteAsync(userRequest))
+                .ThrowsAsync(new UserCredentialsException(new List<IdentityError>()));
+
+            var result = await Controller.ChangeUserPassword(userRequest, mock.Object);
+
+            Assert.IsType<BadRequestObjectResult>(result);
+
+        }
 
         [Fact]
         public async void DeleteAction()
