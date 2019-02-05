@@ -6,6 +6,6 @@ namespace DataAccess.Roles
 {
     public interface IUpdateRoleCommand
     {
-        Task<RoleResponse> ExecuteAsync(Guid roleId, UpdateRoleRequest request);
+        Task<RoleResponse> ExecuteAsync(UpdateRoleRequest request);
     }
 }

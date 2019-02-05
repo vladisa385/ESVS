@@ -101,7 +101,7 @@ namespace ESVS.Controllers
                     response);
                 return result;
             }
-            catch (UserCredentialsException exception)
+            catch (UserCredentialsException)
             {
                 return BadRequest(ModelState);
             }
