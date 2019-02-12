@@ -10,6 +10,7 @@ using DataAccess;
 using DataAccess.DbImplementation;
 using DataAccess.DbImplementation.Roles;
 using DataAccess.DbImplementation.Users;
+using DataAccess.DbImplementation.Field;
 using DataAccess.Roles;
 using DataAccess.Users;
 using DataAccess.Field;
@@ -138,11 +139,11 @@ namespace ESVS
                 .AddScoped<ICreateCatalogsCommand, CreateCatalogsCommand>()
                 .AddScoped<IDeleteCatalogsCommand, DeleteCatalogsCommand>()
                 .AddScoped<ICatalogsListQuery, CatalogsListQuery>()
-                //.AddScoped<IFieldQuery, FieldQuery>()
-                //.AddScoped<IUpdateFieldCommand, UpdateFieldCommand>()
-                //.AddScoped<ICreateFieldCommand, CreateFieldCommand>()
-                //.AddScoped<IDeleteFieldCommand, DeleteFieldCommand>()
-                //.AddScoped<IFieldListQuery, FieldListQuery>()
+                .AddScoped<IFieldQuery, FieldQuery>()
+                .AddScoped<IUpdateFieldCommand, UpdateFieldCommand>()
+                .AddScoped<ICreateFieldCommand, CreateFieldCommand>()
+                .AddScoped<IDeleteFieldCommand, DeleteFieldCommand>()
+                .AddScoped<IFieldListQuery, FieldListQuery>()
                 ;
 
 

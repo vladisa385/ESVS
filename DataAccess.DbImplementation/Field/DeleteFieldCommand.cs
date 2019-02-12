@@ -22,7 +22,7 @@ namespace DataAccess.DbImplementation.Field
         }
         public async Task ExecuteAsync(Guid FieldId)
         {
-            Field FieldToDelete = await _context.Field.FirstOrDefaultAsync(p => p.Id == FieldId);
+            Entities.Field FieldToDelete = await _context.Field.FirstOrDefaultAsync(p => p.Id == FieldId);
 
             if (FieldToDelete != null)
             {
