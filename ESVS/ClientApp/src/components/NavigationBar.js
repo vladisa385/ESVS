@@ -14,6 +14,7 @@ const NavBar = styled(Navbar).attrs({
     background-color: #dadfe1;
   }
 `;
+
 const NavLink = styled(NavItem)`
    padding: 22px 15px 22px 15px;
    :hover {
@@ -21,9 +22,11 @@ const NavLink = styled(NavItem)`
      cursor: pointer;
    }
 `;
+
 const NavBrand = styled(Navbar.Brand).attrs({
   className: "order-lg-last py-0 mx-0 ml-auto"
 })``;
+
 const NavText = styled(Navbar.Text).attrs({
   className: "py-0"
 })`
@@ -31,6 +34,7 @@ const NavText = styled(Navbar.Text).attrs({
   margin-top: 8px;
   padding-right: 15px;
 `;
+
 const Logo = styled.img.attrs({
   src: logo,
   className: "d-inline-block align-top",
@@ -41,8 +45,6 @@ const Logo = styled.img.attrs({
 `;
 
 export class NavigationBar extends Component {
-  displayName = NavigationBar.name;
-
   render() {
     return (
       <NavBar>
@@ -50,10 +52,10 @@ export class NavigationBar extends Component {
             <LinkContainer to={'/'} exact>
               <NavLink>Главная</NavLink>
             </LinkContainer>
-            <LinkContainer to={'/about'}>
+            <LinkContainer to={'/about'} exact>
               <NavLink>Описание&nbsp;системы</NavLink>
             </LinkContainer>
-            <LinkContainer to={'/contacts'}>
+            <LinkContainer to={'/contacts'} exact>
               <NavLink>Контакты</NavLink>
             </LinkContainer>
           </Nav>

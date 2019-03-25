@@ -2,36 +2,15 @@ import React, { Component } from 'react';
 import styled from 'styled-components'
 import Col from 'react-bootstrap/es/Col';
 import Row from 'react-bootstrap/es/Row';
+import Picture from '../components/Picture'
 import TopPic from '../assets/2.jpg'
 import Promo from '../assets/promo.jpg'
+import { PageContainer, Title, TextContainer, HR } from '../components/Misc'
 
-const Picture = styled(Col)`
-  background-image: url(${TopPic});
-  background-size: cover;
-  background-position: center top;
-  height: 300px;
-  border-bottom: 2px solid #5cace1;
-`;
-// const MainContainer = styled.div`
-//   background: #dadfe1;
-//   padding: 0;
-// `;
-const PageContainer = styled.div`
-  padding: 15px;
-`;
-const TextContainer = styled(Col).attrs({
-  md: 8
-})``;
-const Hr = styled.hr`
-  background-color: white;
-  height: 1px;
-`;
-const Title = styled.p`
-  font-size: 22px;
-`;
 const PromoContainer = styled(Col).attrs({
   md: 4
 })``;
+
 const PromoPicture = styled.img.attrs({
   src: Promo
 })`
@@ -41,16 +20,14 @@ const PromoPicture = styled.img.attrs({
 `;
 
 export class About extends Component {
-  displayName = About.name;
-
   render() {
     return (
       <React.Fragment>
-        <Picture />
+        <Picture picture={TopPic} />
         <PageContainer>
           <Row>
             <TextContainer>
-              <Hr />
+              <HR />
               <Title>Описание системы</Title>
               <br />
               <p>

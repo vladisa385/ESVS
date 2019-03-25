@@ -23,9 +23,8 @@ const AuthBarLink = styled(Navbar.Text).attrs({
 `;
 
 export class AuthorizationBar extends Component {
-  displayName = AuthorizationBar.name;
-  constructor(...args) {
-    super(...args);
+  constructor(props) {
+    super(props);
     this.state = { modalShow: false };
   }
 

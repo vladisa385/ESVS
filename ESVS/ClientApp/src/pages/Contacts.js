@@ -1,35 +1,21 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import Picture from '../components/Picture'
 import TopPic from '../assets/3.jpg'
 import Col from 'react-bootstrap/es/Col';
 import Row from 'react-bootstrap/es/Row';
-import { Email } from './Footer'
+import { Email } from '../components/Misc'
+import { PageContainer, Title, HR } from '../components/Misc'
 import { Mail, MapPin, Phone, Printer } from 'styled-icons/feather';
 
-const Picture = styled(Col)`
-  background-image: url(${TopPic});
-  background-size: cover;
-  background-position: center top;
-  height: 300px;
-  border-bottom: 2px solid #5cace1;
-`;
-const PageContainer = styled.div`
-  padding: 15px;
-  height: 100%;
-`;
 const TextContainer = styled(Col).attrs({
   md: 6
-})`
-  height: 100%;
-`;
-const Hr = styled.hr`
-  background-color: white;
-  height: 1px;
+})``;
+
+const Hr = styled(HR)`
   margin: 30px 130px 0 15px;
 `;
-const Title = styled.p`
-  font-size: 22px;
-`;
+
 const Ul = styled.ul`
   list-style: none;
   padding: 0;
@@ -44,17 +30,16 @@ const Ul = styled.ul`
     }
   }
 `;
+
 const Wrapper = styled(Row)`
   height: 100%;
 `;
 
 export class Contacts extends Component {
-  displayName = Contacts.name;
-
   render() {
     return (
       <React.Fragment>
-        <Picture />
+        <Picture picture={TopPic} />
         <Hr />
         <PageContainer>
           <Wrapper>
@@ -63,7 +48,7 @@ export class Contacts extends Component {
               <p>
                 Вы всегда можете связаться с нами,<br />
                 координаты, указанные в этом разделе.
-            </p>
+              </p>
             <br />
             </TextContainer>
             <TextContainer>

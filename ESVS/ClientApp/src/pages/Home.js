@@ -2,33 +2,12 @@ import React, { Component } from 'react';
 import styled from 'styled-components'
 import Col from 'react-bootstrap/es/Col';
 import Link from 'react-router-dom/es/Link';
+import Picture from '../components/Picture'
 import TopPic from '../assets/1.jpg'
 import Row from 'react-bootstrap/es/Row';
-import Calendar from './Calendar';
+import { PageContainer, Title, TextContainer, HR } from '../components/Misc'
+import Calendar from '../components/Calendar';
 
-const Picture = styled(Col)`
-  background-image: url(${TopPic});
-  background-size: cover;
-  background-position: center top;
-  height: 300px;
-  border-bottom: 2px solid #5cace1;
-`;
-const PageContainer = styled.div`
-  padding: 15px;
-  height: 100%;
-`;
-const TextContainer = styled(Col).attrs({
-  md: 8
-})`
-  height: 100%;
-`;
-const Hr = styled.hr`
-  background-color: white;
-  height: 1px;
-`;
-const Title = styled.p`
-  font-size: 22px;
-`;
 const AboutButton = styled(Link).attrs({
   className: "btn btn-primary"
 })`
@@ -41,26 +20,26 @@ const AboutButton = styled(Link).attrs({
     border-color: #5cace1;
   }
 `;
+
 const CalendarContainer = styled(Col).attrs({
   md: 4
 })`
   padding-top: 17px;
 `;
+
 const Wrapper = styled(Row)`
   height: 100%;
 `;
 
 export class Home extends Component {
-  displayName = Home.name;
-
   render() {
     return (
       <React.Fragment>
-        <Picture />
+        <Picture picture={TopPic} />
         <PageContainer>
           <Wrapper>
             <TextContainer>
-              <Hr />
+              <HR />
               <Title>О системе</Title>
               <br />
               <p>

@@ -41,10 +41,10 @@
     <Content Include="ClientApp\public\index.html" />
     <Content Include="ClientApp\src\App.js" />
     <Content Include="ClientApp\src\App.test.js" />
-    <Content Include="ClientApp\src\components\Home.js" />
     <Content Include="ClientApp\src\components\Layout.js" />
     <Content Include="ClientApp\src\index.css" />
     <Content Include="ClientApp\src\index.js" />
+    <Content Include="ClientApp\src\pages\Home.js" />
     <Content Include="ClientApp\src\registerServiceWorker.js" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
     <None Remove="ClientApp\src\assets\fonts\**" />
@@ -78,11 +78,6 @@
 
   <ItemGroup>
     <_ContentIncludedByDefault Remove="ClientApp\public\manifest.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ClientApp\src\components\auth" />
-    <Folder Include="ClientApp\src\components\esvs" />
   </ItemGroup>
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->

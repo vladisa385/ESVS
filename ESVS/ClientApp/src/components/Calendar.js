@@ -9,6 +9,7 @@ const Wrapper = styled.div`
     text-transform: capitalize;
   }
 `;
+
 const Holidays = styled.div`
   background-color: white;
   height: 250px;
@@ -21,6 +22,7 @@ function DayOfTheWeek(props) {
     </div>
   );
 }
+
 const Top = styled(DayOfTheWeek)`
   background-color: #3c99d7;
   color: white;
@@ -31,12 +33,13 @@ const Top = styled(DayOfTheWeek)`
     margin: 0;
   }
 `;
+
 const Date = styled.p`
   font-size: 50px;
 `;
-const Month = styled.p`
 
-`;
+const Month = styled.p``;
+
 function DateWrapper(props) {
  return (
     <div className={ props.className }>
@@ -45,6 +48,7 @@ function DateWrapper(props) {
     </div>
   );
 }
+
 const Body = styled(DateWrapper)`
   background-color: #5cace1;
   color: white;
@@ -57,8 +61,6 @@ const Body = styled(DateWrapper)`
 `;
 
 export default class Calendar extends Component {
-  displayName = Calendar.name;
-
   render() {
     return (
       <Wrapper>
