@@ -26,6 +26,7 @@ const NavLink = styled(NavItem)`
 const NavBrand = styled(Navbar.Brand).attrs({
   className: "order-lg-last py-0 mx-0 ml-auto"
 })``;
+
 const NavText = styled(Navbar.Text).attrs({
   className: "py-0"
 })`
