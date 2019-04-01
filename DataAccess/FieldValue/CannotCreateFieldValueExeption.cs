@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 
-namespace DataAccess.Field
+namespace DataAccess.FieldValue
 {
-    public class CannotCreateFieldExeption : Exception
+    public class CannotCreateFieldValueExeption : Exception
     {
         public IEnumerable<IdentityError> Errors { get; set; }
-        public CannotCreateFieldExeption(IEnumerable<IdentityError> errors) : base("Field cannot be created")
+        public CannotCreateFieldValueExeption(IEnumerable<IdentityError> errors) : base("FieldValue cannot be created")
         {
             Errors = errors;
         }

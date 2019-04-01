@@ -1,0 +1,19 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.ComponentModel.DataAnnotations;
+
+namespace ViewModel.FieldValues
+{
+    public class FieldValueResponse
+    {
+        [Required]
+        public Guid Id { get; set; }
+        [Required]
+        public Guid FieldId { get; set; }
+        [Required]
+        public DateTime Date { get; set; }
+        [Required]
+        public string Value { get; set; }
+    }
+}

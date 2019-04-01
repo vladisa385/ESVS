@@ -11,9 +11,11 @@ using DataAccess.DbImplementation;
 using DataAccess.DbImplementation.Roles;
 using DataAccess.DbImplementation.Users;
 using DataAccess.DbImplementation.Field;
+using DataAccess.DbImplementation.FieldValue;
 using DataAccess.Roles;
 using DataAccess.Users;
 using DataAccess.Field;
+using DataAccess.FieldValue;
 using DB;
 using Entities;
 using Microsoft.EntityFrameworkCore;
@@ -144,6 +146,11 @@ namespace ESVS
                 .AddScoped<ICreateFieldCommand, CreateFieldCommand>()
                 .AddScoped<IDeleteFieldCommand, DeleteFieldCommand>()
                 .AddScoped<IFieldListQuery, FieldListQuery>()
+                .AddScoped<IFieldValueQuery, FieldValueQuery>()
+                .AddScoped<IUpdateFieldValueCommand, UpdateFieldValueCommand>()
+                .AddScoped<ICreateFieldValueCommand, CreateFieldValueCommand>()
+                .AddScoped<IDeleteFieldValueCommand, DeleteFieldValueCommand>()
+                .AddScoped<IFieldValueListQuery, FieldValueListQuery>()
                 ;
 
 
