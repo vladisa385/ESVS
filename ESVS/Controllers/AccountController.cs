@@ -12,7 +12,7 @@ namespace ESVS.Controllers
     [Route("api/[controller]")]
     public class AccountController : Controller
     {
-
+        //Впихнуть класс для добавления базы (по аналогии с нижними), код в program.cs (коментарий)
         [HttpGet("GetList")]
         [Authorize]
         [ProducesResponseType(401)]

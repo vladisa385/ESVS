@@ -14,7 +14,7 @@ namespace AppForMigrationDataFromKmiacDB
         private static string _baseFieldUrl = "https://esvs.kmiac.ru/esvs/table/";
         public static List<Catalog> _catalogs = new List<Catalog>();
         public static List<Field> _fields = new List<Field>();
-        private static async Task Main(string[] args)
+        private static async Task Main(string[] args) //команда для create database
         {
             var parser = new Parser();
             var folders = parser.GetCatalogs(_baseFolderUrl + "root");
