@@ -9,6 +9,10 @@ namespace ViewModel
         public string Name { get; set; }
 
         [Required]
+        [Display(Name = "Text")]
+        public string Text { get; set; }
+
+        [Required]
         [Display(Name = "Description")]
         public string CatalogsDescription { get; set; }
     }
