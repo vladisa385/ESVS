@@ -3,6 +3,8 @@ using Entities;
 using ViewModel.Roles;
 using ViewModel.Users;
 using ViewModel;
+using ViewModel.Fields;
+using ViewModel.FieldValues;
 
 namespace ESVS
 {
@@ -16,6 +18,14 @@ namespace ESVS
             CreateMap<CreateCatalogsRequest, Catalog>();
             CreateMap<UpdateCatalogsRequest, Catalog>();
 
+            CreateMap<Field, FieldResponse>();
+            CreateMap<CreateFieldRequest, Field>();
+            CreateMap<UpdateFieldRequest, Field>();
+
+
+            CreateMap<FieldValue, FieldValueResponse>();
+            CreateMap<CreateFieldValueRequest, FieldValue>();
+            CreateMap<UpdateFieldValueRequest, FieldValue>();
 
             CreateMap<User, UserResponse>()
                 .ForMember(d => d.Id, o => o.MapFrom(src => src.Id))

@@ -8,9 +8,6 @@ namespace ViewModel.Fields
     public class CreateFieldRequest
     {
         [Required]
-        [Display(Name = "ID")]
-        public Guid Id { get; set; }
-        [Required]
         [Display(Name = "Имя")]
         public string Name { get; set; }
         [Required]
