@@ -27,19 +27,43 @@ namespace DataAccess.DbImplementation.Catalog
 
             if (filter.Name != null)
             {
-                query = query.Where(p => p.Name.StartsWith(filter.Name));
+                query = query.Where(p => p.Name.Contains(filter.Name));
             }
             if (filter.Type != null)
             {
-                query = query.Where(p => p.Name.StartsWith(filter.Name));
+                query = query.Where(p => p.Type.Contains(filter.Type));
             }
             if (filter.Text != null)
             {
-                query = query.Where(p => p.Name.StartsWith(filter.Name));
+                query = query.Where(p => p.Text.Contains(filter.Text));
             }
             if (filter.ParentId != null)
             {
                 query = query.Where(p => p.ParentId == filter.ParentId);
+            }
+            if (filter.ChildCatalogs != null)
+            {
+                if (filter.ChildCatalogs.From != null)
+                {
+                    query = query.Where(p => p.ChildCatalogsCount >= filter.ChildCatalogs.From);
+                }
+
+                if (filter.ChildCatalogs.To != null)
+                {
+                    query = query.Where(p => p.ChildCatalogsCount <= filter.ChildCatalogs.To);
+                }
+            }
+            if (filter.Fields != null)
+            {
+                if (filter.Fields.From != null)
+                {
+                    query = query.Where(p => p.FieldsCount >= filter.Fields.From);
+                }
+
+                if (filter.Fields.To != null)
+                {
+                    query = query.Where(p => p.FieldsCount <= filter.Fields.To);
+                }
             }
             return query;
         }

@@ -5,6 +5,6 @@ namespace DataAccess.Field
 {
     public interface IDeleteFieldCommand
     {
-        Task ExecuteAsync(Guid FieldId);
+        Task ExecuteAsync(Guid fieldId);
     }
 }

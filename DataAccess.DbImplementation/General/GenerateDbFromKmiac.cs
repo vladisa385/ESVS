@@ -6,7 +6,6 @@ using AutoMapper;
 using DataAccess.General;
 using DB;
 using KmiacParser;
-using ViewModel.Kmiac;
 
 namespace DataAccess.DbImplementation.General
 {

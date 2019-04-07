@@ -6,7 +6,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Threading.Tasks;
 using AutoMapper;
-using DataAccess;
 using DataAccess.Catalog;
 using DataAccess.DbImplementation.Catalog;
 using DataAccess.DbImplementation.Roles;
@@ -149,11 +148,11 @@ namespace ESVS
                 .AddScoped<ICreateFieldCommand, CreateFieldCommand>()
                 .AddScoped<IDeleteFieldCommand, DeleteFieldCommand>()
                 .AddScoped<IFieldListQuery, FieldListQuery>()
-                .AddScoped<IFieldValueQuery, FieldValueQuery>()
-                .AddScoped<IUpdateFieldValueCommand, UpdateFieldValueCommand>()
-                .AddScoped<ICreateFieldValueCommand, CreateFieldValueCommand>()
-                .AddScoped<IDeleteFieldValueCommand, DeleteFieldValueCommand>()
-                .AddScoped<IFieldValueListQuery, FieldValueListQuery>()
+                .AddScoped<IFieldValuesQuery, FieldValueQuery>()
+                .AddScoped<IUpdateFieldValuesCommand, UpdateFieldValueCommand>()
+                .AddScoped<ICreateFieldValuesCommand, CreateFieldValueCommand>()
+                .AddScoped<IDeleteFieldValuesCommand, DeleteFieldValueCommand>()
+                .AddScoped<IFieldValuesListQuery, FieldValueListQuery>()
                  .AddScoped<IGenerateDbFromKmiac, GenerateDbFromKmiac>()
                 ;
 

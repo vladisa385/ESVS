@@ -2,7 +2,6 @@
 using Entities;
 using ViewModel.Roles;
 using ViewModel.Users;
-using ViewModel;
 using ViewModel.Catalogs;
 using ViewModel.Fields;
 using ViewModel.FieldValues;
@@ -18,18 +17,22 @@ namespace ESVS
             CreateMap<ViewModel.Kmiac.Field, Field>();
 
 
-            CreateMap<Catalog, CatalogResponse>();
+            CreateMap<Catalog, CatalogResponse>()
+                .ForMember(d => d.ChildCatalogsCount, o => o.MapFrom(src => src.ChildCatalogs.Count))
+                .ForMember(d => d.FieldsCount, o => o.MapFrom(src => src.Fields.Count));
             CreateMap<CreateCatalogRequest, Catalog>();
             CreateMap<UpdateCatalogRequest, Catalog>();
 
-            CreateMap<Field, FieldResponse>();
+            CreateMap<Field, FieldResponse>()
+            .ForMember(d => d.FieldValuesCount, o => o.MapFrom(src => src.FieldValues.Count));
+
             CreateMap<CreateFieldRequest, Field>();
             CreateMap<UpdateFieldRequest, Field>();
 
 
-            CreateMap<FieldValue, FieldValueResponse>();
-            CreateMap<CreateFieldValueRequest, FieldValue>();
-            CreateMap<UpdateFieldValueRequest, FieldValue>();
+            CreateMap<FieldValue, FieldValuesResponse>();
+            CreateMap<CreateFieldValuesRequest, FieldValue>();
+            CreateMap<UpdateFieldValuesRequest, FieldValue>();
 
             CreateMap<User, UserResponse>()
                 .ForMember(d => d.Id, o => o.MapFrom(src => src.Id))

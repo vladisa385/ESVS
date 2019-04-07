@@ -2,7 +2,6 @@
 using AutoMapper;
 using DataAccess.Catalog;
 using DB;
-using ViewModel;
 using ViewModel.Catalogs;
 
 namespace DataAccess.DbImplementation.Catalog

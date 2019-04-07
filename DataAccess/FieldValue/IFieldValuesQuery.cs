@@ -4,8 +4,8 @@ using ViewModel.FieldValues;
 
 namespace DataAccess.FieldValue
 {
-    public interface IFieldValueQuery
+    public interface IFieldValuesQuery
     {
-        Task<FieldValueResponse> RunAsync(Guid FieldValueId);
+        Task<FieldValuesResponse> RunAsync(Guid fieldValueId);
     }
 }

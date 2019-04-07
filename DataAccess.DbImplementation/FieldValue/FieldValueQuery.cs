@@ -8,7 +8,7 @@ using ViewModel.FieldValues;
 
 namespace DataAccess.DbImplementation.FieldValue
 {
-    public class FieldValueQuery : IFieldValueQuery
+    public class FieldValueQuery : IFieldValuesQuery
     {
         private readonly AppDbContext _context;
         public FieldValueQuery(AppDbContext dbContext)
@@ -16,10 +16,10 @@ namespace DataAccess.DbImplementation.FieldValue
             _context = dbContext;
         }
 
-        public async Task<FieldValueResponse> RunAsync(Guid fieldValueId)
+        public async Task<FieldValuesResponse> RunAsync(Guid fieldValueId)
         {
-            FieldValueResponse response = await _context.FieldValues
-                .ProjectTo<FieldValueResponse>()
+            FieldValuesResponse response = await _context.FieldValues
+                .ProjectTo<FieldValuesResponse>()
                 .FirstOrDefaultAsync(p => p.Id == fieldValueId);
             return response;
         }

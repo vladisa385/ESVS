@@ -7,7 +7,7 @@ using DataAccess.FieldValue;
 
 namespace DataAccess.DbImplementation.FieldValue
 {
-    public class DeleteFieldValueCommand : IDeleteFieldValueCommand
+    public class DeleteFieldValueCommand : IDeleteFieldValuesCommand
     {
         private readonly AppDbContext _context;
 
@@ -15,13 +15,13 @@ namespace DataAccess.DbImplementation.FieldValue
         {
             _context = dbContext;
         }
-        public async Task ExecuteAsync(Guid FieldValueId)
+        public async Task ExecuteAsync(Guid fieldValueId)
         {
-            Entities.FieldValue FieldValueToDelete = await _context.FieldValues.FirstOrDefaultAsync(p => p.Id == FieldValueId);
+            Entities.FieldValue fieldValueToDelete = await _context.FieldValues.FirstOrDefaultAsync(p => p.Id == fieldValueId);
 
-            if (FieldValueToDelete != null)
+            if (fieldValueToDelete != null)
             {
-                _context.FieldValues.Remove(FieldValueToDelete);
+                _context.FieldValues.Remove(fieldValueToDelete);
                 await _context.SaveChangesAsync();
             }
         }

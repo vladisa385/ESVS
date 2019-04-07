@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ViewModel.FieldValues
 {
-    public class FieldValueResponse
+    public class FieldValuesResponse
     {
         [Required]
         public Guid Id { get; set; }

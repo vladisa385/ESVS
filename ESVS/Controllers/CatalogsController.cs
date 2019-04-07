@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using DataAccess;
 using DataAccess.Catalog;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;

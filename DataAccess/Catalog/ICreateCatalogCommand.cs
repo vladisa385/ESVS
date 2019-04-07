@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using ViewModel;
 using ViewModel.Catalogs;
 
 namespace DataAccess.Catalog

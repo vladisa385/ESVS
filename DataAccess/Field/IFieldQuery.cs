@@ -6,6 +6,6 @@ namespace DataAccess.Field
 {
     public interface IFieldQuery
     {
-        Task<FieldResponse> RunAsync(Guid FieldId);
+        Task<FieldResponse> RunAsync(Guid fieldId);
     }
 }

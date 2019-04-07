@@ -3,9 +3,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using DataAccess.Catalog;
 using DB;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
-using ViewModel;
 using ViewModel.Catalogs;
 
 namespace DataAccess.DbImplementation.Catalog
@@ -14,13 +12,11 @@ namespace DataAccess.DbImplementation.Catalog
     {
         private readonly AppDbContext _context;
         private readonly IMapper _mapper;
-        private readonly IHostingEnvironment _appEnvironment;
 
-        public UpdateCatalogCommand(AppDbContext dbContext, IMapper mappper, IHostingEnvironment appEnvironment)
+        public UpdateCatalogCommand(AppDbContext dbContext, IMapper mappper)
         {
             _context = dbContext;
             _mapper = mappper;
-            _appEnvironment = appEnvironment;
         }
         public async Task<CatalogResponse> ExecuteAsync(Guid catalogId, UpdateCatalogRequest request)
         {

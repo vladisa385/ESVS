@@ -15,13 +15,13 @@ namespace DataAccess.DbImplementation.Field
         {
             _context = dbContext;
         }
-        public async Task ExecuteAsync(Guid FieldId)
+        public async Task ExecuteAsync(Guid fieldId)
         {
-            Entities.Field FieldToDelete = await _context.Fields.FirstOrDefaultAsync(p => p.Id == FieldId);
+            Entities.Field fieldToDelete = await _context.Fields.FirstOrDefaultAsync(p => p.Id == fieldId);
 
-            if (FieldToDelete != null)
+            if (fieldToDelete != null)
             {
-                _context.Fields.Remove(FieldToDelete);
+                _context.Fields.Remove(fieldToDelete);
                 await _context.SaveChangesAsync();
             }
         }

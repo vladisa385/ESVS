@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 
 namespace DataAccess.FieldValue
 {
-    public interface IDeleteFieldValueCommand
+    public interface IDeleteFieldValuesCommand
     {
-        Task ExecuteAsync(Guid FieldValueId);
+        Task ExecuteAsync(Guid fieldValueId);
     }
 }

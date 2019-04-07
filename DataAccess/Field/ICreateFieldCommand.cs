@@ -5,6 +5,6 @@ namespace DataAccess.Field
 {
     public interface ICreateFieldCommand
     {
-        Task<FieldResponse> ExecuteAsync(CreateFieldRequest FieldName);
+        Task<FieldResponse> ExecuteAsync(CreateFieldRequest fieldName);
     }
 }

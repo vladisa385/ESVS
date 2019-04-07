@@ -15,7 +15,9 @@ namespace ViewModel.Catalogs
         public string Text { get; set; }
         [Required]
         public string Type { get; set; }
-
-        public int CatalogsCount { get; set; }
+        [Required]
+        public int ChildCatalogsCount { get; set; }
+        [Required]
+        public int FieldsCount { get; set; }
     }
 }

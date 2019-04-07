@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AutoMapper;
-using Microsoft.AspNetCore.Hosting;
 using DB;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,27 +9,25 @@ using ViewModel.FieldValues;
 
 namespace DataAccess.DbImplementation.FieldValue
 {
-    public class UpdateFieldValueCommand : IUpdateFieldValueCommand
+    public class UpdateFieldValueCommand : IUpdateFieldValuesCommand
     {
         private readonly AppDbContext _context;
         private readonly IMapper _mapper;
-        private readonly IHostingEnvironment _appEnvironment;
 
-        public UpdateFieldValueCommand(AppDbContext dbContext, IMapper mappper, IHostingEnvironment appEnvironment)
+        public UpdateFieldValueCommand(AppDbContext dbContext, IMapper mappper)
         {
             _context = dbContext;
             _mapper = mappper;
-            _appEnvironment = appEnvironment;
         }
-        public async Task<FieldValueResponse> ExecuteAsync(Guid typefoodId, UpdateFieldValueRequest request)
+        public async Task<FieldValuesResponse> ExecuteAsync(Guid fieldValueId, UpdateFieldValuesRequest request)
         {
-            Entities.FieldValue foundFieldValue = await _context.FieldValues.FirstOrDefaultAsync(t => t.Id == typefoodId);
-            if (foundFieldValue == null) return _mapper.Map<Entities.FieldValue, FieldValueResponse>(foundFieldValue);
-            Entities.FieldValue mappedFieldValue = _mapper.Map<UpdateFieldValueRequest, Entities.FieldValue>(request);
-            mappedFieldValue.Id = typefoodId;
+            Entities.FieldValue foundFieldValue = await _context.FieldValues.FirstOrDefaultAsync(t => t.Id == fieldValueId);
+            if (foundFieldValue == null) return _mapper.Map<Entities.FieldValue, FieldValuesResponse>(null);
+            Entities.FieldValue mappedFieldValue = _mapper.Map<UpdateFieldValuesRequest, Entities.FieldValue>(request);
+            mappedFieldValue.Id = fieldValueId;
             _context.Entry(foundFieldValue).CurrentValues.SetValues(mappedFieldValue);
             await _context.SaveChangesAsync();
-            return _mapper.Map<Entities.FieldValue, FieldValueResponse>(foundFieldValue);
+            return _mapper.Map<Entities.FieldValue, FieldValuesResponse>(foundFieldValue);
         }
     }
 }

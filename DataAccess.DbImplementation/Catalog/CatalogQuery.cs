@@ -4,7 +4,6 @@ using AutoMapper.QueryableExtensions;
 using DataAccess.Catalog;
 using DB;
 using Microsoft.EntityFrameworkCore;
-using ViewModel;
 using ViewModel.Catalogs;
 
 namespace DataAccess.DbImplementation.Catalog

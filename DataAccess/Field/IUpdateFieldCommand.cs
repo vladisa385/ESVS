@@ -6,6 +6,6 @@ namespace DataAccess.Field
 {
     public interface IUpdateFieldCommand
     {
-        Task<FieldResponse> ExecuteAsync(Guid FieldId, UpdateFieldRequest request);
+        Task<FieldResponse> ExecuteAsync(Guid fieldId, UpdateFieldRequest request);
     }
 }

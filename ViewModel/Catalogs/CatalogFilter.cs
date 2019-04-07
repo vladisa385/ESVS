@@ -13,5 +13,9 @@ namespace ViewModel.Catalogs
         public string Type { get; set; }
 
         public Guid? ParentId { get; set; }
+
+        public RangeFilter<int> ChildCatalogs { get; set; }
+
+        public RangeFilter<int> Fields { get; set; }
     }
 }

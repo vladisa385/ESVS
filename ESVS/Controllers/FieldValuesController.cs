@@ -14,38 +14,38 @@ namespace ESVS.Controllers
         [HttpGet("GetListFieldValues")]
         [Authorize]
         [ProducesResponseType(401)]
-        [ProducesResponseType(200, Type = typeof(ListResponse<FieldValueResponse>))]//было userresponce
-        public async Task<IActionResult> GetFieldValuesListAsync(FieldValueFilter fieldvalue, ListOptions options, [FromServices]IFieldValueListQuery query)
+        [ProducesResponseType(200, Type = typeof(ListResponse<FieldValuesResponse>))]//было userresponce
+        public async Task<IActionResult> GetFieldValuesListAsync(FieldValuesFilter fieldvalues, ListOptions options, [FromServices]IFieldValuesListQuery query)
         {
-            var response = await query.RunAsync(fieldvalue, options);     // запрос к базе 
+            var response = await query.RunAsync(fieldvalues, options);     // запрос к базе 
             return Ok(response);
         }
 
-        [HttpGet("GetFieldValue/{FieldValueId}", Name = "GetSingleFieldValue")]
+        [HttpGet("GetFieldValue/{FieldValueId}", Name = "GetSingleFieldValues")]
         [Authorize]
-        [ProducesResponseType(200, Type = typeof(FieldValueResponse))]
+        [ProducesResponseType(200, Type = typeof(FieldValuesResponse))]
         [ProducesResponseType(401)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> GetFieldValueAsync(Guid FieldValueId, [FromServices] IFieldValueQuery query)
+        public async Task<IActionResult> GetFieldValuesAsync(Guid fieldValueId, [FromServices] IFieldValuesQuery query)
         {
-            FieldValueResponse response = await query.RunAsync(FieldValueId);
+            FieldValuesResponse response = await query.RunAsync(fieldValueId);
             return response == null ? (IActionResult)NotFound() : Ok(response);
         }
 
         [HttpPost("CreateFieldValue")]
-        [ProducesResponseType(201, Type = typeof(FieldValueResponse))]
+        [ProducesResponseType(201, Type = typeof(FieldValuesResponse))]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> CreateFieldValue(CreateFieldValueRequest fieldvalue, [FromServices] ICreateFieldValueCommand command)
+        public async Task<IActionResult> CreateFieldValue(CreateFieldValuesRequest fieldvalue, [FromServices] ICreateFieldValuesCommand command)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             try
             {
-                FieldValueResponse response = await command.ExecuteAsync(fieldvalue);
-                return CreatedAtRoute("GetSingleFieldValue", new { FieldValueId = response.Id }, response);
+                FieldValuesResponse response = await command.ExecuteAsync(fieldvalue);
+                return CreatedAtRoute("GetSingleFieldValues", new { FieldValueId = response.Id }, response);
 
             }
-            catch (CannotCreateFieldValueExeption exception)
+            catch (CannotCreateFieldValuesException exception)
             {
                 foreach (var error in exception.Errors)
                 {
@@ -56,21 +56,21 @@ namespace ESVS.Controllers
         }
 
         [HttpPut("UpdateFieldValue/{FieldValueId}")]
-        [ProducesResponseType(201, Type = typeof(FieldValueResponse))]
+        [ProducesResponseType(201, Type = typeof(FieldValuesResponse))]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
         [Authorize]
-        public async Task<IActionResult> UpdateFieldValue(Guid FieldValueId, UpdateFieldValueRequest fieldvalue, [FromServices] IUpdateFieldValueCommand command)
+        public async Task<IActionResult> UpdateFieldValue(Guid fieldValueId, UpdateFieldValuesRequest fieldvalues, [FromServices] IUpdateFieldValuesCommand command)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             try
             {
-                FieldValueResponse response = await command.ExecuteAsync(FieldValueId, fieldvalue);
-                return CreatedAtRoute("GetSingleFieldValue", new { FieldValueId = response.Id }, response);
+                FieldValuesResponse response = await command.ExecuteAsync(fieldValueId, fieldvalues);
+                return CreatedAtRoute("GetSingleFieldValues", new { FieldValueId = response.Id }, response);
 
             }
-            catch (CannotCreateFieldValueExeption exception)
+            catch (CannotCreateFieldValuesException exception)
             {
                 foreach (var error in exception.Errors)
                 {
@@ -86,7 +86,7 @@ namespace ESVS.Controllers
         [ProducesResponseType(401)]
         [ProducesResponseType(403)]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> DeleteFieldValueAsync(Guid FieldValueId, [FromServices]IDeleteFieldValueCommand command)
+        public async Task<IActionResult> DeleteFieldValueAsync(Guid FieldValueId, [FromServices]IDeleteFieldValuesCommand command)
         {
             try
             {

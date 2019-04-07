@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Identity;
 
 namespace DataAccess.FieldValue
 {
-    public class CannotCreateFieldValueExeption : Exception
+    public class CannotCreateFieldValuesException : Exception
     {
         public IEnumerable<IdentityError> Errors { get; set; }
-        public CannotCreateFieldValueExeption(IEnumerable<IdentityError> errors) : base("FieldValue cannot be created")
+        public CannotCreateFieldValuesException(IEnumerable<IdentityError> errors) : base("FieldValue cannot be created")
         {
             Errors = errors;
         }

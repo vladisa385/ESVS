@@ -6,7 +6,7 @@ using ViewModel.FieldValues;
 
 namespace DataAccess.DbImplementation.FieldValue
 {
-    public class CreateFieldValueCommand : ICreateFieldValueCommand
+    public class CreateFieldValueCommand : ICreateFieldValuesCommand
     {
         private readonly AppDbContext _context;
         private readonly IMapper _mapper;
@@ -16,12 +16,12 @@ namespace DataAccess.DbImplementation.FieldValue
             _context = dbContext;
             _mapper = mapper;
         }
-        public async Task<FieldValueResponse> ExecuteAsync(CreateFieldValueRequest request)
+        public async Task<FieldValuesResponse> ExecuteAsync(CreateFieldValuesRequest request)
         {
-            var fieldvalue = _mapper.Map<CreateFieldValueRequest, Entities.FieldValue>(request);
-            await _context.AddAsync(fieldvalue);
+            var fieldvalues = _mapper.Map<CreateFieldValuesRequest, Entities.FieldValue>(request);
+            await _context.AddAsync(fieldvalues);
             await _context.SaveChangesAsync();
-            return _mapper.Map<Entities.FieldValue, FieldValueResponse>(fieldvalue);
+            return _mapper.Map<Entities.FieldValue, FieldValuesResponse>(fieldvalues);
         }
     }
 }

@@ -22,6 +22,6 @@ namespace ViewModel.Fields
         [Required]
         public Guid CatalogId { get; set; }
 
-        public int FieldsCount { get; set; }
+        public int FieldValuesCount { get; set; }
     }
 }
