@@ -27,7 +27,12 @@ namespace DataAccess.DbImplementation.Roles
 
             if (filter.Name != null)
             {
-                query = query.Where(p => p.Name.StartsWith(filter.Name));
+                query = query.Where(p => p.Name.Contains(filter.Name));
+            }
+
+            if (filter.RoleDescription != null)
+            {
+                query = query.Where(p => p.RoleDescription.Contains(filter.RoleDescription));
             }
 
             return query;
