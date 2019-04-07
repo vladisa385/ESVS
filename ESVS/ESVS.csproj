@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
@@ -37,15 +37,22 @@
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
     <Content Remove="$(SpaRoot)**" />
+    <Content Include="ClientApp\public\favicon.ico" />
+    <Content Include="ClientApp\public\index.html" />
+    <Content Include="ClientApp\src\App.js" />
+    <Content Include="ClientApp\src\App.test.js" />
+    <Content Include="ClientApp\src\components\Layout.js" />
+    <Content Include="ClientApp\src\index.css" />
+    <Content Include="ClientApp\src\index.js" />
+    <Content Include="ClientApp\src\pages\Home.js" />
+    <Content Include="ClientApp\src\registerServiceWorker.js" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
     <None Remove="ClientApp\src\assets\fonts\**" />
     <Content Remove="ClientApp\src\assets\fonts\**" />
     <None Remove="ClientApp\src\app\sign-in\**" />
     <Content Remove="ClientApp\src\app\sign-in\**" />
-    <None Remove="ClientApp\public\**" />
-    <Content Remove="ClientApp\public\**" />
-    <None Remove="ClientApp\src\**" />
-    <Content Remove="ClientApp\src\**" />
+    <None Remove="ClientApp\src\components\css\**" />
+    <Content Remove="ClientApp\src\components\css\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -60,15 +67,13 @@
     <Compile Remove="EmptyClass.cs" />
     <Compile Remove="ClientApp\src\assets\fonts\**" />
     <Compile Remove="ClientApp\src\app\sign-in\**" />
-    <Compile Remove="ClientApp\public\**" />
-    <Compile Remove="ClientApp\src\**" />
+    <Compile Remove="ClientApp\src\components\css\**" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Remove="ClientApp\src\assets\fonts\**" />
     <EmbeddedResource Remove="ClientApp\src\app\sign-in\**" />
-    <EmbeddedResource Remove="ClientApp\public\**" />
-    <EmbeddedResource Remove="ClientApp\src\**" />
+    <EmbeddedResource Remove="ClientApp\src\components\css\**" />
   </ItemGroup>
 
   <ItemGroup>
