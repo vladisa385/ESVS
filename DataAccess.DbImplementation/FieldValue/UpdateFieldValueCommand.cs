@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AutoMapper;
-using Entities;
 using Microsoft.AspNetCore.Hosting;
-using ViewModel;
 using DB;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,7 +24,7 @@ namespace DataAccess.DbImplementation.FieldValue
         }
         public async Task<FieldValueResponse> ExecuteAsync(Guid typefoodId, UpdateFieldValueRequest request)
         {
-            Entities.FieldValue foundFieldValue = await _context.FieldValue.FirstOrDefaultAsync(t => t.Id == typefoodId);
+            Entities.FieldValue foundFieldValue = await _context.FieldValues.FirstOrDefaultAsync(t => t.Id == typefoodId);
             if (foundFieldValue == null) return _mapper.Map<Entities.FieldValue, FieldValueResponse>(foundFieldValue);
             Entities.FieldValue mappedFieldValue = _mapper.Map<UpdateFieldValueRequest, Entities.FieldValue>(request);
             mappedFieldValue.Id = typefoodId;

@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
-using AutoMapper;
-using Entities;
-using Microsoft.AspNetCore.Hosting;
-using ViewModel;
 using DB;
 using Microsoft.EntityFrameworkCore;
 //
 using DataAccess.FieldValue;
-using ViewModel.FieldValues;
 
 namespace DataAccess.DbImplementation.FieldValue
 {
@@ -22,11 +17,11 @@ namespace DataAccess.DbImplementation.FieldValue
         }
         public async Task ExecuteAsync(Guid FieldValueId)
         {
-            Entities.FieldValue FieldValueToDelete = await _context.FieldValue.FirstOrDefaultAsync(p => p.Id == FieldValueId);
+            Entities.FieldValue FieldValueToDelete = await _context.FieldValues.FirstOrDefaultAsync(p => p.Id == FieldValueId);
 
             if (FieldValueToDelete != null)
             {
-                _context.FieldValue.Remove(FieldValueToDelete);
+                _context.FieldValues.Remove(FieldValueToDelete);
                 await _context.SaveChangesAsync();
             }
         }

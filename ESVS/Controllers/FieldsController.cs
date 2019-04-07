@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using DataAccess.Field;
 using Microsoft.AspNetCore.Authorization;
@@ -12,7 +9,7 @@ using ViewModel.Fields;
 namespace ESVS.Controllers
 {
     [Route("api/[controller]")]
-    public class FieldController : Controller
+    public class FieldsController : Controller
     {
         [HttpGet("GetListFields")]
         [Authorize]

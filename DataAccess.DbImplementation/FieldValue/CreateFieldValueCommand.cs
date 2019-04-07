@@ -1,9 +1,6 @@
 ﻿using System.Threading.Tasks;
 using AutoMapper;
 using DB;
-using Entities;
-using ViewModel;
-
 using DataAccess.FieldValue;
 using ViewModel.FieldValues;
 

@@ -1,24 +1,24 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using DataAccess.Catalog;
 using DB;
 using Microsoft.EntityFrameworkCore;
 using ViewModel;
+using ViewModel.Catalogs;
 
-namespace DataAccess.DbImplementation
+namespace DataAccess.DbImplementation.Catalog
 {
-    public class CatalogsListQuery : ICatalogsListQuery
+    public class CatalogListQuery : ICatalogListQuery
     {
         private readonly AppDbContext _context;
-        private readonly IMapper _mapper;
-        public CatalogsListQuery(AppDbContext tasksContext, IMapper mapper)
+
+        public CatalogListQuery(AppDbContext tasksContext)
         {
             _context = tasksContext;
-            _mapper = mapper;
         }
 
-        private IQueryable<CatalogsResponse> ApplyFilter(IQueryable<CatalogsResponse> query, CatalogsFilter filter)
+        private IQueryable<CatalogResponse> ApplyFilter(IQueryable<CatalogResponse> query, CatalogFilter filter)
         {
             if (filter.Id != null)
             {
@@ -29,14 +29,25 @@ namespace DataAccess.DbImplementation
             {
                 query = query.Where(p => p.Name.StartsWith(filter.Name));
             }
-
+            if (filter.Type != null)
+            {
+                query = query.Where(p => p.Name.StartsWith(filter.Name));
+            }
+            if (filter.Text != null)
+            {
+                query = query.Where(p => p.Name.StartsWith(filter.Name));
+            }
+            if (filter.ParentId != null)
+            {
+                query = query.Where(p => p.ParentId == filter.ParentId);
+            }
             return query;
         }
 
-        public async Task<ListResponse<CatalogsResponse>> RunAsync(CatalogsFilter filter, ListOptions options)
+        public async Task<ListResponse<CatalogResponse>> RunAsync(CatalogFilter filter, ListOptions options)
         {
-            IQueryable<CatalogsResponse> query = _context.Catalogs.Include("Catalogs")
-                .ProjectTo<CatalogsResponse>();
+            IQueryable<CatalogResponse> query = _context.Catalogs.Include("Catalogs")
+                .ProjectTo<CatalogResponse>();
             query = ApplyFilter(query, filter);
             int totalCount = await query.CountAsync();
             if (options.Sort == null)
@@ -46,7 +57,7 @@ namespace DataAccess.DbImplementation
 
             query = options.ApplySort(query);
             query = options.ApplyPaging(query);
-            return new ListResponse<CatalogsResponse>
+            return new ListResponse<CatalogResponse>
             {
                 Items = await query.ToListAsync(),
                 Page = options.Page,

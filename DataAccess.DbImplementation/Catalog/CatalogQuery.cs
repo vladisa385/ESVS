@@ -1,25 +1,27 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AutoMapper.QueryableExtensions;
+using DataAccess.Catalog;
 using DB;
 using Microsoft.EntityFrameworkCore;
 using ViewModel;
+using ViewModel.Catalogs;
 
-namespace DataAccess.DbImplementation
+namespace DataAccess.DbImplementation.Catalog
 {
-    public class CatalogsQuery : ICatalogsQuery
+    public class CatalogQuery : ICatalogQuery
     {
         private readonly AppDbContext _context;
-        public CatalogsQuery(AppDbContext dbContext)
+        public CatalogQuery(AppDbContext dbContext)
         {
             _context = dbContext;
         }
 
-        public async Task<CatalogsResponse> RunAsync(Guid catalogofcatalogsId)
+        public async Task<CatalogResponse> RunAsync(Guid catalogId)
         {
-            CatalogsResponse response = await _context.Catalogs
-                .ProjectTo<CatalogsResponse>()
-                .FirstOrDefaultAsync(p => p.Id == catalogofcatalogsId);
+            CatalogResponse response = await _context.Catalogs
+                .ProjectTo<CatalogResponse>()
+                .FirstOrDefaultAsync(p => p.Id == catalogId);
             return response;
         }
     }

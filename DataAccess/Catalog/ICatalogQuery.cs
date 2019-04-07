@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
 using ViewModel;
+using ViewModel.Catalogs;
 
-namespace DataAccess
+namespace DataAccess.Catalog
 {
-    public interface ICatalogsQuery
+    public interface ICatalogQuery
     {
-        Task<CatalogsResponse> RunAsync(Guid catalogofcatalogsId);
+        Task<CatalogResponse> RunAsync(Guid catalogId);
     }
 }

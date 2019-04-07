@@ -3,8 +3,6 @@ using System.Threading.Tasks;
 using AutoMapper.QueryableExtensions;
 using DB;
 using Microsoft.EntityFrameworkCore;
-using ViewModel;
-
 using DataAccess.Field;
 using ViewModel.Fields;
 
@@ -20,7 +18,7 @@ namespace DataAccess.DbImplementation.Field
 
         public async Task<FieldResponse> RunAsync(Guid FieldId)
         {
-            FieldResponse response = await _context.Field
+            FieldResponse response = await _context.Fields
                 .ProjectTo<FieldResponse>()
                 .FirstOrDefaultAsync(p => p.Id == FieldId);
             return response;

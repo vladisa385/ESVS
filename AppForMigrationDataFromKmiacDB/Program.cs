@@ -29,17 +29,26 @@ namespace AppForMigrationDataFromKmiacDB
                }).ToList();
             foreach (var catalog in selectedCatalogs)
             {
-                var fields = parser.GetFields(_baseFieldUrl + catalog.Name);
-                fields = fields.Select(x =>
+                try
                 {
-                    x.Id = Guid.NewGuid();
-                    x.Catalog = catalog;
-                    x.CatalogId = catalog.Guid;
-                    x.IsForeignKey = x.Name.Contains("ID");
-                    return x;
+                    var fields = parser.GetFields(_baseFieldUrl + catalog.Name);
+                    fields = fields.Select(x =>
+                    {
+                        x.Id = Guid.NewGuid();
+                        x.Catalog = catalog;
+                        x.CatalogId = catalog.Guid;
+                        x.IsForeignKey = x.Name.Contains("ID");
+                        return x;
 
-                }).ToList();
-                _fields.AddRange(fields);
+                    }).ToList();
+                    _fields.AddRange(fields);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+
+                }
+
 
             }
             Console.WriteLine(_fields.Count);

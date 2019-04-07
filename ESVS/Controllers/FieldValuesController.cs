@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using DataAccess.Field;
 using Microsoft.AspNetCore.Authorization;
 using ViewModel;
 using ViewModel.FieldValues;
@@ -13,7 +9,7 @@ using DataAccess.FieldValue;
 namespace ESVS.Controllers
 {
     [Route("api/[controller]")]
-    public class FieldValueController : Controller
+    public class FieldValuesController : Controller
     {
         [HttpGet("GetListFieldValues")]
         [Authorize]

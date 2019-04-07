@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace DataAccess
+namespace DataAccess.Catalog
 {
-    public interface IDeleteCatalogsCommand
+    public interface IDeleteCatalogCommand
     {
-        Task ExecuteAsync(Guid catalogofcatalogsId);
+        Task ExecuteAsync(Guid catalogId);
     }
 }

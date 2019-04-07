@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
+using DataAccess.General;
 using DataAccess.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -127,6 +127,7 @@ namespace ESVS.Controllers
 
         }
 
+
         [HttpPut("LogOff")]
         [ProducesResponseType(200)]
         [ProducesResponseType(401)]
@@ -154,6 +155,17 @@ namespace ESVS.Controllers
             {
                 return BadRequest(exception.Message);
             }
+        }
+
+
+        [Authorize(Roles = "admin")]
+        [HttpPut("GenerateDbFromKmiac")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<IActionResult> GenerateDb([FromServices] IGenerateDbFromKmiac command)
+        {
+            await command.ExecuteAsync();
+            return Ok();
         }
     }
 }

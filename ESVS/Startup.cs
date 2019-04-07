@@ -7,15 +7,18 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Threading.Tasks;
 using AutoMapper;
 using DataAccess;
-using DataAccess.DbImplementation;
+using DataAccess.Catalog;
+using DataAccess.DbImplementation.Catalog;
 using DataAccess.DbImplementation.Roles;
 using DataAccess.DbImplementation.Users;
 using DataAccess.DbImplementation.Field;
 using DataAccess.DbImplementation.FieldValue;
+using DataAccess.DbImplementation.General;
 using DataAccess.Roles;
 using DataAccess.Users;
 using DataAccess.Field;
 using DataAccess.FieldValue;
+using DataAccess.General;
 using DB;
 using Entities;
 using Microsoft.EntityFrameworkCore;
@@ -136,11 +139,11 @@ namespace ESVS
                 .AddScoped<IRemoveRoleFromUserCommand, RemoveRoleFromUserCommand>()
                 .AddScoped<ICreateRoleCommand, CreateRoleCommand>()
                 .AddScoped<IDeleteRoleCommand, DeleteRoleCommand>()
-                .AddScoped<ICatalogsQuery, CatalogsQuery>()
-                .AddScoped<IUpdateCatalogsCommand, UpdateCatalogsCommand>()
-                .AddScoped<ICreateCatalogsCommand, CreateCatalogsCommand>()
-                .AddScoped<IDeleteCatalogsCommand, DeleteCatalogsCommand>()
-                .AddScoped<ICatalogsListQuery, CatalogsListQuery>()
+                .AddScoped<ICatalogQuery, CatalogQuery>()
+                .AddScoped<IUpdateCatalogCommand, UpdateCatalogCommand>()
+                .AddScoped<ICreateCatalogCommand, CreateCatalogCommand>()
+                .AddScoped<IDeleteCatalogCommand, DeleteCatalogCommand>()
+                .AddScoped<ICatalogListQuery, CatalogListQuery>()
                 .AddScoped<IFieldQuery, FieldQuery>()
                 .AddScoped<IUpdateFieldCommand, UpdateFieldCommand>()
                 .AddScoped<ICreateFieldCommand, CreateFieldCommand>()
@@ -151,6 +154,7 @@ namespace ESVS
                 .AddScoped<ICreateFieldValueCommand, CreateFieldValueCommand>()
                 .AddScoped<IDeleteFieldValueCommand, DeleteFieldValueCommand>()
                 .AddScoped<IFieldValueListQuery, FieldValueListQuery>()
+                 .AddScoped<IGenerateDbFromKmiac, GenerateDbFromKmiac>()
                 ;
 
 

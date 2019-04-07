@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
 using ViewModel;
+using ViewModel.Catalogs;
 
-namespace DataAccess
+namespace DataAccess.Catalog
 {
-    public interface IUpdateCatalogsCommand
+    public interface IUpdateCatalogCommand
     {
-        Task<CatalogsResponse> ExecuteAsync(Guid catalogofcatalogsId, UpdateCatalogsRequest request);
+        Task<CatalogResponse> ExecuteAsync(Guid catalogId, UpdateCatalogRequest request);
     }
 }

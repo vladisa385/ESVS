@@ -3,6 +3,7 @@ using Entities;
 using ViewModel.Roles;
 using ViewModel.Users;
 using ViewModel;
+using ViewModel.Catalogs;
 using ViewModel.Fields;
 using ViewModel.FieldValues;
 
@@ -13,10 +14,13 @@ namespace ESVS
     {
         public MappingProfile()
         {
+            CreateMap<ViewModel.Kmiac.Catalog, Catalog>();
+            CreateMap<ViewModel.Kmiac.Field, Field>();
 
-            CreateMap<Catalog, CatalogsResponse>();
-            CreateMap<CreateCatalogsRequest, Catalog>();
-            CreateMap<UpdateCatalogsRequest, Catalog>();
+
+            CreateMap<Catalog, CatalogResponse>();
+            CreateMap<CreateCatalogRequest, Catalog>();
+            CreateMap<UpdateCatalogRequest, Catalog>();
 
             CreateMap<Field, FieldResponse>();
             CreateMap<CreateFieldRequest, Field>();
@@ -47,6 +51,7 @@ namespace ESVS
             CreateMap<CreateRoleRequest, Role>();
             CreateMap<UpdateRoleRequest, Role>();
             CreateMap<Role, RoleResponse>();
+
 
 
 

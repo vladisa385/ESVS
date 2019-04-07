@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using DataAccess.Roles;
 using ESVS.Controllers;
 using Microsoft.AspNetCore.Identity;
@@ -8,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using Moq;
 using ViewModel;
 using ViewModel.Roles;
-using ViewModel.Users;
 using Xunit;
 
 namespace ESVSMainUnitTests

@@ -5,8 +5,6 @@ using AutoMapper.QueryableExtensions;
 using DB;
 using Microsoft.EntityFrameworkCore;
 using ViewModel;
-
-//using DataAccess.Field;
 using DataAccess.FieldValue;
 using ViewModel.FieldValues;
 
@@ -39,7 +37,7 @@ namespace DataAccess.DbImplementation.FieldValue
 
         public async Task<ListResponse<FieldValueResponse>> RunAsync(FieldValueFilter filter, ListOptions options)
         {
-            IQueryable<FieldValueResponse> query = _context.FieldValue.Include("FieldValue")
+            IQueryable<FieldValueResponse> query = _context.FieldValues.Include("FieldValue")
                 .ProjectTo<FieldValueResponse>();
             query = ApplyFilter(query, filter);
             int totalCount = await query.CountAsync();
