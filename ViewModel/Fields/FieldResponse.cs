@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using ViewModel.FieldValues;
 
 namespace ViewModel.Fields
 {
@@ -23,5 +26,7 @@ namespace ViewModel.Fields
         public Guid CatalogId { get; set; }
 
         public int FieldValuesCount { get; set; }
+
+        public ICollection<FieldValuesResponse> FieldValues { get; set; }
     }
 }

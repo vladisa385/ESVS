@@ -21,7 +21,7 @@ namespace ESVS.Controllers
             return Ok(response);
         }
 
-        [HttpGet("GetField/{FieldId}", Name = "GetSingleField")]
+        [HttpGet("GetField/{fieldId}", Name = "GetSingleField")]
         [Authorize]
         [ProducesResponseType(200, Type = typeof(FieldResponse))]
         [ProducesResponseType(401)]

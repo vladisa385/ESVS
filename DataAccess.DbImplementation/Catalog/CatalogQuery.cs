@@ -18,7 +18,7 @@ namespace DataAccess.DbImplementation.Catalog
 
         public async Task<CatalogResponse> RunAsync(Guid catalogId)
         {
-            CatalogResponse response = await _context.Catalogs
+            CatalogResponse response = await _context.Catalogs.Include("FieldValues")
                 .ProjectTo<CatalogResponse>()
                 .FirstOrDefaultAsync(p => p.Id == catalogId);
             return response;

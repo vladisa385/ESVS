@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using ViewModel.Fields;
+using ViewModel.Kmiac;
 
 namespace ViewModel.Catalogs
 {
@@ -17,6 +21,10 @@ namespace ViewModel.Catalogs
         public string Type { get; set; }
         [Required]
         public int ChildCatalogsCount { get; set; }
+        [Required]
+        public ICollection<FieldResponse> Fields { get; set; }
+        [Required]
+        public ICollection<CatalogResponse> ChildCatalogs { get; set; }
         [Required]
         public int FieldsCount { get; set; }
     }
