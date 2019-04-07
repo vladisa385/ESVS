@@ -26,7 +26,7 @@ namespace DataAccess.DbImplementation.Users
                 await _signInManager.PasswordSignInAsync(request.Email, request.Password, request.RememberMe, false);
             if (!result.Succeeded)
             {
-                throw new IncorrectPasswordOrEmailExeption();
+                throw new UserCredentialsException();
             }
 
             var user = await _userManager.FindByEmailAsync(request.Email);

@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 
-namespace DataAccess.Users
+namespace DataAccess.Field
 {
-    public class CannotChangePasswordExeption : Exception
+    public class CannotCreateFieldException : Exception
     {
         public IEnumerable<IdentityError> Errors { get; set; }
-        public CannotChangePasswordExeption(IEnumerable<IdentityError> errors) : base("Password cannot be changed")
+        public CannotCreateFieldException(IEnumerable<IdentityError> errors) : base("Field cannot be created")
         {
             Errors = errors;
         }

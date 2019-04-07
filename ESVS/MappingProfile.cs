@@ -2,7 +2,9 @@
 using Entities;
 using ViewModel.Roles;
 using ViewModel.Users;
-using ViewModel;
+using ViewModel.Catalogs;
+using ViewModel.Fields;
+using ViewModel.FieldValues;
 
 namespace ESVS
 {
@@ -11,11 +13,26 @@ namespace ESVS
     {
         public MappingProfile()
         {
+            CreateMap<ViewModel.Kmiac.Catalog, Catalog>();
+            CreateMap<ViewModel.Kmiac.Field, Field>();
 
-            CreateMap<Catalog, CatalogsResponse>();
-            CreateMap<CreateCatalogsRequest, Catalog>();
-            CreateMap<UpdateCatalogsRequest, Catalog>();
 
+            CreateMap<Catalog, CatalogResponse>()
+                .ForMember(d => d.ChildCatalogsCount, o => o.MapFrom(src => src.ChildCatalogs.Count))
+                .ForMember(d => d.FieldsCount, o => o.MapFrom(src => src.Fields.Count));
+            CreateMap<CreateCatalogRequest, Catalog>();
+            CreateMap<UpdateCatalogRequest, Catalog>();
+
+            CreateMap<Field, FieldResponse>()
+            .ForMember(d => d.FieldValuesCount, o => o.MapFrom(src => src.FieldValues.Count));
+
+            CreateMap<CreateFieldRequest, Field>();
+            CreateMap<UpdateFieldRequest, Field>();
+
+
+            CreateMap<FieldValue, FieldValuesResponse>();
+            CreateMap<CreateFieldValuesRequest, FieldValue>();
+            CreateMap<UpdateFieldValuesRequest, FieldValue>();
 
             CreateMap<User, UserResponse>()
                 .ForMember(d => d.Id, o => o.MapFrom(src => src.Id))
@@ -37,6 +54,7 @@ namespace ESVS
             CreateMap<CreateRoleRequest, Role>();
             CreateMap<UpdateRoleRequest, Role>();
             CreateMap<Role, RoleResponse>();
+
 
 
 

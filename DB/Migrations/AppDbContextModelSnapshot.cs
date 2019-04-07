@@ -14,7 +14,7 @@ namespace DB.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
-                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
+                .HasAnnotation("ProductVersion", "2.1.8-servicing-32085")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             modelBuilder.Entity("Entities.Catalog", b =>
@@ -22,15 +22,13 @@ namespace DB.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(1000);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100);
+                    b.Property<string>("Name");
 
                     b.Property<Guid?>("ParentId");
+
+                    b.Property<string>("Text");
+
+                    b.Property<string>("Type");
 
                     b.HasKey("Id");
 
@@ -44,20 +42,26 @@ namespace DB.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("Caption");
+
                     b.Property<Guid>("CatalogId");
+
+                    b.Property<bool>("IsForeignKey");
+
+                    b.Property<int?>("Length");
 
                     b.Property<string>("Name")
                         .HasMaxLength(40);
 
-                    b.Property<Guid>("TypeId");
+                    b.Property<bool>("NotNull");
+
+                    b.Property<string>("Type");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CatalogId");
 
-                    b.HasIndex("TypeId");
-
-                    b.ToTable("Field");
+                    b.ToTable("Fields");
                 });
 
             modelBuilder.Entity("Entities.FieldValue", b =>
@@ -76,7 +80,7 @@ namespace DB.Migrations
 
                     b.HasIndex("FieldId");
 
-                    b.ToTable("FieldValue");
+                    b.ToTable("FieldValues");
                 });
 
             modelBuilder.Entity("Entities.Role", b =>
@@ -94,7 +98,6 @@ namespace DB.Migrations
                         .HasMaxLength(256);
 
                     b.Property<string>("RoleDescription")
-                        .IsRequired()
                         .HasMaxLength(1000);
 
                     b.HasKey("Id");
@@ -104,19 +107,6 @@ namespace DB.Migrations
                         .HasName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles");
-                });
-
-            modelBuilder.Entity("Entities.Type", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(40);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Type");
                 });
 
             modelBuilder.Entity("Entities.User", b =>
@@ -274,11 +264,6 @@ namespace DB.Migrations
                     b.HasOne("Entities.Catalog", "Catalog")
                         .WithMany("Fields")
                         .HasForeignKey("CatalogId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Entities.Type", "Type")
-                        .WithMany()
-                        .HasForeignKey("TypeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

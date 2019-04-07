@@ -5,6 +5,6 @@ namespace DataAccess.Users
 {
     public interface IChangeUserPasswordCommand
     {
-        Task<UserResponse> ExecuteAsync(ChangePasswordUserRequest request);
+        Task<UserResponse> ExecuteAsync(ChangeUserPasswordRequest request);
     }
 }

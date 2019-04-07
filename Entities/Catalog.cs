@@ -9,11 +9,11 @@ namespace Entities
         [Required]
         public Guid Id { get; set; }
 
-        [Required, MinLength(5), MaxLength(100)]
         public string Name { get; set; }
 
-        [Required, MinLength(100), MaxLength(1000)]
-        public string Description { get; set; }
+        public string Text { get; set; }
+
+        public string Type { get; set; }
 
         public Guid? ParentId { get; set; }
 
@@ -22,6 +22,7 @@ namespace Entities
         public ICollection<Field> Fields { get; set; }
 
         public ICollection<Catalog> ChildCatalogs { get; set; }
+
 
     }
 }

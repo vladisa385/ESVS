@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
-using ViewModel;
+using ViewModel.Catalogs;
 
-namespace DataAccess
+namespace DataAccess.Catalog
 {
-    public interface ICreateCatalogsCommand
+    public interface ICreateCatalogCommand
     {
-        Task<CatalogsResponse> ExecuteAsync(CreateCatalogsRequest catalogofcatalogsName);
+        Task<CatalogResponse> ExecuteAsync(CreateCatalogRequest catalogName);
     }
 }

@@ -22,8 +22,6 @@ namespace DataAccess.DbImplementation.Users
 
             if (userToDelete != null)
             {
-                //if (userToDelete.PathToAvatar != null)
-                //    DeleteFileCommand.Execute(userToDelete.PathToAvatar);
                 await _userManager.DeleteAsync(userToDelete);
             }
         }

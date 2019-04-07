@@ -12,16 +12,21 @@ namespace Entities
         [MinLength(5), MaxLength(40)]
         public string Name { get; set; }
 
-        public Type Type { get; set; }
+        public string Caption { get; set; }
 
-        [Required]
-        public Guid TypeId { get; set; }
+        public int? Length { get; set; }
+
+        public bool IsForeignKey { get; set; }
+
+        public bool NotNull { get; set; }
+
+        public string Type { get; set; }
 
         [Required]
         public Guid CatalogId { get; set; }
 
         public Catalog Catalog { get; set; }
 
-        public ICollection<FieldValue> Values { get; set; }
+        public ICollection<FieldValue> FieldValues { get; set; }
     }
 }
