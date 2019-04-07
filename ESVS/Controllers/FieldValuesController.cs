@@ -86,11 +86,11 @@ namespace ESVS.Controllers
         [ProducesResponseType(401)]
         [ProducesResponseType(403)]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> DeleteFieldValueAsync(Guid FieldValueId, [FromServices]IDeleteFieldValuesCommand command)
+        public async Task<IActionResult> DeleteFieldValueAsync(Guid fieldValueId, [FromServices]IDeleteFieldValuesCommand command)
         {
             try
             {
-                await command.ExecuteAsync(FieldValueId);
+                await command.ExecuteAsync(fieldValueId);
                 return NoContent();
             }
             catch (Exception exception)

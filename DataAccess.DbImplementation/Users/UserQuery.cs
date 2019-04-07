@@ -21,12 +21,7 @@ namespace DataAccess.DbImplementation.Users
         public async Task<UserResponse> RunAsync(Guid userId)
         {
 
-            UserResponse response = await _userManager.Users.Include("Recipies")
-                 .Include("Recipies")
-                .Include("Reviews")
-                .Include("CheapPlaces")
-                .Include("RateReviews")
-                 .Include("RateCheapPlaces")
+            UserResponse response = await _userManager.Users
                 .ProjectTo<UserResponse>()
                 .FirstOrDefaultAsync(p => p.Id == userId);
             return response;
