@@ -36,6 +36,7 @@ namespace ESVS
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
                 .UseWebRoot("static")
+                .UseUrls("http://localhost:33333/")
                 .Build();
     }
 }

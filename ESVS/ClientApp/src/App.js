@@ -17,8 +17,8 @@ export default class App extends Component {
           <Route exact path='/contacts' component={Contacts} />
           <Route exact path='/esvs' component={ESVS} />
           <Route render={() => <Error message={'Страница не найдена.'} /> } />
-        </Switch>
-      </Layout>
+          </Switch>
+        </Layout>
     );
   }
 }
