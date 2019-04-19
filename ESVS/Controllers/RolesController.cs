@@ -36,7 +36,7 @@ namespace ESVS.Controllers
         [HttpPost("CreateRole")]
         [ProducesResponseType(201, Type = typeof(RoleResponse))]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> CreateRole(CreateRoleRequest role, [FromServices] ICreateRoleCommand command)
+        public async Task<IActionResult> CreateRole([FromBody]CreateRoleRequest role, [FromServices] ICreateRoleCommand command)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -57,7 +57,7 @@ namespace ESVS.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
         [Authorize]
-        public async Task<IActionResult> UpdateRole(UpdateRoleRequest role, [FromServices] IUpdateRoleCommand command)
+        public async Task<IActionResult> UpdateRole([FromBody]UpdateRoleRequest role, [FromServices] IUpdateRoleCommand command)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -68,7 +68,7 @@ namespace ESVS.Controllers
 
             }
             catch (CannotCreateRoleException exception)
-            {          
+            {
                 return BadRequest(exception.Errors);
             }
 
@@ -115,7 +115,7 @@ namespace ESVS.Controllers
             await command.ExecuteAsync(roleId, userId);
             return NoContent();
         }
-    
 
-}
+
+    }
 }

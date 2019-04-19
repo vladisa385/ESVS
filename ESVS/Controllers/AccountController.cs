@@ -37,7 +37,7 @@ namespace ESVS.Controllers
         [HttpPost("Register")]
         [ProducesResponseType(201, Type = typeof(UserResponse))]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> Register(CreateUserRequest user, [FromServices] ICreateUserCommand command)
+        public async Task<IActionResult> Register([FromBody]CreateUserRequest user, [FromServices] ICreateUserCommand command)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -57,12 +57,12 @@ namespace ESVS.Controllers
         }
 
 
-        [HttpPut("UpdateUser")]
+        [HttpPost("UpdateUser")]
         [ProducesResponseType(201, Type = typeof(UserResponse))]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
         [Authorize]
-        public async Task<IActionResult> UpdateUser(UpdateUserRequest user, [FromServices] IUpdateUserCommand command)
+        public async Task<IActionResult> UpdateUser([FromBody]UpdateUserRequest user, [FromServices] IUpdateUserCommand command)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -83,12 +83,12 @@ namespace ESVS.Controllers
         }
 
 
-        [HttpPut("ChangeUserPassword")]
+        [HttpPost("ChangeUserPassword")]
         [ProducesResponseType(201, Type = typeof(UserResponse))]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
         [Authorize]
-        public async Task<IActionResult> ChangeUserPassword(ChangeUserPasswordRequest user, [FromServices] IChangeUserPasswordCommand command)
+        public async Task<IActionResult> ChangeUserPassword([FromBody]ChangeUserPasswordRequest user, [FromServices] IChangeUserPasswordCommand command)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -108,10 +108,10 @@ namespace ESVS.Controllers
 
         }
 
-        [HttpPut("Login")]
+        [HttpPost("Login")]
         [ProducesResponseType(200, Type = typeof(UserResponse))]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> Login(LoginUserRequest user, [FromServices] ILoginUserCommand command)
+        public async Task<IActionResult> Login([FromBody]LoginUserRequest user, [FromServices] ILoginUserCommand command)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -128,7 +128,7 @@ namespace ESVS.Controllers
         }
 
 
-        [HttpPut("LogOff")]
+        [HttpPost("LogOff")]
         [ProducesResponseType(200)]
         [ProducesResponseType(401)]
         [Authorize]
@@ -159,7 +159,7 @@ namespace ESVS.Controllers
 
 
         [Authorize(Roles = "admin")]
-        [HttpPut("GenerateDbFromKmiac")]
+        [HttpPost("GenerateDbFromKmiac")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         public async Task<IActionResult> GenerateDb([FromServices] IGenerateDbFromKmiac command)

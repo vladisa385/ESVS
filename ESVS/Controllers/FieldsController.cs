@@ -35,7 +35,7 @@ namespace ESVS.Controllers
         [HttpPost("CreateField")]
         [ProducesResponseType(201, Type = typeof(FieldResponse))]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> CreateField(CreateFieldRequest field, [FromServices] ICreateFieldCommand command)
+        public async Task<IActionResult> CreateField([FromBody]CreateFieldRequest field, [FromServices] ICreateFieldCommand command)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -60,7 +60,7 @@ namespace ESVS.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
         [Authorize]
-        public async Task<IActionResult> UpdateField(Guid fieldId, UpdateFieldRequest field, [FromServices] IUpdateFieldCommand command)
+        public async Task<IActionResult> UpdateField(Guid fieldId, [FromBody] UpdateFieldRequest field, [FromServices] IUpdateFieldCommand command)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

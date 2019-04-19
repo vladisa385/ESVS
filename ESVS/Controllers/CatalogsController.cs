@@ -36,7 +36,7 @@ namespace ESVS.Controllers
         [ProducesResponseType(201, Type = typeof(CatalogResponse))]
         [ProducesResponseType(400)]
         [Authorize]
-        public async Task<IActionResult> CreateCatalog(CreateCatalogRequest catalog, [FromServices] ICreateCatalogCommand command)
+        public async Task<IActionResult> CreateCatalog([FromBody]CreateCatalogRequest catalog, [FromServices] ICreateCatalogCommand command)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -61,7 +61,7 @@ namespace ESVS.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
         [Authorize]
-        public async Task<IActionResult> UpdateCatalogs(Guid catalogId, UpdateCatalogRequest catalog, [FromServices] IUpdateCatalogCommand command)
+        public async Task<IActionResult> UpdateCatalogs(Guid catalogId, [FromBody]UpdateCatalogRequest catalog, [FromServices] IUpdateCatalogCommand command)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
