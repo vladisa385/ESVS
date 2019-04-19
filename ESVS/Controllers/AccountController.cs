@@ -57,7 +57,7 @@ namespace ESVS.Controllers
         }
 
 
-        [HttpPost("UpdateUser")]
+        [HttpPut("UpdateUser")]
         [ProducesResponseType(201, Type = typeof(UserResponse))]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
@@ -83,7 +83,7 @@ namespace ESVS.Controllers
         }
 
 
-        [HttpPost("ChangeUserPassword")]
+        [HttpPut("ChangeUserPassword")]
         [ProducesResponseType(201, Type = typeof(UserResponse))]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
@@ -128,7 +128,7 @@ namespace ESVS.Controllers
         }
 
 
-        [HttpPost("LogOff")]
+        [HttpPut("LogOff")]
         [ProducesResponseType(200)]
         [ProducesResponseType(401)]
         [Authorize]
