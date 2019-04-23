@@ -70,7 +70,7 @@ namespace DataAccess.DbImplementation.Catalog
 
         public async Task<ListResponse<CatalogResponse>> RunAsync(CatalogFilter filter, ListOptions options)
         {
-            IQueryable<CatalogResponse> query = _context.Catalogs.Include("Catalogs")
+            IQueryable<CatalogResponse> query = _context.Catalogs
                 .ProjectTo<CatalogResponse>();
             query = ApplyFilter(query, filter);
             int totalCount = await query.CountAsync();

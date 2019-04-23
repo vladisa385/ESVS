@@ -52,7 +52,7 @@ namespace DataAccess.DbImplementation.FieldValue
 
         public async Task<ListResponse<FieldValuesResponse>> RunAsync(FieldValuesFilter filter, ListOptions options)
         {
-            IQueryable<FieldValuesResponse> query = _context.FieldValues.Include("FieldValue")
+            IQueryable<FieldValuesResponse> query = _context.FieldValues
                 .ProjectTo<FieldValuesResponse>();
             query = ApplyFilter(query, filter);
             int totalCount = await query.CountAsync();

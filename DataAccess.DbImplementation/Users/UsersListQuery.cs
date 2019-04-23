@@ -27,13 +27,25 @@ namespace DataAccess.DbImplementation.Users
 
             if (filter.FirstName != null)
             {
-                query = query.Where(p => p.FirstName.StartsWith(filter.FirstName));
+                query = query.Where(p => p.FirstName.Contains(filter.FirstName));
             }
             if (filter.LastName != null)
             {
-                query = query.Where(p => p.LastName.StartsWith(filter.LastName));
+                query = query.Where(p => p.LastName.Contains(filter.LastName));
             }
-      
+
+
+            if (filter.Email != null)
+            {
+                query = query.Where(p => p.Email.Contains(filter.Email));
+            }
+
+
+
+            if (filter.Gender != null)
+            {
+                query = query.Where(p => p.Gender == filter.Gender);
+            }
             return query;
         }
 

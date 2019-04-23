@@ -1,16 +1,24 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router';
+import { Route, Switch } from 'react-router';
 import { Layout } from './components/Layout';
-import { Home } from './components/Home';
+import { Home } from './pages/Home';
+import { About } from './pages/About';
+import { Contacts } from './pages/Contacts';
+import { ESVS } from './pages/ESVS';
+import { Error } from './pages/Error';
 
 export default class App extends Component {
-  displayName = App.name
-
   render() {
     return (
       <Layout>
-        <Route exact path='/' component={Home} />
-      </Layout>
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route exact path='/about' component={About} />
+          <Route exact path='/contacts' component={Contacts} />
+          <Route exact path='/esvs' component={ESVS} />
+          <Route render={() => <Error message={'Страница не найдена.'} /> } />
+          </Switch>
+        </Layout>
     );
   }
 }

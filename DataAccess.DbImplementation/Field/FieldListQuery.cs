@@ -83,7 +83,7 @@ namespace DataAccess.DbImplementation.Field
 
         public async Task<ListResponse<FieldResponse>> RunAsync(FieldFilter filter, ListOptions options)
         {
-            IQueryable<FieldResponse> query = _context.Fields.Include("Field")
+            IQueryable<FieldResponse> query = _context.Fields
                 .ProjectTo<FieldResponse>();
             query = ApplyFilter(query, filter);
             int totalCount = await query.CountAsync();

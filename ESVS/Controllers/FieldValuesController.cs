@@ -35,7 +35,7 @@ namespace ESVS.Controllers
         [HttpPost("CreateFieldValue")]
         [ProducesResponseType(201, Type = typeof(FieldValuesResponse))]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> CreateFieldValue(CreateFieldValuesRequest fieldvalue, [FromServices] ICreateFieldValuesCommand command)
+        public async Task<IActionResult> CreateFieldValue([FromBody]CreateFieldValuesRequest fieldvalue, [FromServices] ICreateFieldValuesCommand command)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -60,7 +60,7 @@ namespace ESVS.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
         [Authorize]
-        public async Task<IActionResult> UpdateFieldValue(Guid fieldValueId, UpdateFieldValuesRequest fieldvalues, [FromServices] IUpdateFieldValuesCommand command)
+        public async Task<IActionResult> UpdateFieldValue(Guid fieldValueId, [FromBody] UpdateFieldValuesRequest fieldvalues, [FromServices] IUpdateFieldValuesCommand command)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -86,11 +86,11 @@ namespace ESVS.Controllers
         [ProducesResponseType(401)]
         [ProducesResponseType(403)]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> DeleteFieldValueAsync(Guid FieldValueId, [FromServices]IDeleteFieldValuesCommand command)
+        public async Task<IActionResult> DeleteFieldValueAsync(Guid fieldValueId, [FromServices]IDeleteFieldValuesCommand command)
         {
             try
             {
-                await command.ExecuteAsync(FieldValueId);
+                await command.ExecuteAsync(fieldValueId);
                 return NoContent();
             }
             catch (Exception exception)

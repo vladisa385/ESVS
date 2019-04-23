@@ -21,12 +21,7 @@ namespace DataAccess.DbImplementation.Roles
         public async Task<RoleResponse> RunAsync(Guid roleId)
         {
 
-            RoleResponse response = await _roleManager.Roles.Include("Recipies")
-                .Include("Recipies")
-                .Include("Reviews")
-                .Include("CheapPlaces")
-                .Include("RateReviews")
-                .Include("RateCheapPlaces")
+            RoleResponse response = await _roleManager.Roles
                 .ProjectTo<RoleResponse>()
                 .FirstOrDefaultAsync(p => p.Id == roleId);
             return response;
