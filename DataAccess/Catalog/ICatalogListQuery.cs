@@ -1,10 +1,11 @@
 ﻿using System.Threading.Tasks;
 using ViewModel;
+using ViewModel.Catalogs;
 
-namespace DataAccess
+namespace DataAccess.Catalog
 {
-    public interface ICatalogsListQuery
+    public interface ICatalogListQuery
     {
-        Task<ListResponse<CatalogsResponse>> RunAsync(CatalogsFilter filter, ListOptions options);
+        Task<ListResponse<CatalogResponse>> RunAsync(CatalogFilter filter, ListOptions options);
     }
 }

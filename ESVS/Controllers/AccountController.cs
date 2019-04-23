@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using DataAccess.General;
 using DataAccess.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -11,16 +12,7 @@ namespace ESVS.Controllers
     [Route("api/[controller]")]
     public class AccountController : Controller
     {
-        //200 - OK
-        //400 - 
-        // CreateRole like a Register +
-        // GetListRoles like a GetList +
-        // GetRoles/{roleId} like a Get/{userId} +
-        // DeleteRole/{roleId} like a Delete/{userId} +
-        // UpdateRole like a UpdateUser +
-        // AddRoleToUser/{roleId} & /{userId}
-        // DeleteRoleToUser/{roleId} & /{userId}
-      
+        //Впихнуть класс для добавления базы (по аналогии с нижними), код в program.cs (коментарий)
         [HttpGet("GetList")]
         [Authorize]
         [ProducesResponseType(401)]
@@ -30,8 +22,6 @@ namespace ESVS.Controllers
             var response = await query.RunAsync(user, options);     // запрос к базе 
             return Ok(response);
         }
-
-
 
         [HttpGet("Get/{userId}", Name = "GetSingleUser")]
         [Authorize]
@@ -44,8 +34,6 @@ namespace ESVS.Controllers
             return response == null ? (IActionResult)NotFound() : Ok(response);
         }
 
-
-
         [HttpPost("Register")]
         [ProducesResponseType(201, Type = typeof(UserResponse))]
         [ProducesResponseType(400)]
@@ -56,18 +44,16 @@ namespace ESVS.Controllers
             try
             {
                 UserResponse response = await command.ExecuteAsync(user);
-                return CreatedAtRoute("GetSingleUser", new { userId = response.Id }, response);
-
+                var result = CreatedAtRoute(
+                    "GetSingleUser",
+                    new { userId = response?.Id },
+                    response);
+                return result;
             }
-            catch (CannotCreateUserExeption exception)
+            catch (UserCredentialsException exception)
             {
-                foreach (var error in exception.Errors)
-                {
-                    ModelState.AddModelError(exception.Message, error.Description);
-                }
-                return BadRequest(ModelState);
+                return BadRequest(exception.Errors);
             }
-
         }
 
 
@@ -83,16 +69,15 @@ namespace ESVS.Controllers
             try
             {
                 UserResponse response = await command.ExecuteAsync(user);
-                return CreatedAtRoute("GetSingleUser", new { userId = response.Id }, response);
-
+                var result = CreatedAtRoute(
+                    "GetSingleUser",
+                    new { userId = response.Id },
+                    response);
+                return result;
             }
-            catch (CannotCreateUserExeption exception)
+            catch (UserCredentialsException exception)
             {
-                foreach (var error in exception.Errors)
-                {
-                    ModelState.AddModelError(exception.Message, error.Description);
-                }
-                return BadRequest(ModelState);
+                return BadRequest(exception);
             }
 
         }
@@ -103,22 +88,21 @@ namespace ESVS.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
         [Authorize]
-        public async Task<IActionResult> ChangeUserPassword(ChangePasswordUserRequest user, [FromServices] IChangeUserPasswordCommand command)
+        public async Task<IActionResult> ChangeUserPassword(ChangeUserPasswordRequest user, [FromServices] IChangeUserPasswordCommand command)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             try
             {
                 UserResponse response = await command.ExecuteAsync(user);
-                return CreatedAtRoute("GetSingleUser", new { userId = response.Id }, response);
-
+                var result = CreatedAtRoute(
+                    "GetSingleUser",
+                    new { userId = response.Id },
+                    response);
+                return result;
             }
-            catch (CannotChangePasswordExeption exception)
+            catch (UserCredentialsException)
             {
-                foreach (var error in exception.Errors)
-                {
-                    ModelState.AddModelError(exception.Message, error.Description);
-                }
                 return BadRequest(ModelState);
             }
 
@@ -136,13 +120,12 @@ namespace ESVS.Controllers
                 UserResponse response = await command.ExecuteAsync(user);
                 return Ok(response);
             }
-            catch (IncorrectPasswordOrEmailExeption exception)
+            catch (UserCredentialsException exception)
             {
                 return BadRequest(exception.Message);
             }
 
         }
-
 
 
         [HttpPut("LogOff")]
@@ -154,8 +137,6 @@ namespace ESVS.Controllers
             await command.ExecuteAsync();
             return Ok();
         }
-
-
 
         [Authorize(Roles = "admin")]
         [HttpDelete("Delete/{userId}")]
@@ -177,6 +158,14 @@ namespace ESVS.Controllers
         }
 
 
-
+        [Authorize(Roles = "admin")]
+        [HttpPut("GenerateDbFromKmiac")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<IActionResult> GenerateDb([FromServices] IGenerateDbFromKmiac command)
+        {
+            await command.ExecuteAsync();
+            return Ok();
+        }
     }
 }

@@ -1,17 +1,23 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace ViewModel
+namespace ViewModel.Catalogs
 {
-    public class CatalogsResponse
+    public class CatalogResponse
     {
         [Required]
         public Guid Id { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]
-        public string CatalogsDescription { get; set; }
-
-        public int CatalogsCount { get; set; }
+        public Guid? ParentId { get; set; }
+        [Required]
+        public string Text { get; set; }
+        [Required]
+        public string Type { get; set; }
+        [Required]
+        public int ChildCatalogsCount { get; set; }
+        [Required]
+        public int FieldsCount { get; set; }
     }
 }

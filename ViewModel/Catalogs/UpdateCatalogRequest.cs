@@ -1,14 +1,22 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
-namespace ViewModel
+namespace ViewModel.Catalogs
 {
-    public class UpdateCatalogsRequest
+    public class UpdateCatalogRequest
     {
-        [Display(Name = "Имя")]
-        [MinLength(5), MaxLength(40)]
+        [Required]
+        [Display(Name = "Наименование справочника")]
         public string Name { get; set; }
-        [Display(Description = "Описание")]
-        [MinLength(5), MaxLength(40)]
-        public string CatalogsDescription { get; set; }
+
+        [Display(Name = "Описание справочника")]
+        public string Text { get; set; }
+
+        [Display(Name = "Тип справочника")]
+        public string Type { get; set; }
+
+
+        [Display(Name = "Родительский каталог справочника")]
+        public Guid? ParentId { get; set; }
     }
 }

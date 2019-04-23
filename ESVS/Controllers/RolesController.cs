@@ -46,13 +46,9 @@ namespace ESVS.Controllers
                 return CreatedAtRoute("GetSingleRole", new { roleId = response.Id }, response);
 
             }
-            catch (CannotCreateRoleExeption exception)
+            catch (CannotCreateRoleException exception)
             {
-                foreach (var error in exception.Errors)
-                {
-                    ModelState.AddModelError(exception.Message, error.Description);
-                }
-                return BadRequest(ModelState);
+                return BadRequest(exception.Errors);
             }
         }
 
@@ -61,23 +57,19 @@ namespace ESVS.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
         [Authorize]
-        public async Task<IActionResult> UpdateRole(Guid roleId,UpdateRoleRequest role, [FromServices] IUpdateRoleCommand command)
+        public async Task<IActionResult> UpdateRole(UpdateRoleRequest role, [FromServices] IUpdateRoleCommand command)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             try
             {
-                RoleResponse response = await command.ExecuteAsync(roleId,role);
+                RoleResponse response = await command.ExecuteAsync(role);
                 return CreatedAtRoute("GetSingleRole", new { roleId = response.Id }, response);
 
             }
-            catch (CannotCreateRoleExeption exception)
-            {
-                foreach (var error in exception.Errors)
-                {
-                    ModelState.AddModelError(exception.Message, error.Description);
-                }
-                return BadRequest(ModelState);
+            catch (CannotCreateRoleException exception)
+            {          
+                return BadRequest(exception.Errors);
             }
 
         }

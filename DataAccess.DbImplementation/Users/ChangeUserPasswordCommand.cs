@@ -24,7 +24,7 @@ namespace DataAccess.DbImplementation.Users
             _appEnvironment = appEnvironment;
         }
 
-        public async Task<UserResponse> ExecuteAsync(ChangePasswordUserRequest request)
+        public async Task<UserResponse> ExecuteAsync(ChangeUserPasswordRequest request)
         {
             var foundUser = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
             IdentityResult result =
@@ -32,7 +32,7 @@ namespace DataAccess.DbImplementation.Users
             if (!result.Succeeded)
             {
 
-                throw new CannotChangePasswordExeption(result.Errors);
+                throw new UserCredentialsException(result.Errors);
 
             }
             return _mapper.Map<User, UserResponse>(foundUser);

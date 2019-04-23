@@ -6,12 +6,18 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Threading.Tasks;
 using AutoMapper;
-using DataAccess;
-using DataAccess.DbImplementation;
+using DataAccess.Catalog;
+using DataAccess.DbImplementation.Catalog;
 using DataAccess.DbImplementation.Roles;
 using DataAccess.DbImplementation.Users;
+using DataAccess.DbImplementation.Field;
+using DataAccess.DbImplementation.FieldValue;
+using DataAccess.DbImplementation.General;
 using DataAccess.Roles;
 using DataAccess.Users;
+using DataAccess.Field;
+using DataAccess.FieldValue;
+using DataAccess.General;
 using DB;
 using Entities;
 using Microsoft.EntityFrameworkCore;
@@ -45,7 +51,7 @@ namespace ESVS
             services.AddAutoMapper(typeof(Startup));
             RegisterQueriesAndCommands(services);
             var connection = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connection));
+            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connection));
             services.AddIdentity<User, Role>()
                 .AddEntityFrameworkStores<AppDbContext>();
             services.ConfigureApplicationCookie(options =>
@@ -132,11 +138,23 @@ namespace ESVS
                 .AddScoped<IRemoveRoleFromUserCommand, RemoveRoleFromUserCommand>()
                 .AddScoped<ICreateRoleCommand, CreateRoleCommand>()
                 .AddScoped<IDeleteRoleCommand, DeleteRoleCommand>()
-                .AddScoped<ICatalogsQuery, CatalogsQuery>()
-                .AddScoped<IUpdateCatalogsCommand, UpdateCatalogsCommand>()
-                .AddScoped<ICreateCatalogsCommand, CreateCatalogsCommand>()
-                .AddScoped<IDeleteCatalogsCommand, DeleteCatalogsCommand>()
-                .AddScoped<ICatalogsListQuery, CatalogsListQuery>();
+                .AddScoped<ICatalogQuery, CatalogQuery>()
+                .AddScoped<IUpdateCatalogCommand, UpdateCatalogCommand>()
+                .AddScoped<ICreateCatalogCommand, CreateCatalogCommand>()
+                .AddScoped<IDeleteCatalogCommand, DeleteCatalogCommand>()
+                .AddScoped<ICatalogListQuery, CatalogListQuery>()
+                .AddScoped<IFieldQuery, FieldQuery>()
+                .AddScoped<IUpdateFieldCommand, UpdateFieldCommand>()
+                .AddScoped<ICreateFieldCommand, CreateFieldCommand>()
+                .AddScoped<IDeleteFieldCommand, DeleteFieldCommand>()
+                .AddScoped<IFieldListQuery, FieldListQuery>()
+                .AddScoped<IFieldValuesQuery, FieldValueQuery>()
+                .AddScoped<IUpdateFieldValuesCommand, UpdateFieldValueCommand>()
+                .AddScoped<ICreateFieldValuesCommand, CreateFieldValueCommand>()
+                .AddScoped<IDeleteFieldValuesCommand, DeleteFieldValueCommand>()
+                .AddScoped<IFieldValuesListQuery, FieldValueListQuery>()
+                 .AddScoped<IGenerateDbFromKmiac, GenerateDbFromKmiac>()
+                ;
 
 
         }

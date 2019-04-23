@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 
-namespace DataAccess
+namespace DataAccess.Catalog
 {
-    public class CannotCreateCatalogsExeption : Exception
+    public class CannotCreateCatalogException : Exception
     {
         public IEnumerable<IdentityError> Errors { get; set; }
-        public CannotCreateCatalogsExeption(IEnumerable<IdentityError> errors) : base("Catalog of catalogs cannot be created")
+        public CannotCreateCatalogException(IEnumerable<IdentityError> errors) : base("Catalog of catalogs cannot be created")
         {
             Errors = errors;
         }
