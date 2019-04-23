@@ -47,7 +47,7 @@ namespace ESVS
             services.AddAutoMapper(typeof(Startup));
             RegisterQueriesAndCommands(services);
             var connection = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connection));
+            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connection));
             services.AddIdentity<User, Role>()
                 .AddEntityFrameworkStores<AppDbContext>();
             services.ConfigureApplicationCookie(options =>
