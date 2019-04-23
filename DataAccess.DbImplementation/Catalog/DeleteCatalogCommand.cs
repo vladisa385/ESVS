@@ -1,26 +1,26 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Entities;
+using DataAccess.Catalog;
 using DB;
 using Microsoft.EntityFrameworkCore;
 
-namespace DataAccess.DbImplementation
+namespace DataAccess.DbImplementation.Catalog
 {
-    public class DeleteCatalogsCommand : IDeleteCatalogsCommand
+    public class DeleteCatalogCommand : IDeleteCatalogCommand
     {
         private readonly AppDbContext _context;
 
-        public DeleteCatalogsCommand(AppDbContext dbContext)
+        public DeleteCatalogCommand(AppDbContext dbContext)
         {
             _context = dbContext;
         }
-        public async Task ExecuteAsync(Guid catalogofcatalogsId)
+        public async Task ExecuteAsync(Guid catalogId)
         {
-            Catalog catalogofcatalogsToDelete = await _context.Catalogs.FirstOrDefaultAsync(p => p.Id == catalogofcatalogsId);
+            Entities.Catalog catalogToDelete = await _context.Catalogs.FirstOrDefaultAsync(p => p.Id == catalogId);
 
-            if (catalogofcatalogsToDelete != null)
+            if (catalogToDelete != null)
             {
-                _context.Catalogs.Remove(catalogofcatalogsToDelete);
+                _context.Catalogs.Remove(catalogToDelete);
                 await _context.SaveChangesAsync();
             }
         }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
 using ViewModel.Kmiac;
@@ -14,7 +13,7 @@ namespace AppForMigrationDataFromKmiacDB
         private static string _baseFieldUrl = "https://esvs.kmiac.ru/esvs/table/";
         public static List<Catalog> _catalogs = new List<Catalog>();
         public static List<Field> _fields = new List<Field>();
-        private static async Task Main(string[] args)
+        private static async Task Main(string[] args) //команда для create database
         {
             var parser = new Parser();
             var folders = parser.GetCatalogs(_baseFolderUrl + "root");
@@ -29,17 +28,26 @@ namespace AppForMigrationDataFromKmiacDB
                }).ToList();
             foreach (var catalog in selectedCatalogs)
             {
-                var fields = parser.GetFields(_baseFieldUrl + catalog.Name);
-                fields = fields.Select(x =>
+                try
                 {
-                    x.Id = Guid.NewGuid();
-                    x.Catalog = catalog;
-                    x.CatalogId = catalog.Guid;
-                    x.IsForeignKey = x.Name.Contains("ID");
-                    return x;
+                    var fields = parser.GetFields(_baseFieldUrl + catalog.Name);
+                    fields = fields.Select(x =>
+                    {
+                        x.Id = Guid.NewGuid();
+                        x.Catalog = catalog;
+                        x.CatalogId = catalog.Guid;
+                        x.IsForeignKey = x.Name.Contains("ID");
+                        return x;
 
-                }).ToList();
-                _fields.AddRange(fields);
+                    }).ToList();
+                    _fields.AddRange(fields);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+
+                }
+
 
             }
             Console.WriteLine(_fields.Count);

@@ -1,15 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ViewModel.Fields
 {
     public class CreateFieldRequest
     {
-        [Required]
-        [Display(Name = "ID")]
-        public Guid Id { get; set; }
         [Required]
         [Display(Name = "Имя")]
         public string Name { get; set; }

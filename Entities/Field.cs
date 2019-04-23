@@ -27,6 +27,6 @@ namespace Entities
 
         public Catalog Catalog { get; set; }
 
-        public ICollection<FieldValue> Values { get; set; }
+        public ICollection<FieldValue> FieldValues { get; set; }
     }
 }

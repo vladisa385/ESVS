@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.ComponentModel.DataAnnotations;
 
 namespace ViewModel.Fields
@@ -24,6 +22,6 @@ namespace ViewModel.Fields
         [Required]
         public Guid CatalogId { get; set; }
 
-        public int FieldsCount { get; set; }
+        public int FieldValuesCount { get; set; }
     }
 }

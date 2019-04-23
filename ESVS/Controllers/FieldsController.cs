@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using DataAccess.Field;
 using Microsoft.AspNetCore.Authorization;
@@ -12,7 +9,7 @@ using ViewModel.Fields;
 namespace ESVS.Controllers
 {
     [Route("api/[controller]")]
-    public class FieldController : Controller
+    public class FieldsController : Controller
     {
         [HttpGet("GetListFields")]
         [Authorize]
@@ -29,9 +26,9 @@ namespace ESVS.Controllers
         [ProducesResponseType(200, Type = typeof(FieldResponse))]
         [ProducesResponseType(401)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> GetFieldAsync(Guid FieldId, [FromServices] IFieldQuery query)
+        public async Task<IActionResult> GetFieldAsync(Guid fieldId, [FromServices] IFieldQuery query)
         {
-            FieldResponse response = await query.RunAsync(FieldId);
+            FieldResponse response = await query.RunAsync(fieldId);
             return response == null ? (IActionResult)NotFound() : Ok(response);
         }
 
@@ -48,7 +45,7 @@ namespace ESVS.Controllers
                 return CreatedAtRoute("GetSingleField", new { FieldId = response.Id }, response);
 
             }
-            catch (CannotCreateFieldExeption exception)
+            catch (CannotCreateFieldException exception)
             {
                 foreach (var error in exception.Errors)
                 {
@@ -63,17 +60,17 @@ namespace ESVS.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
         [Authorize]
-        public async Task<IActionResult> UpdateField(Guid FieldId, UpdateFieldRequest field, [FromServices] IUpdateFieldCommand command)
+        public async Task<IActionResult> UpdateField(Guid fieldId, UpdateFieldRequest field, [FromServices] IUpdateFieldCommand command)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             try
             {
-                FieldResponse response = await command.ExecuteAsync(FieldId, field);
+                FieldResponse response = await command.ExecuteAsync(fieldId, field);
                 return CreatedAtRoute("GetSingleField", new { FieldId = response.Id }, response);
 
             }
-            catch (CannotCreateFieldExeption exception)
+            catch (CannotCreateFieldException exception)
             {
                 foreach (var error in exception.Errors)
                 {
@@ -89,11 +86,11 @@ namespace ESVS.Controllers
         [ProducesResponseType(401)]
         [ProducesResponseType(403)]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> DeleteFieldAsync(Guid FieldId, [FromServices]IDeleteFieldCommand command)
+        public async Task<IActionResult> DeleteFieldAsync(Guid fieldId, [FromServices]IDeleteFieldCommand command)
         {
             try
             {
-                await command.ExecuteAsync(FieldId);
+                await command.ExecuteAsync(fieldId);
                 return NoContent();
             }
             catch (Exception exception)

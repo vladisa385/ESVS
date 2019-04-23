@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.ComponentModel.DataAnnotations;
 
 namespace ViewModel.Fields
 {
     public class UpdateFieldRequest
     {
-        [Display(Name = "ID")]
-        public Guid Id { get; set; }
         [Display(Name = "Имя")]
         public string Name { get; set; }
         [Display(Name = "Заголовок")]

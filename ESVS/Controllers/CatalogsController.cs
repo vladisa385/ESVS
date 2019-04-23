@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
-using DataAccess;
+using DataAccess.Catalog;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using ViewModel;
+using ViewModel.Catalogs;
 
 namespace ESVS.Controllers
 {
@@ -13,38 +14,39 @@ namespace ESVS.Controllers
         [HttpGet("GetListCatalogs")]
         [Authorize]
         [ProducesResponseType(401)]
-        [ProducesResponseType(200, Type = typeof(ListResponse<CatalogsResponse>))]//было userresponce
-        public async Task<IActionResult> GetCatalogsListAsync(CatalogsFilter catalogofcatalogs, ListOptions options, [FromServices]ICatalogsListQuery query)
+        [ProducesResponseType(200, Type = typeof(ListResponse<CatalogResponse>))]//было userresponce
+        public async Task<IActionResult> GetCatalogsListAsync(CatalogFilter catalog, ListOptions options, [FromServices]ICatalogListQuery query)
         {
-            var response = await query.RunAsync(catalogofcatalogs, options);     // запрос к базе 
+            var response = await query.RunAsync(catalog, options);     // запрос к базе 
             return Ok(response);
         }
 
-        [HttpGet("GetCatalogs/{catalogofcatalogsId}", Name = "GetSingleCatalogs")]
+        [HttpGet("GetCatalog/{catalogId}", Name = "GetSingleCatalog")]
         [Authorize]
-        [ProducesResponseType(200, Type = typeof(CatalogsResponse))]
+        [ProducesResponseType(200, Type = typeof(CatalogResponse))]
         [ProducesResponseType(401)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> GetCatalogsAsync(Guid catalogofcatalogsId, [FromServices] ICatalogsQuery query)
+        public async Task<IActionResult> GetCatalogAsync(Guid catalogId, [FromServices] ICatalogQuery query)
         {
-            CatalogsResponse response = await query.RunAsync(catalogofcatalogsId);
+            CatalogResponse response = await query.RunAsync(catalogId);
             return response == null ? (IActionResult)NotFound() : Ok(response);
         }
 
         [HttpPost("CreateCatalogs")]
-        [ProducesResponseType(201, Type = typeof(CatalogsResponse))]
+        [ProducesResponseType(201, Type = typeof(CatalogResponse))]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> CreateCatalogs(CreateCatalogsRequest catalogofcatalogs, [FromServices] ICreateCatalogsCommand command)
+        [Authorize]
+        public async Task<IActionResult> CreateCatalog(CreateCatalogRequest catalog, [FromServices] ICreateCatalogCommand command)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             try
             {
-                CatalogsResponse response = await command.ExecuteAsync(catalogofcatalogs);
-                return CreatedAtRoute("GetSingleCatalogs", new { catalogofcatalogsId = response.Id }, response);
+                CatalogResponse response = await command.ExecuteAsync(catalog);
+                return CreatedAtRoute("GetSingleCatalog", new { catalogId = response.Id }, response);
 
             }
-            catch (CannotCreateCatalogsExeption exception)
+            catch (CannotCreateCatalogException exception)
             {
                 foreach (var error in exception.Errors)
                 {
@@ -54,22 +56,22 @@ namespace ESVS.Controllers
             }
         }
 
-        [HttpPut("UpdateCatalogs/{catalogofcatalogsId}")]
-        [ProducesResponseType(201, Type = typeof(CatalogsResponse))]
+        [HttpPut("UpdateCatalogs/{catalogId}")]
+        [ProducesResponseType(201, Type = typeof(CatalogResponse))]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
         [Authorize]
-        public async Task<IActionResult> UpdateCatalogs(Guid catalogofcatalogsId, UpdateCatalogsRequest catalogofcatalogs, [FromServices] IUpdateCatalogsCommand command)
+        public async Task<IActionResult> UpdateCatalogs(Guid catalogId, UpdateCatalogRequest catalog, [FromServices] IUpdateCatalogCommand command)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             try
             {
-                CatalogsResponse response = await command.ExecuteAsync(catalogofcatalogsId, catalogofcatalogs);
-                return CreatedAtRoute("GetSingleCatalogs", new { catalogofcatalogsId = response.Id }, response);
+                CatalogResponse response = await command.ExecuteAsync(catalogId, catalog);
+                return CreatedAtRoute("GetSingleCatalogs", new { catalogId = response.Id }, response);
 
             }
-            catch (CannotCreateCatalogsExeption exception)
+            catch (CannotCreateCatalogException exception)
             {
                 foreach (var error in exception.Errors)
                 {
@@ -79,17 +81,17 @@ namespace ESVS.Controllers
             }
 
         }
-        //[Authorize(Roles = "admin")]
-        [HttpDelete("DeleteCatalogs/{catalogofcatalogsId}")]
+        [Authorize]
+        [HttpDelete("DeleteCatalog/{catalogId}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(401)]
         [ProducesResponseType(403)]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> DeleteCatalogsAsync(Guid catalogofcatalogsId, [FromServices]IDeleteCatalogsCommand command)
+        public async Task<IActionResult> DeleteCatalogAsync(Guid catalogId, [FromServices]IDeleteCatalogCommand command)
         {
             try
             {
-                await command.ExecuteAsync(catalogofcatalogsId);
+                await command.ExecuteAsync(catalogId);
                 return NoContent();
             }
             catch (Exception exception)
