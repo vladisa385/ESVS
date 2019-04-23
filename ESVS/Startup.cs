@@ -101,9 +101,11 @@ namespace ESVS
             });
             
             app.UseSpaStaticFiles();
-            app.UseCors(
-                options => options.WithOrigins("http://example.com").AllowAnyMethod()
-            );
+            app.UseCors(builder => builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials());
             app.UseMvc();
             app.UseSpa(spa =>
             {
