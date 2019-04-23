@@ -20,6 +20,7 @@ using DataAccess.FieldValue;
 using DataAccess.General;
 using DB;
 using Entities;
+using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Swashbuckle.AspNetCore.Swagger;
 
@@ -88,9 +89,7 @@ namespace ESVS
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
-            app.UseAuthentication(
-
-            );
+            app.UseAuthentication();
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
 
@@ -99,7 +98,8 @@ namespace ESVS
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
-
+            
+            app.UseSpaStaticFiles();
             app.UseMvc();
             app.UseSpa(spa =>
             {
@@ -110,7 +110,7 @@ namespace ESVS
 
                 if (env.IsDevelopment())
                 {
-                    spa.UseAngularCliServer(npmScript: "start");
+                    spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
         }

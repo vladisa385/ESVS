@@ -6,6 +6,7 @@ import { About } from './pages/About';
 import { Contacts } from './pages/Contacts';
 import { ESVS } from './pages/ESVS';
 import { Error } from './pages/Error';
+import { Register } from './pages/Register';
 
 export default class App extends Component {
   render() {
@@ -16,6 +17,7 @@ export default class App extends Component {
           <Route exact path='/about' component={About} />
           <Route exact path='/contacts' component={Contacts} />
           <Route exact path='/esvs' component={ESVS} />
+          <Route exact path='/register' component={Register} />
           <Route render={() => <Error message={'Страница не найдена.'} /> } />
           </Switch>
         </Layout>

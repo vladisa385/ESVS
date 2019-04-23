@@ -27,25 +27,17 @@ const LoginButton = styled(Button).attrs({
   variant: "light",
   type: "submit"
 })`
-  box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 8px 4px rgba(0,0,0,0.2);
   width: 200px
 `;
 
 const ErrorMessage = styled.p`
-  background-color: rgba(255,76,59,0.2);
+  background-color: rgba(255,76,59,0.1);
   border: 2px solid rgba(255,76,59,0.5);
   border-radius: .25rem;
   padding: 6px;
   text-align: center;
   margin-bottom: 0;
-`;
-
-const TextInput = styled(Form.Control)`
-  && {
-    :invalid {
-      border-color: rgb(255,76,59,0.2);
-    }
-  }
 `;
 
 const Checkbox = styled(Form.Check)`
@@ -67,13 +59,15 @@ export class AuthWindow extends Component {
       validated: false
     };
     this.formRef = React.createRef();
-    this.API = 'http://localhost:5000/api/Account/Login?Email=';
+    this.API = 'http://localhost:33333/api/Account/Login';
     this.authorize = this.authorize.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleInputChange(e) {
+    this.setState({fetchFailed: false});
+
     const target = e.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
@@ -95,24 +89,21 @@ export class AuthWindow extends Component {
     console.log("Password: " + this.state.password);
     console.log("RememberMe: " + this.state.rememberMe);
     this.setState({ isLoading: true, fetchFailed: false }, () => {
-      // const APIcall = this.API + this.state.email +
-      //   '&Password=' + this.state.password +
-      //   '&RememberMe=' + this.state.rememberMe;
-      const APIcall = 'httpstat.us/202';
-      fetch(APIcall, {
-        method: 'GET',
+      fetch(this.API, {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json'
+        },
+        body: {
+          "email" : this.state.email,
+          "password" : this.state.password,
+          "rememberMe" : this.state.rememberMe
         }
       })
-        .then(res => res.ok ? res.text() : console.log('Ответ сервера воняет говном'))
-        .then(data => {
-          console.log('Чета есть, зырь ниже');
-          console.log(data);
-          this.setState({ isLoading: false });
-        })
-        .catch(error => {
-          console.log('Дружок-пирожок, ошибочка: ', error);
+        // .then(res => res.ok ? res.text() : console.log('Ответ сервера воняет говном'))
+        .then(res => console.log(res.json()))
+        .catch(err => {
+          console.log('Дружок-пирожок, ошибочка: ', err);
           this.setState( {isLoading: false, fetchFailed: true} );
         })
     })
@@ -124,24 +115,24 @@ export class AuthWindow extends Component {
     return (
       <Modal {...this.props} aria-labelledby="contained-modal-title-vcenter" centered>
       <Header closeButton> <Title>Авторизация</Title> </Header>
-        <Form validated={validated} ref={this.formRef}>
+        <Form ref={this.formRef}>
           <ModalWrapper>
             <Modal.Body>
-              <Form.Group> <TextInput name="email"
+              <Form.Group> <Form.Control name="email"
                                        type="login"
                                        placeholder="Логин"
                                        value={email}
                                        onChange={this.handleInputChange}
                                        required />
-                <Form.Control.Feedback type="valid">Введите логин</Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">Введите логин</Form.Control.Feedback>
               </Form.Group>
-              <Form.Group> <TextInput name="password"
+              <Form.Group> <Form.Control name="password"
                                        type="password"
                                        placeholder="Пароль"
                                        value={password}
                                        onChange={this.handleInputChange}
                                        required />
-                <Form.Control.Feedback type="valid">Введите пароль</Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">Введите пароль</Form.Control.Feedback>
               </Form.Group>
               <Form.Group> <Checkbox name="rememberMe"
                                       type="checkbox"
