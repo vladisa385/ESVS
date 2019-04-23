@@ -20,6 +20,7 @@ using DataAccess.FieldValue;
 using DataAccess.General;
 using DB;
 using Entities;
+using ESVS.Extentions;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Swashbuckle.AspNetCore.Swagger;
@@ -39,7 +40,7 @@ namespace ESVS
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors();
+            //services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddHttpContextAccessor();
@@ -100,11 +101,12 @@ namespace ESVS
             });
             
             app.UseSpaStaticFiles();
-            app.UseCors(builder => builder
-                .AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader()
-                .AllowCredentials());
+            //app.UseCors(builder => builder
+            //    .AllowAnyOrigin()
+            //    .AllowAnyMethod()
+            //    .AllowAnyHeader()
+            //    .AllowCredentials());
+            app.UseCorsMiddleware();
             app.UseMvc();
             app.UseSpa(spa =>
             {
