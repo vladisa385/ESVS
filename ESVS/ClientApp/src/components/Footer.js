@@ -62,7 +62,7 @@ export class Footer extends Component {
           </Column>
         </Row>
         <br />
-        <Text>© 2018 Единая система ведения справочников (ЕСВС)</Text>
+        <Text>© 2019 Единая система ведения справочников (ЕСВС)</Text>
       </Wrapper>
     );
   }

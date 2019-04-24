@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Navbar from 'react-bootstrap/es/Navbar';
 import Nav from 'react-bootstrap/es/Nav';
 import styled from 'styled-components'
+import { LinkContainer } from 'react-router-bootstrap';
+import NavItem from 'react-bootstrap/es/NavItem';
 import { AuthWindow } from './AuthWindow';
 
 const AuthBar = styled(Navbar).attrs({
@@ -10,7 +12,7 @@ const AuthBar = styled(Navbar).attrs({
   background-color: #35495d;
 `;
 
-const AuthBarLink = styled(Navbar.Text).attrs({
+const AuthBarLink = styled(NavItem).attrs({
   className: "py-1 px-2"
 })`
   &&& {
@@ -34,7 +36,9 @@ export class AuthorizationBar extends Component {
       <AuthBar>
         <Nav>
           <AuthBarLink onClick={() => this.setState({ modalShow: true })}>Вход</AuthBarLink>
-          <AuthBarLink>Регистрация</AuthBarLink>
+          <LinkContainer to={'register'} exact>
+            <AuthBarLink>Регистрация</AuthBarLink>
+          </LinkContainer>
         </Nav>
         <AuthWindow show={this.state.modalShow} onHide={modalClose} />
       </AuthBar>
