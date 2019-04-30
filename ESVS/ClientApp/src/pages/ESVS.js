@@ -1,26 +1,45 @@
 import React, { Component } from 'react';
 // import styled from 'styled-components';
-// import {DataView, DataViewLayoutOptions} from 'primereact/dataview';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 
-const hm = [["Че-то 1", "ХМммasad", 1],
-  ["Че-то 2", "ХМммgg", 4],
-  ["Че-то 3", "ХМммsdf", 234],
-  ["Че-то 4", "ХМммzxc", 23],
-  ["Че-то 5", "ХМмzxcм", 2123],
-  ["Че-то 6", "ХМммzxc", 99],
-  ["Че-то 7", "ХМzxcмм", 198],
-  ["Че-то 8", "ХМasмм", 111],
-  ["Че-то 9", "ХМм123м", 12],
-  ["Че-то 10", "ХМcsdмм", 13],
-  ["Че-то 11", "ХМzxcмм", 111],
-  ["Че-то 12", "ХМfsdмм", 1213],
-  ["Че-то 13", "ХМ12мм", 10]];
+const hm = [{
+  acc1: "Че-то 1",
+  acc2: "Хм хм 1",
+  acc3: "Первый"
+}];
 
 export class ESVS extends Component {
+  constructor(props) {
+    super(props);
+    this.API = 'http://localhost:33333/api/Catalogs/GetListCatalogs';
+    this.getCatalogs = this.getCatalogs.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.goWide();
+    fetch(this.API, {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        'Accept' : 'application/json',
+        'Content-Type' : 'application/json'
+      }
+    })
+      .then(res => res.json().then(json => console.log(json)))
+      .catch(err => console.error(err));
+  }
+
+  componentWillUnmount() {
+    this.props.revertWide();
+  }
+
+  getCatalogs() {
+
+  }
+
   render() {
-    return(
+    return (
       <div>
         <ReactTable
           data={hm}

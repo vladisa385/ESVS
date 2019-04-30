@@ -46,7 +46,7 @@ export class Contacts extends Component {
             <TextContainer>
               <Title>Контакты</Title>
               <p>
-                Вы всегда можете связаться с нами,<br />
+                Вы всегда можете связаться с нами используя<br />
                 координаты, указанные в этом разделе.
               </p>
             <br />

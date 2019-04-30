@@ -4,7 +4,7 @@ import Nav from 'react-bootstrap/es/Nav';
 import styled from 'styled-components'
 import { LinkContainer } from 'react-router-bootstrap';
 import NavItem from 'react-bootstrap/es/NavItem';
-import { AuthWindow } from './AuthWindow';
+import AuthWindow from './AuthWindow';
 
 const AuthBar = styled(Navbar).attrs({
   className: "navigation py-0 flex-row-reverse"
@@ -12,15 +12,18 @@ const AuthBar = styled(Navbar).attrs({
   background-color: #35495d;
 `;
 
-const AuthBarLink = styled(NavItem).attrs({
+const AuthBarText = styled(NavItem).attrs({
   className: "py-1 px-2"
 })`
-  &&& {
-    color: white;
-    :hover {
+  &&& { color: white; }
+`;
+
+const AuthBarLink = styled(AuthBarText)`
+  &&& { 
+    :hover { 
       color: #5cace1;
       cursor: pointer;
-    }
+    } 
   }
 `;
 
@@ -28,19 +31,49 @@ export class AuthorizationBar extends Component {
   constructor(props) {
     super(props);
     this.state = { modalShow: false };
+    this.unauthorize = this.unauthorize.bind(this);
+  }
+
+  unauthorize() {
+    const API = 'http://localhost:33333/api/Account/LogOff';
+    fetch(API, {
+      method: 'PUT',
+      credentials: 'include',
+      headers: { 'Accept' : 'application/json' }
+    })
+      .then(() => this.props.setAuthorizedAs(''))
+      .catch(err => console.error(err));
   }
 
   render() {
     let modalClose = () => this.setState({ modalShow: false });
+    const authorizedAs = this.props.authorizedAs;
+
     return (
       <AuthBar>
         <Nav>
-          <AuthBarLink onClick={() => this.setState({ modalShow: true })}>Вход</AuthBarLink>
-          <LinkContainer to={'register'} exact>
-            <AuthBarLink>Регистрация</AuthBarLink>
-          </LinkContainer>
+          { !authorizedAs &&
+            <React.Fragment>
+              <AuthBarLink onClick={() => this.setState({ modalShow: true })}>Войти</AuthBarLink>
+              <LinkContainer to={'register'} exact>
+                <AuthBarLink>Регистрация</AuthBarLink>
+              </LinkContainer>
+            </React.Fragment>
+          }
+
+          { !!authorizedAs &&
+            <React.Fragment>
+              <AuthBarText>{ `Вы вошли как ${authorizedAs}` }</AuthBarText>
+              <AuthBarLink onClick={() => this.unauthorize()}>Выйти</AuthBarLink>
+            </React.Fragment>
+          }
         </Nav>
-        <AuthWindow show={this.state.modalShow} onHide={modalClose} />
+
+        {!authorizedAs &&
+          <AuthWindow show={this.state.modalShow}
+                      hide={modalClose}
+                      setAuthorizedAs={this.props.setAuthorizedAs} />
+        }
       </AuthBar>
     );
   }

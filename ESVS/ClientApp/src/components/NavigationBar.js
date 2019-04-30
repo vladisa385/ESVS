@@ -44,20 +44,27 @@ const Logo = styled.img.attrs({
   width: 58px;
 `;
 
+function BarItem(props) {
+  return (
+    <LinkContainer to={props.to} exact>
+      <NavLink>{props.label}</NavLink>
+    </LinkContainer>
+  );
+}
+
 export class NavigationBar extends Component {
   render() {
+    const authorized = this.props.authorized;
+
     return (
       <NavBar>
           <Nav>
-            <LinkContainer to={'/'} exact>
-              <NavLink>Главная</NavLink>
-            </LinkContainer>
-            <LinkContainer to={'/about'} exact>
-              <NavLink>Описание&nbsp;системы</NavLink>
-            </LinkContainer>
-            <LinkContainer to={'/contacts'} exact>
-              <NavLink>Контакты</NavLink>
-            </LinkContainer>
+            <BarItem to={'/'} label={'Главная'} />
+            <BarItem to={'/about'} label={'Описание\xa0системы'} />
+            <BarItem to={'/contacts'} label={'Контакты'} />
+            { authorized &&
+              <BarItem to={'/esvs'} label={'Справочники'} />
+            }
           </Nav>
           <NavBrand>
             <NavText>ЕДИНАЯ СИСТЕМА ВЕДЕНИЯ<br />СПРАВОЧНИКОВ</NavText>

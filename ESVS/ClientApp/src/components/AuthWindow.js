@@ -3,6 +3,7 @@ import Modal from 'react-bootstrap/es/Modal';
 import Form from 'react-bootstrap/es/Form';
 import styled from 'styled-components';
 import { ModalHeader, ModalTitle, ModalButton } from '../components/Misc';
+import { withRouter } from 'react-router-dom';
 
 const ModalWrapper = styled.div`
   background-color: #dadfe1;
@@ -17,12 +18,6 @@ const ErrorMessage = styled.p`
   margin-bottom: 0;
 `;
 
-const Checkbox = styled(Form.Check)`
-  label:valid {
-    color: black;
-  }
-`;
-
 
 export class AuthWindow extends Component {
   constructor(props) {
@@ -32,16 +27,15 @@ export class AuthWindow extends Component {
       password: '',
       rememberMe: true,
       isLoading: false,
-      badRequest: false,
+      badRequest: false
     };
     this.formRef = React.createRef();
-    this.API = 'http://localhost:33333/api/Account/Login';
     this.authorize = this.authorize.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   handleInputChange(e) {
-    this.setState({badRequest: false});
+    this.setState({ badRequest: false });
 
     const target = e.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -58,37 +52,50 @@ export class AuthWindow extends Component {
     return form.checkValidity();
   }
 
-  authorize() {
-    if (!this.handleSubmit()) { return; }
+  authorize(e) {
+    e.preventDefault();
+    const API = 'http://localhost:33333/api/Account/Login';
+    if (!this.handleSubmit()) return;
     this.setState({ isLoading: true, badRequest: false }, () => {
       let loginData = {
         "email" : this.state.email,
         "password" : this.state.password,
         "rememberMe" : this.state.rememberMe
       };
-      fetch(this.API, {
+      fetch(API, {
         method: 'POST',
+        credentials: 'include',
         headers: {
-          'Content-Type': 'application/json'
+          'Accept' : 'application/json',
+          'Content-Type' : 'application/json'
         },
         body: JSON.stringify(loginData)
       })
         .then(res => {
-          res.ok ? console.log(res.json()) : this.setState({ badRequest: true });
           this.setState({ isLoading: false });
+          if (res.ok) {
+            res.json().then(json => {
+              this.props.setAuthorizedAs(json['userName'], json['id'], this.state.rememberMe);
+              this.props.hide();
+              this.props.history.push('/esvs');
+            });
+          } else this.setState({ badRequest: true });
         })
         .catch(err => {
-          console.log('Дружок-пирожок, ошибочка: ', err);
-          this.setState( { isLoading: false, fetchFailed: true } );
-        })
-    })
+          console.error(err);
+          this.setState({ isLoading: false, fetchFailed: true });
+        });
+    });
   }
 
   render() {
     const { isLoading, email, password, rememberMe, badRequest, fetchFailed } = this.state;
 
     return (
-      <Modal {...this.props} aria-labelledby="contained-modal-title-vcenter" centered>
+      <Modal show={this.props.show}
+             onHide={this.props.hide}
+             aria-labelledby="contained-modal-title-vcenter"
+             centered>
       <ModalHeader closeButton>
         <ModalTitle>Авторизация</ModalTitle>
       </ModalHeader>
@@ -109,11 +116,11 @@ export class AuthWindow extends Component {
                                          onChange={this.handleInputChange}
                                          required />
               </Form.Group>
-              <Form.Group> <Checkbox  name="rememberMe"
-                                      type="checkbox"
-                                      label="Запомнить этот компьютер"
-                                      checked={rememberMe}
-                                      onChange={this.handleInputChange} />
+              <Form.Group> <Form.Check name="rememberMe"
+                                       type="checkbox"
+                                       label="Запомнить этот компьютер"
+                                       checked={rememberMe}
+                                       onChange={this.handleInputChange} />
               </Form.Group>
               { badRequest &&
                 <ErrorMessage>Неверный логин или пароль</ErrorMessage>
@@ -133,3 +140,5 @@ export class AuthWindow extends Component {
     );
   }
 }
+
+export default withRouter(AuthWindow);

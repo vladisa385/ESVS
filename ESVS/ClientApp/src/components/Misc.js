@@ -52,3 +52,5 @@ export const ModalButton = styled(Button).attrs({
   box-shadow: 0 0 8px 4px rgba(0,0,0,0.2);
   width: 200px
 `;
+
+

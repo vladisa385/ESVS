@@ -23,6 +23,7 @@ namespace ESVS.Controllers
             return Ok(response);
         }
 
+        
         [HttpGet("Get/{userId}", Name = "GetSingleUser")]
         [Authorize]
         [ProducesResponseType(200, Type = typeof(UserResponse))]
@@ -34,6 +35,7 @@ namespace ESVS.Controllers
             return response == null ? (IActionResult)NotFound() : Ok(response);
         }
 
+        
         [HttpPost("Register")]
         [ProducesResponseType(201, Type = typeof(UserResponse))]
         [ProducesResponseType(400)]
@@ -107,6 +109,7 @@ namespace ESVS.Controllers
             }
 
         }
+        
         
         [HttpPost("Login")]
         [ProducesResponseType(200, Type = typeof(UserResponse))]

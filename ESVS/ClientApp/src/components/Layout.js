@@ -7,7 +7,7 @@ import Col from 'react-bootstrap/es/Col';
 
 const Wrapper = styled(Col)`
   background-color: #dadfe1;
-  width: 850px;
+  width: ${props => props.width};
   height: 100%;
   padding: 0;
   margin: auto;
@@ -16,6 +16,7 @@ const Wrapper = styled(Col)`
 const FooterWrapper = styled(Wrapper).attrs({
   id: "footer"
 })`
+  width: 850px;
   height: auto;
 `;
 
@@ -31,19 +32,24 @@ const NavBackground = styled.div`
 
 export class Layout extends Component {
   render() {
+    const width = this.props.wide ? 'auto' : '850px';
+
     return (
       <React.Fragment>
         <PageBody>
-          <AuthorizationBar />
+          <AuthorizationBar authorizedAs={this.props.authorizedAs}
+                            setAuthorizedAs={this.props.setAuthorizedAs} />
           <NavBackground />
-          <Wrapper>
-            <NavigationBar />
+          <Wrapper width={width}>
+            <NavigationBar authorized={!!this.props.authorizedAs} />
             { this.props.children }
           </Wrapper>
         </PageBody>
-        <FooterWrapper>
-          <Footer />
-        </FooterWrapper>
+        { !this.props.wide &&
+          <FooterWrapper>
+            <Footer />
+          </FooterWrapper>
+        }
       </React.Fragment>
     );
   }
