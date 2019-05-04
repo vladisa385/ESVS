@@ -3,22 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@babel/core": "^7.2.2",
-    "moment": "^2.23.0",
+    "@babel/core": "^7.4.3",
     "primeflex": "^1.0.0-rc.1",
     "primeicons": "^1.0.0",
-    "primereact": "^3.1.0",
-    "react": "^16.6.3",
-    "react-bootstrap": "^1.0.0-beta.3",
-    "react-dom": "^16.6.3",
-    "react-moment": "^0.8.4",
+    "react": "^16.8.6",
+    "react-bootstrap": "^1.0.0-beta.8",
+    "react-dom": "^16.8.6",
     "react-router": "^4.3.1",
     "react-router-bootstrap": "^0.24.4",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "1.0.17",
+    "react-scripts": "^3.0.0",
     "react-table": "^6.9.2",
-    "rimraf": "^2.6.2",
-    "styled-components": "^4.1.2",
+    "react-treebeard": "^3.2.2",
+    "rimraf": "^2.6.3",
+    "styled-components": "^4.2.0",
     "styled-icons": "^5.8.0"
   },
   "scripts": {
@@ -26,5 +24,17 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

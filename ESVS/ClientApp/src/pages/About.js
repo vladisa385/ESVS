@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 import styled from 'styled-components'
-import Col from 'react-bootstrap/es/Col';
-import Row from 'react-bootstrap/es/Row';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 import Picture from '../components/Picture'
 import TopPic from '../assets/2.jpg'
 import Promo from '../assets/promo.jpg'
-import { PageContainer, Title, TextContainer, HR } from '../components/Misc'
-
-const PromoContainer = styled(Col).attrs({
-  md: 4
-})``;
+import { PageContainer, Title, HR } from '../elements/Misc'
 
 const PromoPicture = styled.img.attrs({
   src: Promo
@@ -19,6 +15,7 @@ const PromoPicture = styled.img.attrs({
   border: solid #5cace1;
 `;
 
+
 export class About extends Component {
   render() {
     return (
@@ -26,7 +23,7 @@ export class About extends Component {
         <Picture picture={TopPic} />
         <PageContainer>
           <Row>
-            <TextContainer>
+            <Col md={8}>
               <HR />
               <Title>Описание системы</Title>
               <br />
@@ -44,11 +41,11 @@ export class About extends Component {
                 - дополнительные сведения о записях справочника.<br />
               </p>
               <br />
-            </TextContainer>
-            <PromoContainer>
+            </Col>
+            <Col md={4}>
               <br />
               <PromoPicture />
-            </PromoContainer>
+            </Col>
           </Row>
         </PageContainer>
       </React.Fragment>

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import Modal from 'react-bootstrap/es/Modal';
-import Form from 'react-bootstrap/es/Form';
+import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form';
 import styled from 'styled-components';
-import { ModalHeader, ModalTitle, ModalButton } from '../components/Misc';
+import { ModalHeader, ModalTitle, ModalButton } from '../elements/Misc';
 import { withRouter } from 'react-router-dom';
+import { URL } from '../App';
 
 const ModalWrapper = styled.div`
   background-color: #dadfe1;
@@ -54,12 +55,12 @@ export class AuthWindow extends Component {
 
   authorize(e) {
     e.preventDefault();
-    const API = 'http://localhost:33333/api/Account/Login';
+    const API = 'http://' + URL + ':33333/api/Account/Login';
     if (!this.handleSubmit()) return;
     this.setState({ isLoading: true, badRequest: false }, () => {
       let loginData = {
-        "email" : this.state.email,
-        "password" : this.state.password,
+        "email" : this.state.email.trim(),
+        "password" : this.state.password.trim(),
         "rememberMe" : this.state.rememberMe
       };
       fetch(API, {
@@ -130,7 +131,11 @@ export class AuthWindow extends Component {
               }
             </Modal.Body>
             <Modal.Footer>
-              <ModalButton disabled={isLoading} onClick={!isLoading ? this.authorize : null}>
+              <ModalButton disabled={isLoading}
+                           className={"mx-auto"}
+                           variant={"light"}
+                           type={"submit"}
+                           onClick={!isLoading ? this.authorize : null}>
                 {isLoading ? 'Входим...' : 'Войти'}
               </ModalButton>
             </Modal.Footer>

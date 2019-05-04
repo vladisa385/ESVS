@@ -1,24 +1,12 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import Container from 'react-bootstrap/es/Container';
-import Row from 'react-bootstrap/es/Row';
-import Col from 'react-bootstrap/es/Col';
-import Form from 'react-bootstrap/es/Form';
-import Button from 'react-bootstrap/es/Button';
-import Modal from 'react-bootstrap/es/Modal';
-import { HR } from '../components/Misc';
-import { ModalHeader, ModalTitle, ModalButton } from '../components/Misc';
-
-const Header = styled.h3`
-  margin: 30px 0 30px 0;
-  text-align: center;
-`;
-
-const Description = styled(Col).attrs({
-  md: 11
-})`
-  text-align: center;
-`;
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import { ModalHeader, ModalTitle, ModalButton, HR, Header, Description } from '../elements/Misc';
 
 const SubmitButton = styled(Button)`
   margin: 25px 0 30px 0;
@@ -29,6 +17,19 @@ const SubmitButton = styled(Button)`
     border-color: #5cace1;
   }
 `;
+
+function Input(props) {
+  return (
+    <Form.Group>
+      <Form.Label>{props.label}</Form.Label>
+      <Form.Control  name={props.name}
+                     type={props.type}
+                     as={props.as}
+                     rows={props.rows}
+                     required />
+    </Form.Group>
+  );
+}
 
 
 export class Register extends Component {
@@ -41,6 +42,7 @@ export class Register extends Component {
   submit(e) {
     e.preventDefault();
     this.setState({ modalShow: true });
+    // ЭХ, АПИШКУ ХОЧЕТСЯ...
   }
 
   render() {
@@ -57,31 +59,20 @@ export class Register extends Component {
             <Col md="7">
               <HR />
             <Form onSubmit={this.submit}>
-              <Form.Group>
-                <Form.Label>ФИО</Form.Label>
-                <Form.Control  name="name"
-                               type="text"
-                               required />
-              </Form.Group>
-              <Form.Group>
-                <Form.Label>Организация</Form.Label>
-                <Form.Control  name="org"
-                               type="text"
-                               required />
-              </Form.Group>
-              <Form.Group>
-                <Form.Label>Электронная почта</Form.Label>
-                <Form.Control  name="email"
-                               type="email"
-                               required />
-              </Form.Group>
-              <Form.Group>
-                <Form.Label>Причина подачи заявки</Form.Label>
-                <Form.Control  as="textarea"
-                               rows="3"
-                               name="reason"
-                               type="text" />
-              </Form.Group>
+              <Input label={"ФИО"}
+                     name={"name"}
+                     type={"text"} />
+              <Input label={"Организация"}
+                     name={"org"}
+                     type={"text"} />
+              <Input label={"Электронная почта"}
+                     name={"email"}
+                     type={"email"} />
+              <Input label={"Причина подачи заявки"}
+                     name="reason"
+                     type="text"
+                     as="textarea"
+                     rows="3" />
               <HR />
               <SubmitButton type="submit" block>Подать заявку</SubmitButton>
             </Form>
@@ -95,7 +86,10 @@ export class Register extends Component {
           </ModalHeader>
           <Modal.Body>Заявка на регистрацию в системе успешно подана.</Modal.Body>
           <Modal.Footer>
-            <ModalButton onClick={modalClose}>ОК</ModalButton>
+            <ModalButton onClick={modalClose}
+                         className={"mx-auto"}
+                         variant={"light"}
+                         type={"submit"}> ОК </ModalButton>
           </Modal.Footer>
         </Modal>
 

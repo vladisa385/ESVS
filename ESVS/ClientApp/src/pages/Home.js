@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import styled from 'styled-components'
-import Col from 'react-bootstrap/es/Col';
-import Link from 'react-router-dom/es/Link';
+import Col from 'react-bootstrap/Col';
+import Link from 'react-router-dom/Link';
 import Picture from '../components/Picture'
 import TopPic from '../assets/1.jpg'
-import Row from 'react-bootstrap/es/Row';
-import { PageContainer, Title, TextContainer, HR } from '../components/Misc'
+import Row from 'react-bootstrap/Row';
+import { PageContainer, Title, HR } from '../elements/Misc'
 import Calendar from '../components/Calendar';
 
 const AboutButton = styled(Link).attrs({
@@ -21,15 +21,14 @@ const AboutButton = styled(Link).attrs({
   }
 `;
 
-const CalendarContainer = styled(Col).attrs({
-  md: 4
-})`
+const WrappedCalendar = styled(Calendar)`
   padding-top: 17px;
 `;
 
 const Wrapper = styled(Row)`
   height: 100%;
 `;
+
 
 export class Home extends Component {
   render() {
@@ -38,7 +37,7 @@ export class Home extends Component {
         <Picture picture={TopPic} />
         <PageContainer>
           <Wrapper>
-            <TextContainer>
+            <Col md={8}>
               <HR />
               <Title>О системе</Title>
               <br />
@@ -49,10 +48,10 @@ export class Home extends Component {
               </p>
               <br />
               <AboutButton to={'/about'}>Подробнее</AboutButton>
-            </TextContainer>
-            <CalendarContainer>
-              <Calendar />
-            </CalendarContainer>
+            </Col>
+            <Col md={4}>
+              <WrappedCalendar />
+            </Col>
           </Wrapper>
         </PageContainer>
       </React.Fragment>

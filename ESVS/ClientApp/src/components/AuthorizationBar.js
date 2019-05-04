@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import Navbar from 'react-bootstrap/es/Navbar';
-import Nav from 'react-bootstrap/es/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
 import styled from 'styled-components'
 import { LinkContainer } from 'react-router-bootstrap';
-import NavItem from 'react-bootstrap/es/NavItem';
+import NavItem from 'react-bootstrap/NavItem';
 import AuthWindow from './AuthWindow';
+import { URL } from '../App';
 
 const AuthBar = styled(Navbar).attrs({
   className: "navigation py-0 flex-row-reverse"
@@ -27,6 +28,7 @@ const AuthBarLink = styled(AuthBarText)`
   }
 `;
 
+
 export class AuthorizationBar extends Component {
   constructor(props) {
     super(props);
@@ -35,7 +37,7 @@ export class AuthorizationBar extends Component {
   }
 
   unauthorize() {
-    const API = 'http://localhost:33333/api/Account/LogOff';
+    const API = 'http://' + URL + ':33333/api/Account/LogOff';
     fetch(API, {
       method: 'PUT',
       credentials: 'include',
@@ -64,6 +66,9 @@ export class AuthorizationBar extends Component {
           { !!authorizedAs &&
             <React.Fragment>
               <AuthBarText>{ `Вы вошли как ${authorizedAs}` }</AuthBarText>
+              <LinkContainer to={'users'} exact>
+                <AuthBarLink>Управление</AuthBarLink>
+              </LinkContainer>
               <AuthBarLink onClick={() => this.unauthorize()}>Выйти</AuthBarLink>
             </React.Fragment>
           }

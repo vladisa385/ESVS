@@ -2,15 +2,10 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Picture from '../components/Picture'
 import TopPic from '../assets/3.jpg'
-import Col from 'react-bootstrap/es/Col';
-import Row from 'react-bootstrap/es/Row';
-import { Email } from '../components/Misc'
-import { PageContainer, Title, HR } from '../components/Misc'
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import { PageContainer, Title, HR, Email } from '../elements/Misc'
 import { Mail, MapPin, Phone, Printer } from 'styled-icons/feather';
-
-const TextContainer = styled(Col).attrs({
-  md: 6
-})``;
 
 const Hr = styled(HR)`
   margin: 30px 130px 0 15px;
@@ -35,6 +30,7 @@ const Wrapper = styled(Row)`
   height: 100%;
 `;
 
+
 export class Contacts extends Component {
   render() {
     return (
@@ -43,15 +39,15 @@ export class Contacts extends Component {
         <Hr />
         <PageContainer>
           <Wrapper>
-            <TextContainer>
+            <Col md={6}>
               <Title>Контакты</Title>
               <p>
                 Вы всегда можете связаться с нами используя<br />
                 координаты, указанные в этом разделе.
               </p>
             <br />
-            </TextContainer>
-            <TextContainer>
+            </Col>
+            <Col md={6}>
               <Ul>
                 <li>
                   <MapPin /> ул. Вейнбаума, 26<br />Красноярск, Россия 660049
@@ -66,7 +62,7 @@ export class Contacts extends Component {
                   <Mail /> <Email>office@kmiac.ru</Email>
                 </li>
               </Ul>
-            </TextContainer>
+            </Col>
           </Wrapper>
         </PageContainer>
       </React.Fragment>

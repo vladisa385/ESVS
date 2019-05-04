@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
 import styled from 'styled-components'
-import Col from 'react-bootstrap/es/Col';
-import Row from 'react-bootstrap/es/Row';
-import Link from 'react-router-dom/es/Link';
-import { Email, HR } from './Misc'
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Link from 'react-router-dom/Link';
+import { Email, HR } from '../elements/Misc'
 
 const Wrapper = styled.div`
   background-color: #35495d;
   padding: 0 10px 10px 10px;
 `;
-
-const ColumnContainer = styled(Col).attrs({
-  sm: 4
-})``;
 
 const Text = styled.p`
   color: white;
@@ -23,12 +19,12 @@ const Text = styled.p`
 class Column extends Component {
   render() {
     return (
-      <ColumnContainer>
+      <Col sm={4}>
         <HR/>
         <Text>
           {this.props.children}
         </Text>
-      </ColumnContainer>
+      </Col>
     );
   }
 }
@@ -40,6 +36,7 @@ const BarLink = styled(Link)`
     text-decoration: none;
   }
 `;
+
 
 export class Footer extends Component {
   render() {

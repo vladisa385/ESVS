@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import Navbar from 'react-bootstrap/es/Navbar';
-import Nav from 'react-bootstrap/es/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
 import logo from '../assets/logo.png'
 import { LinkContainer } from 'react-router-bootstrap';
 import styled from 'styled-components'
-import NavItem from 'react-bootstrap/es/NavItem';
+import NavItem from 'react-bootstrap/NavItem';
 
 const NavBar = styled(Navbar).attrs({
   className: "py-0 px-0"
@@ -42,6 +42,7 @@ const Logo = styled.img.attrs({
 })`
   height: 52px;
   width: 58px;
+  margin-right: 15px;
 `;
 
 function BarItem(props) {
@@ -51,6 +52,7 @@ function BarItem(props) {
     </LinkContainer>
   );
 }
+
 
 export class NavigationBar extends Component {
   render() {

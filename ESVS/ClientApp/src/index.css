@@ -2,6 +2,7 @@ html, body {
   height: 100%;
   margin: 0;
   display: block;
+  font-family: 'verdana', tahoma, arial, sans-serif
 }
 #root {
   height: 100%;

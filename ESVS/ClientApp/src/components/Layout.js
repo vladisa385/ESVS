@@ -3,10 +3,11 @@ import { AuthorizationBar } from './AuthorizationBar';
 import { NavigationBar } from './NavigationBar';
 import { Footer } from './Footer';
 import styled from 'styled-components'
-import Col from 'react-bootstrap/es/Col';
+import Col from 'react-bootstrap/Col';
+import Bg from '../assets/bg.jpg';
 
 const Wrapper = styled(Col)`
-  background-color: #dadfe1;
+  background-image: url(${Bg});
   width: ${props => props.width};
   height: 100%;
   padding: 0;
@@ -29,6 +30,7 @@ const NavBackground = styled.div`
   height: 68px;
   margin-bottom: -68px;
 `;
+
 
 export class Layout extends Component {
   render() {

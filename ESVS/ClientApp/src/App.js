@@ -8,14 +8,17 @@ import { Contacts } from './pages/Contacts';
 import { ESVS } from './pages/ESVS';
 import { Error } from './pages/Error';
 import { Register } from './pages/Register';
+import { Users } from './pages/Users';
 import { deleteCookie, getCookie, setCookie } from './utils/cookie';
 
+export const URL = window.location.hostname;
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       authorizedAs: '',
+      cookiePresent: false,
       wide: false
     };
     this.setAuthorizedAs = this.setAuthorizedAs.bind(this);
@@ -23,8 +26,9 @@ export default class App extends Component {
 
   componentWillMount() {
     let cookie = getCookie('id');
-    if (typeof (cookie) !== 'undefined') {
-      fetch('http://localhost:33333/api/Account/Get/' + cookie, {
+    if (typeof(cookie) !== 'undefined') {
+      this.setState({ cookiePresent: true });
+      fetch('http://' + URL + ':33333/api/Account/Get/' + cookie, {
         method: 'GET',
         credentials: 'include',
         headers: { 'Accept' : 'application/json' }
@@ -34,7 +38,10 @@ export default class App extends Component {
             res.json()
               .then(json => this.setState({ authorizedAs: json['userName'] }));
           }
-          else deleteCookie('id');
+          else {
+            this.setState({ cookiePresent: false });
+            deleteCookie('id');
+          }
         })
         .catch(err => console.error(err));
     }
@@ -42,7 +49,10 @@ export default class App extends Component {
 
   // Callback для авторизации
   setAuthorizedAs(login, id, rememberMe) {
-    this.setState({ authorizedAs : login });
+    this.setState({
+      authorizedAs: login,
+      cookiePresent: true
+    });
     const cookie = 'id';
     if (login) {
       let expires = rememberMe ? 1209600 : 0; // Куки на 2 недели
@@ -63,8 +73,13 @@ export default class App extends Component {
           <Route exact path='/' component={Home} />
           <Route exact path='/about' component={About} />
           <Route exact path='/contacts' component={Contacts} />
-          <Route exact path='/esvs' render={(props) => this.state.authorizedAs ?
+          <Route exact path='/esvs' render={(props) => this.state.cookiePresent ?
             <ESVS goWide={goWide} revertWide={revertWide}/>
+            :
+            <Redirect to={{ pathname: '/', state: { from: props.location } }} /> }
+          />
+          <Route exact path='/users' render={(props) => this.state.authorizedAs ?
+            <Users />
             :
             <Redirect to={{ pathname: '/', state: { from: props.location } }} /> }
           />

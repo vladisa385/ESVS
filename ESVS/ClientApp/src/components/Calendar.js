@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components'
-import moment from 'moment';
-import 'moment/locale/ru'
 
 const Wrapper = styled.div`
   height: 100%;
-  p:first-letter {
-    text-transform: capitalize;
-  }
 `;
 
 const Holidays = styled.div`
@@ -15,10 +10,24 @@ const Holidays = styled.div`
   height: 250px;
 `;
 
+const date = new Date();
+
 function DayOfTheWeek(props) {
+  const getDay = () => {
+    switch(date.getDay()) {
+      case 0: return 'Воскресение';
+      case 1: return 'Понедельник';
+      case 2: return 'Вторник';
+      case 3: return 'Среда';
+      case 4: return 'Четверг';
+      case 5: return 'Пятница';
+      case 6: return 'Суббота';
+      default: return '';
+    }
+  };
   return (
-    <div className={ props.className }>
-      <p>{ moment().format('dddd') }</p>
+    <div className={props.className}>
+      <p>{ getDay() }</p>
     </div>
   );
 }
@@ -34,17 +43,34 @@ const Top = styled(DayOfTheWeek)`
   }
 `;
 
-const Date = styled.p`
+const DisplayDate = styled.p`
   font-size: 50px;
 `;
 
 const Month = styled.p``;
 
 function DateWrapper(props) {
+ const getMonth = () => {
+    switch (date.getMonth()) {
+     case 0:  return 'Январь';
+     case 1:  return 'Февраль';
+     case 2:  return 'Март';
+     case 3:  return 'Апрель';
+     case 4:  return 'Май';
+     case 5:  return 'Июнь';
+     case 6:  return 'Июль';
+     case 7:  return 'Август';
+     case 8:  return 'Сентябрь';
+     case 9:  return 'Октябрь';
+     case 10: return 'Ноябрь';
+     case 11: return 'Декабрь';
+     default: return '';
+   }
+ };
  return (
-    <div className={ props.className }>
-      <Date>{ moment().format('D') }</Date>
-      <Month>{ moment().format('MMMM') }</Month>
+    <div className={props.className}>
+      <DisplayDate>{ date.getDate() }</DisplayDate>
+      <Month> { getMonth() }</Month>
     </div>
   );
 }
@@ -60,10 +86,11 @@ const Body = styled(DateWrapper)`
   }
 `;
 
+
 export default class Calendar extends Component {
   render() {
     return (
-      <Wrapper>
+      <Wrapper className={this.props.className}>
         <Top />
         <Body />
         <Holidays />
