@@ -15,15 +15,32 @@ const Header = styled.h5`
   margin: 20px 0 35px 15px;
 `;
 
+const IconWrapper = styled.span`
+  :hover { 
+    cursor: pointer;
+    svg { color: #69bfff; }
+  }
+`;
+
 const UsersRow = (props) => {
+  const { id, firstName, lastName, email, userrole, header, modalSet } = props;
+
   return (
     <tr className={props.className}>
-      <th>{props.id}</th>
-      <th>{props.firstName}</th>
-      <th>{props.lastName}</th>
-      <th>{props.email}</th>
-      <th>{props.role}</th>
-      { props.header ? <th></th> : <th> <FileText /> </th> }
+      <th>{id}</th>
+      <th>{firstName}</th>
+      <th>{lastName}</th>
+      <th>{email}</th>
+      <th>{userrole}</th>
+      { header ?
+        <th />
+        :
+        <th>
+          <IconWrapper onClick={() => modalSet(firstName + ' ' + lastName, email, userrole)}>
+             <FileText />
+          </IconWrapper>
+        </th>
+      }
     </tr>
   );
 };
@@ -37,14 +54,24 @@ const StyledUsersRow = styled(UsersRow)`
 `;
 
 const ApplicationsRow = (props) => {
+  const { id, name, org, email, reason, header, modalSet } = props;
+
   return (
     <tr className={props.className}>
-      <th>{props.id}</th>
-      <th>{props.name}</th>
-      <th>{props.org}</th>
-      <th>{props.email}</th>
-      <th>{props.reason}</th>
-      { props.header ? <th></th> : <th> <FileText /> </th> }
+      <th>{id}</th>
+      <th>{name}</th>
+      <th>{org}</th>
+      <th>{email}</th>
+      <th>{reason}</th>
+      { header ?
+        <th />
+        :
+        <th>
+          <IconWrapper onClick={() => modalSet(name, org, email, reason)}>
+            <FileText />
+          </IconWrapper>
+        </th>
+      }
     </tr>
   );
 };
@@ -57,28 +84,32 @@ const StyledAppsRow = styled(ApplicationsRow)`
   }
 `;
 
-const FakeRows = () => {
+const FakeRows = (props) => {
   return (
     <React.Fragment>
-      <StyledAppsRow id="1"
+      <StyledAppsRow modalSet={props.modalSet}
+                     id="1"
                      name={'Иванов Иван Иванович'}
                      org={'Организация №1'}
                      email={'mail@mail.ru'}
                      reason={'Веская причина №1'}
                      header={false} />
-      <StyledAppsRow id="2"
+      <StyledAppsRow modalSet={props.modalSet}
+                     id="2"
                      name={'Петров Петр Петрович'}
                      org={'Организация №2'}
                      email={'gmail@gmail.com'}
                      reason={'Веская причина №2'}
                      header={false} />
-      <StyledAppsRow id="3"
+      <StyledAppsRow modalSet={props.modalSet}
+                     id="3"
                      name={'Сергеев Сергей Сергеевич'}
                      org={'Организация №3'}
                      email={'yal@ya.ru'}
                      reason={'Веская причина №3'}
                      header={false} />
-      <StyledAppsRow id="4"
+      <StyledAppsRow modalSet={props.modalSet}
+                     id="4"
                      name={'Андреев Андрей Андреевич'}
                      org={'Организация №4'}
                      email={'yahoo@yahoo.com'}
@@ -99,7 +130,7 @@ const ApplicationTable = (props) => {
                          header={true} />
       </thead>
       <tbody>
-        <FakeRows />
+        <FakeRows modalSet={props.modalSet} />
       </tbody>
     </Table>
   );
@@ -110,20 +141,22 @@ const StyledAppTable = styled(ApplicationTable)`
   font-size: 12px;
 `;
 
-const UsersFakeRows = () => {
+const UsersFakeRows = (props) => {
   return (
     <React.Fragment>
-      <StyledUsersRow id="1"
+      <StyledUsersRow modalSet={props.modalSet}
+                      id="1"
                       firstName="Владислав"
                       lastName="Конюхов"
                       email="vladisa375@gmail.com"
-                      role="Администратор"
+                      userrole="Администратор"
                       header={false} />
-      <StyledUsersRow id="2"
+      <StyledUsersRow modalSet={props.modalSet}
+                      id="2"
                       firstName="Никита"
                       lastName="Беляев"
                       email="test@test.ru"
-                      role="Пользователь"
+                      userrole="Пользователь"
                       header={false} />
     </React.Fragment>
   );
@@ -137,11 +170,11 @@ const UsersTable = (props) => {
                   firstName="Имя"
                   lastName="Фамилия"
                   email="Электронная почта"
-                  role="Роль"
+                  userrole="Роль"
                   header={true} />
       </thead>
       <tbody>
-        <UsersFakeRows />
+        <UsersFakeRows modalSet={props.modalSet}/>
       </tbody>
     </Table>
   );
@@ -204,10 +237,10 @@ const UsersModal = (props) => {
             <Col xs={4} className="px-0">
               <Vlad />
             </Col>
-            <Col xs={1}></Col>
+            <Col xs={1} />
             <Col xs={7} className="px-0">
               <p> <strong>Имя: </strong>{props.name} </p>
-              <p><strong>Роль: </strong>{props.role}</p>
+              <p><strong>Роль: </strong>{props.userrole}</p>
               <p><strong>Почта: </strong> {props.email} </p>
               <p>В системе с 10.12.2018</p>
             </Col>
@@ -228,9 +261,19 @@ export class Users extends Component {
     super(props);
     this.state = {
       loading: true,
-      modalShow: false
+      appsModalShow: false,
+      usersModalShow : false,
+      appsModalName: '',
+      appsModalEmail: '',
+      appsModalOrg: '',
+      appsModalReason: '',
+      usersModalName: '',
+      usersModalEmail: '',
+      usersModalRole: ''
     };
     this.getUsers = this.getUsers.bind(this);
+    this.setAppsModal = this.setAppsModal.bind(this);
+    this.setUsersModal = this.setUsersModal.bind(this);
   }
 
   componentDidMount() {
@@ -242,9 +285,37 @@ export class Users extends Component {
     this.setState({ loading: false });
   }
 
+  setAppsModal = (name, email, org, reason) => this.setState( {
+    appsModalShow: true,
+    appsModalName: name,
+    appsModalEmail: email,
+    appsModalOrg: org,
+    appsModalReason: reason
+  });
+
+  setUsersModal = (name, email, userrole) => this.setState( {
+    usersModalShow: true,
+    usersModalName: name,
+    usersModalEmail: email,
+    usersModalRole: userrole
+  });
+
   render() {
-    const { loading } = this.state;
-    let modalClose = () => this.setState({ modalShow: false });
+    const { loading,
+            appsModalShow,
+            usersModalShow,
+            appsModalName,
+            appsModalEmail,
+            appsModalOrg,
+            appsModalReason,
+            usersModalName,
+            usersModalEmail,
+            usersModalRole } = this.state;
+    let modalClose = () => this.setState({
+      appsModalShow: false,
+      usersModalShow: false
+    });
+
 
     return (
       <Container>
@@ -261,29 +332,29 @@ export class Users extends Component {
               <HR />
             </Col>
             <Col md={12}>
-              <StyledAppTable />
+              <StyledAppTable modalSet={this.setAppsModal} />
             </Col>
             <Col md={12}>
               <Header>Пользователи системы</Header>
               <HR />
             </Col>
             <Col md={12}>
-              <StyledUsersTable />
+              <StyledUsersTable modalSet={this.setUsersModal} />
             </Col>
           </Row>
         }
-        <AppsModal modalShow={false}
+        <AppsModal modalShow={appsModalShow}
                    modalClose={modalClose}
-                   name="Мелех Даниил Артурович"
-                   email="hm@gmail.com"
-                   org="СФУ"
-                   reason="Над одним проектом же работаем, привет!"/>
+                   name={appsModalName}
+                   email={appsModalEmail}
+                   org={appsModalOrg}
+                   reason={appsModalReason} />
 
-        <UsersModal modalShow={false}
+        <UsersModal modalShow={usersModalShow}
                     modalClose={modalClose}
-                    name="Владислав Конюхов"
-                    email="vladisa375@gmail.com"
-                    role="Администратор" />
+                    name={usersModalName}
+                    email={usersModalEmail}
+                    userrole={usersModalRole} />
       </Container>
     );
   }
