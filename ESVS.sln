@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2036
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29020.237
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESVS", "ESVS\ESVS.csproj", "{0F864D65-185B-4E7F-8FF3-68C5322238F8}"
 EndProject
@@ -21,7 +21,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppForMigrationDataFromKmia
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess.DbImplementationUnitTests", "DataAccess.DbImplementationUnitTests\DataAccess.DbImplementationUnitTests.csproj", "{B2CE7063-55D0-4EEA-904E-9ED3BE0CBB28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KmiacParser", "KmiacParser\KmiacParser.csproj", "{2AF06B67-C8CA-4FC3-AE2A-736243F9FB4F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KmiacParser", "KmiacParser\KmiacParser.csproj", "{2AF06B67-C8CA-4FC3-AE2A-736243F9FB4F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{D5039F6A-0B95-48B7-89CC-CDE230074631}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B6E834DC-7F70-4759-B094-1B2BE22FFA52}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{2646E699-18C1-4803-A3B8-3173BAC1F5E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESVS.Common", "ESVS.Common\ESVS.Common.csproj", "{978F9B1A-87DC-4EF3-B0AB-F287F2035AAE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,9 +77,17 @@ Global
 		{2AF06B67-C8CA-4FC3-AE2A-736243F9FB4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2AF06B67-C8CA-4FC3-AE2A-736243F9FB4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2AF06B67-C8CA-4FC3-AE2A-736243F9FB4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{978F9B1A-87DC-4EF3-B0AB-F287F2035AAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{978F9B1A-87DC-4EF3-B0AB-F287F2035AAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{978F9B1A-87DC-4EF3-B0AB-F287F2035AAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{978F9B1A-87DC-4EF3-B0AB-F287F2035AAE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2646E699-18C1-4803-A3B8-3173BAC1F5E3} = {D5039F6A-0B95-48B7-89CC-CDE230074631}
+		{978F9B1A-87DC-4EF3-B0AB-F287F2035AAE} = {2646E699-18C1-4803-A3B8-3173BAC1F5E3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {721E296B-0960-430F-9FA2-54E1B0B08CD8}
