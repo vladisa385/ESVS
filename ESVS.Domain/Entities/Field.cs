@@ -25,6 +25,7 @@ namespace ESVS.Domain.Entities
 
         public Catalog Catalog { get; set; }
 
+        public bool IsDeleted { get; set; }
         public ICollection<FieldValue> FieldValues { get; }
     }
 }

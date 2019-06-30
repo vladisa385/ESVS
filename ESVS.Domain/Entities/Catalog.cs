@@ -21,6 +21,8 @@ namespace ESVS.Domain.Entities
 
         public Catalog ParentCatalog { get; set; }
 
+        public bool IsDeleted { get; set; }
+
         public ICollection<Field> Fields { get; }
 
         public ICollection<Catalog> ChildCatalogs { get; }

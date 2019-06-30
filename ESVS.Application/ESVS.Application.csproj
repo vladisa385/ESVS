@@ -1,7 +1,36 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ESVS.Domain\ESVS.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Catalogs\Models\" />
+    <Folder Include="Catalogs\Queries\GetAllCatalogs\" />
+    <Folder Include="Catalogs\Queries\GetCatalog\" />
+    <Folder Include="Fields\Commands\" />
+    <Folder Include="Fields\Models\" />
+    <Folder Include="Fields\Queries\" />
+    <Folder Include="Infrastructure\AutoMapper\" />
+    <Folder Include="Interfaces\Mapping\" />
+    <Folder Include="Users\Models\" />
+    <Folder Include="Users\Commands\DeleteUser\" />
+    <Folder Include="Users\Commands\Login\" />
+    <Folder Include="Users\Commands\Logoff\" />
+    <Folder Include="Users\Commands\UpdateUser\" />
+    <Folder Include="Users\Commands\RegisterUser\" />
+    <Folder Include="Users\Queries\GetUser\" />
+    <Folder Include="Users\Queries\GetAllUsers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.1.1" />
+    <PackageReference Include="FluentValidation" Version="8.4.0" />
+    <PackageReference Include="MediatR" Version="7.0.0" />
+  </ItemGroup>
 
 </Project>
