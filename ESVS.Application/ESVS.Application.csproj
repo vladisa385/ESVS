@@ -17,11 +17,6 @@
     <Folder Include="Infrastructure\AutoMapper\" />
     <Folder Include="Interfaces\Mapping\" />
     <Folder Include="Users\Models\" />
-    <Folder Include="Users\Commands\DeleteUser\" />
-    <Folder Include="Users\Commands\Login\" />
-    <Folder Include="Users\Commands\Logoff\" />
-    <Folder Include="Users\Commands\UpdateUser\" />
-    <Folder Include="Users\Commands\RegisterUser\" />
     <Folder Include="Users\Queries\GetUser\" />
     <Folder Include="Users\Queries\GetAllUsers\" />
   </ItemGroup>

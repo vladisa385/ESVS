@@ -24,7 +24,7 @@ namespace DataAccess.DbImplementation.Users
         }
         public async Task<UserResponse> ExecuteAsync(CreateUserRequest request)
         {
-            User user = new User
+            var user = new User
             {
                 Email = request.Email,
                 UserName = request.Email,
@@ -32,7 +32,8 @@ namespace DataAccess.DbImplementation.Users
             var result = await _userManager.CreateAsync(user, request.Password);
             if (!result.Succeeded)
                 throw new UserCredentialsException(result.Errors);
-            await _signInManager.SignInAsync(user, false);
+
+            await _signInManager.SignInAsync(user, true);
             await _userManager.AddToRoleAsync(user, "user");
             return _mapper.Map<User, UserResponse>(user);
         }

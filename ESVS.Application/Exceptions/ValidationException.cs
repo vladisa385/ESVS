@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Identity;
 
 namespace ESVS.Application.Exceptions
 {
@@ -11,7 +12,7 @@ namespace ESVS.Application.Exceptions
             : base("One or more validation failures have occurred.") =>
             Failures = new Dictionary<string, string[]>();
 
-        public ValidationException(List<ValidationFailure> failures)
+        public ValidationException(IReadOnlyCollection<ValidationFailure> failures)
             : this()
         {
             var propertyNames = failures
