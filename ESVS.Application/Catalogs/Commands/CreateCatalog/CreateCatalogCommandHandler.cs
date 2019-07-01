@@ -22,7 +22,7 @@ namespace ESVS.Application.Catalogs.Commands.CreateCatalog
         public async Task<Guid> Handle(CreateCatalogCommand request, CancellationToken cancellationToken)
         {
             var entity = _mapper.Map<CreateCatalogCommand, Catalog>(request);
-            await _context.Catalogs.Add(entity);
+            await _context.Catalogs.AddAsync(entity, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
             return entity.Id;
         }

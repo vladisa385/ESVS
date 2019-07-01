@@ -13,15 +13,18 @@ namespace ESVS.Application.Catalogs.Commands.DeleteCatalog
     public class DeleteCatalogCommandHandler: IRequestHandler<DeleteCatalogCommand>
     {
         private readonly IESVSDbContext _context;
+
+        public DeleteCatalogCommandHandler(IESVSDbContext context) => 
+            _context = context;
+
         public async Task<Unit> Handle(DeleteCatalogCommand request, CancellationToken cancellationToken)
         {
-            var entity = await _context.Catalogs.Get(request.Id);
+            var entity = await _context.Catalogs.FindAsync(request.Id);
 
             if (entity == null)
                 throw new NotFoundException(nameof(Catalog), request.Id);
 
             entity.IsDeleted = true;
-            await _context.Catalogs.Update(entity);
             await _context.SaveChangesAsync(cancellationToken);
             return Unit.Value;
         }

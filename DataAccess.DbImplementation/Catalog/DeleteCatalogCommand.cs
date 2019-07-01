@@ -16,7 +16,7 @@ namespace DataAccess.DbImplementation.Catalog
         }
         public async Task ExecuteAsync(Guid catalogId)
         {
-            Entities.Catalog catalogToDelete = await _context.Catalogs.FirstOrDefaultAsync(p => p.Id == catalogId);
+            var catalogToDelete = await _context.Catalogs.FirstOrDefaultAsync(p => p.Id == catalogId);
 
             if (catalogToDelete != null)
             {

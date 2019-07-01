@@ -21,10 +21,11 @@ namespace ESVS.Domain.Entities
 
         public bool NotNull { get; set; }
 
+        public Guid TypeId { get; set; }
+
         public Type Type { get; set; }
-
+        public Guid CatalogId { get; set; }
         public Catalog Catalog { get; set; }
-
         public bool IsDeleted { get; set; }
         public ICollection<FieldValue> FieldValues { get; }
     }

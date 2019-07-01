@@ -6,10 +6,11 @@ using ESVS.Application.Exceptions;
 using ESVS.Application.Interfaces;
 using ESVS.Domain.Entities;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace ESVS.Application.Catalogs.Commands.UpdateCatalog
 {
-    public class UpdateCatalogCommandHandler:IRequestHandler<UpdateCatalogCommand, Unit>
+    public class UpdateCatalogCommandHandler:IRequestHandler<UpdateCatalogCommand, Guid>
     {
         private readonly IESVSDbContext _context;
         private readonly IMapper _mapper;
@@ -20,13 +21,15 @@ namespace ESVS.Application.Catalogs.Commands.UpdateCatalog
             _mapper = mapper;
         }
 
-        public async Task<Unit> Handle(UpdateCatalogCommand request, CancellationToken cancellationToken)
+        public async Task<Guid> Handle(UpdateCatalogCommand request, CancellationToken cancellationToken)
         {
             var entity = _mapper.Map<UpdateCatalogCommand, Catalog>(request);
-            if (await _context.Catalogs.Get(entity.Id) == null)
+            if (await _context.Catalogs.FindAsync(entity.Id) == null)
                 throw new NotFoundException(nameof(Catalog), request.Id);
+
+            _context.Catalogs.Update(entity);
             await _context.SaveChangesAsync(cancellationToken);
-            return Unit.Value;
+            return entity.Id;
         }
     }
 }

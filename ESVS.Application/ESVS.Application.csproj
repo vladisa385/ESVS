@@ -12,7 +12,6 @@
     <Folder Include="Catalogs\Models\" />
     <Folder Include="Catalogs\Queries\GetAllCatalogs\" />
     <Folder Include="Catalogs\Queries\GetCatalog\" />
-    <Folder Include="Fields\Commands\" />
     <Folder Include="Fields\Models\" />
     <Folder Include="Fields\Queries\" />
     <Folder Include="Infrastructure\AutoMapper\" />
