@@ -22,9 +22,7 @@ namespace ESVS.Application.Infrastructure.AutoMapper
             var mapsFrom = MapperProfileHelper.LoadStandardMappings(Assembly.GetExecutingAssembly());
 
             foreach (var map in mapsFrom)
-            {
                 CreateMap(map.Source, map.Destination).ReverseMap();
-            }
         }
 
         private void LoadCustomMappings()
@@ -32,9 +30,7 @@ namespace ESVS.Application.Infrastructure.AutoMapper
             var mapsFrom = MapperProfileHelper.LoadCustomMappings(Assembly.GetExecutingAssembly());
 
             foreach (var map in mapsFrom)
-            {
                 map.CreateMappings(this);
-            }
         }
     }
 }

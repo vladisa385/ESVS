@@ -9,16 +9,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Catalogs\Models\" />
-    <Folder Include="Catalogs\Queries\GetAllCatalogs\" />
-    <Folder Include="Catalogs\Queries\GetCatalog\" />
-    <Folder Include="Fields\Models\" />
-    <Folder Include="Fields\Queries\" />
     <Folder Include="Infrastructure\AutoMapper\" />
     <Folder Include="Interfaces\Mapping\" />
     <Folder Include="Users\Models\" />
-    <Folder Include="Users\Queries\GetUser\" />
-    <Folder Include="Users\Queries\GetAllUsers\" />
   </ItemGroup>
 
   <ItemGroup>

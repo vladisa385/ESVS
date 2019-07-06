@@ -49,11 +49,7 @@ namespace ESVS
 
 
                 .ForAllOtherMembers(opts => opts.Ignore());
-            CreateMap<CreateUserRequest, User>();
-            CreateMap<UpdateUserRequest, User>();
-            CreateMap<CreateRoleRequest, Role>();
-            CreateMap<UpdateRoleRequest, Role>();
-            CreateMap<Role, RoleResponse>();
+      
 
 
 

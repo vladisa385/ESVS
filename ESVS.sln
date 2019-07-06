@@ -9,17 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DB", "DB\DB.csproj", "{868A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{673DDAE9-875C-4200-B4F1-B9D103A16ED0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{6EE71053-B76E-4909-9F27-9D4A7CCD8649}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ViewModel", "ViewModel\ViewModel.csproj", "{F457678A-A718-4C99-8C61-884F051DA317}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess.DbImplementation", "DataAccess.DbImplementation\DataAccess.DbImplementation.csproj", "{6486C2AB-5BE3-4161-AAB3-B0535FCB9ED0}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESVSMainUnitTests", "XUnitTests\ESVSMainUnitTests.csproj", "{0B77D1B9-7174-43AF-AC9A-6FD9D7C5197E}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppForMigrationDataFromKmiacDB", "AppForMigrationDataFromKmiacDB\AppForMigrationDataFromKmiacDB.csproj", "{7C567141-1A79-48D3-85ED-6321C35F0158}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess.DbImplementationUnitTests", "DataAccess.DbImplementationUnitTests\DataAccess.DbImplementationUnitTests.csproj", "{B2CE7063-55D0-4EEA-904E-9ED3BE0CBB28}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KmiacParser", "KmiacParser\KmiacParser.csproj", "{2AF06B67-C8CA-4FC3-AE2A-736243F9FB4F}"
 EndProject
@@ -29,23 +21,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B6E834DC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{2646E699-18C1-4803-A3B8-3173BAC1F5E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESVS.Common", "ESVS.Common\ESVS.Common.csproj", "{978F9B1A-87DC-4EF3-B0AB-F287F2035AAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESVS.Common", "ESVS.Common\ESVS.Common.csproj", "{978F9B1A-87DC-4EF3-B0AB-F287F2035AAE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{95360E94-9F1B-434C-98AB-CE7C8F6740E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESVS.WebUi", "ESVS.WebUi\ESVS.WebUi.csproj", "{6C5DB916-D3E9-4D24-9B6B-C10DB2AF134D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESVS.WebUi", "ESVS.WebUi\ESVS.WebUi.csproj", "{6C5DB916-D3E9-4D24-9B6B-C10DB2AF134D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{64A907F0-F304-4834-9EB0-650ADCFC6D94}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{6EB93F64-7C17-4E83-99B4-493C9386F7EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESVS.Domain", "ESVS.Domain\ESVS.Domain.csproj", "{CBAFDCBD-7DBA-4EB3-8BD3-DF84373B2214}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESVS.Domain", "ESVS.Domain\ESVS.Domain.csproj", "{CBAFDCBD-7DBA-4EB3-8BD3-DF84373B2214}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESVS.Application", "ESVS.Application\ESVS.Application.csproj", "{40F0DDA8-0012-478D-8BB7-5272A545E2D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESVS.Application", "ESVS.Application\ESVS.Application.csproj", "{40F0DDA8-0012-478D-8BB7-5272A545E2D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESVS.Persistence", "ESVS.Persistence\ESVS.Persistence.csproj", "{BAE52943-E45E-48CC-8BA4-ECB1664AF7AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESVS.Persistence", "ESVS.Persistence\ESVS.Persistence.csproj", "{BAE52943-E45E-48CC-8BA4-ECB1664AF7AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.Infrastructure", "Northwind.Infrastructure\Northwind.Infrastructure.csproj", "{747F2BB6-4B52-4C04-884E-45AE6B104FF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Northwind.Infrastructure", "Northwind.Infrastructure\Northwind.Infrastructure.csproj", "{747F2BB6-4B52-4C04-884E-45AE6B104FF6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,10 +57,6 @@ Global
 		{673DDAE9-875C-4200-B4F1-B9D103A16ED0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{673DDAE9-875C-4200-B4F1-B9D103A16ED0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{673DDAE9-875C-4200-B4F1-B9D103A16ED0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6EE71053-B76E-4909-9F27-9D4A7CCD8649}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6EE71053-B76E-4909-9F27-9D4A7CCD8649}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6EE71053-B76E-4909-9F27-9D4A7CCD8649}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6EE71053-B76E-4909-9F27-9D4A7CCD8649}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F457678A-A718-4C99-8C61-884F051DA317}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F457678A-A718-4C99-8C61-884F051DA317}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F457678A-A718-4C99-8C61-884F051DA317}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -77,18 +65,6 @@ Global
 		{6486C2AB-5BE3-4161-AAB3-B0535FCB9ED0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6486C2AB-5BE3-4161-AAB3-B0535FCB9ED0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6486C2AB-5BE3-4161-AAB3-B0535FCB9ED0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0B77D1B9-7174-43AF-AC9A-6FD9D7C5197E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0B77D1B9-7174-43AF-AC9A-6FD9D7C5197E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0B77D1B9-7174-43AF-AC9A-6FD9D7C5197E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0B77D1B9-7174-43AF-AC9A-6FD9D7C5197E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7C567141-1A79-48D3-85ED-6321C35F0158}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7C567141-1A79-48D3-85ED-6321C35F0158}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7C567141-1A79-48D3-85ED-6321C35F0158}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7C567141-1A79-48D3-85ED-6321C35F0158}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B2CE7063-55D0-4EEA-904E-9ED3BE0CBB28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B2CE7063-55D0-4EEA-904E-9ED3BE0CBB28}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B2CE7063-55D0-4EEA-904E-9ED3BE0CBB28}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B2CE7063-55D0-4EEA-904E-9ED3BE0CBB28}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2AF06B67-C8CA-4FC3-AE2A-736243F9FB4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2AF06B67-C8CA-4FC3-AE2A-736243F9FB4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2AF06B67-C8CA-4FC3-AE2A-736243F9FB4F}.Release|Any CPU.ActiveCfg = Release|Any CPU

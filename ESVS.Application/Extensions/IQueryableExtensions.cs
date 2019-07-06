@@ -3,7 +3,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace ViewModel.Extensions
+namespace ESVS.Application.Extensions
 {
     // ReSharper disable once InconsistentNaming
     public static class IQueryableExtensions
@@ -31,7 +31,7 @@ namespace ViewModel.Extensions
             var parameter = Expression.Parameter(type, "p");
             var propertyAccess = Expression.MakeMemberAccess(parameter, property);
             var orderByExp = Expression.Lambda(propertyAccess, parameter);
-            MethodCallExpression resultExp = Expression.Call(typeof(Queryable),
+            var resultExp = Expression.Call(typeof(Queryable),
                 method,
                 new Type[] { type, property.PropertyType },
                 source.Expression, Expression.Quote(orderByExp));

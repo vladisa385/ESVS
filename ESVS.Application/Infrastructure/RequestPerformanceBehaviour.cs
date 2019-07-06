@@ -25,7 +25,8 @@ namespace ESVS.Application.Infrastructure
 
             _timer.Stop();
 
-            if (_timer.ElapsedMilliseconds <= 500) return response;
+            if (_timer.ElapsedMilliseconds <= 500)
+                return response;
             var name = typeof(TRequest).Name;
 
             // TODO: Add User Details

@@ -1,9 +1,12 @@
 ﻿using System;
+using AutoMapper;
+using ESVS.Application.Interfaces.Mapping;
+using ESVS.Domain.Entities;
 using MediatR;
 
 namespace ESVS.Application.Catalogs.Commands.CreateCatalog
 {
-    public class CreateCatalogCommand:IRequest<Guid>
+    public class CreateCatalogCommand:IRequest<Guid>,IHaveCustomMapping
     {
         public string Name { get; set; }
 
@@ -11,6 +14,8 @@ namespace ESVS.Application.Catalogs.Commands.CreateCatalog
 
         public string Type { get; set; }
 
-        public Guid? ParentId { get; set; }
+        public Guid? ParentCatalogId { get; set; }
+        public void CreateMappings(Profile configuration) => 
+            configuration.CreateMap<CreateCatalogCommand, Catalog>();
     }
 }
