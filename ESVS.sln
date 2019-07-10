@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entiti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ViewModel", "ViewModel\ViewModel.csproj", "{F457678A-A718-4C99-8C61-884F051DA317}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess.DbImplementation", "DataAccess.DbImplementation\DataAccess.DbImplementation.csproj", "{6486C2AB-5BE3-4161-AAB3-B0535FCB9ED0}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KmiacParser", "KmiacParser\KmiacParser.csproj", "{2AF06B67-C8CA-4FC3-AE2A-736243F9FB4F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{D5039F6A-0B95-48B7-89CC-CDE230074631}"
@@ -61,10 +59,6 @@ Global
 		{F457678A-A718-4C99-8C61-884F051DA317}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F457678A-A718-4C99-8C61-884F051DA317}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F457678A-A718-4C99-8C61-884F051DA317}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6486C2AB-5BE3-4161-AAB3-B0535FCB9ED0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6486C2AB-5BE3-4161-AAB3-B0535FCB9ED0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6486C2AB-5BE3-4161-AAB3-B0535FCB9ED0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6486C2AB-5BE3-4161-AAB3-B0535FCB9ED0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2AF06B67-C8CA-4FC3-AE2A-736243F9FB4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2AF06B67-C8CA-4FC3-AE2A-736243F9FB4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2AF06B67-C8CA-4FC3-AE2A-736243F9FB4F}.Release|Any CPU.ActiveCfg = Release|Any CPU

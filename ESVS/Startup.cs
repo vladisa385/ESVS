@@ -5,18 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Threading.Tasks;
 using AutoMapper;
-using DataAccess.Catalog;
-using DataAccess.DbImplementation.Catalog;
-using DataAccess.DbImplementation.Roles;
-using DataAccess.DbImplementation.Users;
-using DataAccess.DbImplementation.Field;
-using DataAccess.DbImplementation.FieldValue;
-using DataAccess.DbImplementation.General;
-using DataAccess.Roles;
-using DataAccess.Users;
-using DataAccess.Field;
-using DataAccess.FieldValue;
-using DataAccess.General;
+
 using DB;
 using Entities;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
@@ -44,7 +33,6 @@ namespace ESVS
             services.AddHttpContextAccessor();
             // Auto Mapper Configurations
             services.AddAutoMapper(typeof(Startup));
-            RegisterQueriesAndCommands(services);
             var connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connection));
             services.AddIdentity<User, Role>()
@@ -114,41 +102,5 @@ namespace ESVS
             });
         }
 
-        private void RegisterQueriesAndCommands(IServiceCollection services)
-        {
-            services
-                .AddScoped<ICreateUserCommand, CreateUserCommand>()
-                .AddScoped<ILogOffUserCommand, LogOffUserCommand>()
-                .AddScoped<ILoginUserCommand, LoginUserCommand>()
-                .AddScoped<IChangeUserPasswordCommand, ChangeUserPasswordCommand>()
-                .AddScoped<IUpdateUserCommand, UpdateUserCommand>()
-                .AddScoped<IUserQuery, UserQuery>()
-                .AddScoped<IUsersListQuery, UsersListQuery>()
-                .AddScoped<IDeleteUserCommand, DeleteUserCommand>()
-                .AddScoped<IRoleQuery, RoleQuery>()
-                .AddScoped<IRolesListQuery, RolesListQuery>()
-                .AddScoped<IUpdateRoleCommand, UpdateRoleCommand>()
-                .AddScoped<IAddRoleToUserCommand, AddRoleToUserCommand>()
-                .AddScoped<IRemoveRoleFromUserCommand, RemoveRoleFromUserCommand>()
-                .AddScoped<ICreateRoleCommand, CreateRoleCommand>()
-                .AddScoped<IDeleteRoleCommand, DeleteRoleCommand>()
-                .AddScoped<ICatalogQuery, CatalogQuery>()
-                .AddScoped<IUpdateCatalogCommand, UpdateCatalogCommand>()
-                .AddScoped<ICreateCatalogCommand, CreateCatalogCommand>()
-                .AddScoped<IDeleteCatalogCommand, DeleteCatalogCommand>()
-                .AddScoped<ICatalogListQuery, CatalogListQuery>()
-                .AddScoped<IFieldQuery, FieldQuery>()
-                .AddScoped<IUpdateFieldCommand, UpdateFieldCommand>()
-                .AddScoped<ICreateFieldCommand, CreateFieldCommand>()
-                .AddScoped<IDeleteFieldCommand, DeleteFieldCommand>()
-                .AddScoped<IFieldListQuery, FieldListQuery>()
-                .AddScoped<IFieldValuesQuery, FieldValueQuery>()
-                .AddScoped<IUpdateFieldValuesCommand, UpdateFieldValueCommand>()
-                .AddScoped<ICreateFieldValuesCommand, CreateFieldValueCommand>()
-                .AddScoped<IDeleteFieldValuesCommand, DeleteFieldValueCommand>()
-                .AddScoped<IFieldValuesListQuery, FieldValueListQuery>()
-                 .AddScoped<IGenerateDbFromKmiac, GenerateDbFromKmiac>()
-                ;
-        }
     }
 }
