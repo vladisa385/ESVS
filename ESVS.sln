@@ -37,7 +37,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESVS.Application", "ESVS.Ap
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESVS.Persistence", "ESVS.Persistence\ESVS.Persistence.csproj", "{BAE52943-E45E-48CC-8BA4-ECB1664AF7AD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Northwind.Infrastructure", "Northwind.Infrastructure\Northwind.Infrastructure.csproj", "{747F2BB6-4B52-4C04-884E-45AE6B104FF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESVS.Infrastructure", "Northwind.Infrastructure\ESVS.Infrastructure.csproj", "{747F2BB6-4B52-4C04-884E-45AE6B104FF6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

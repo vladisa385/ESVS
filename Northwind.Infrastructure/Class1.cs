@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Northwind.Infrastructure
+﻿namespace ESVS.Infrastructure
 {
     public class Class1
     {
