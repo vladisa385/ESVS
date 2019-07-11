@@ -27,10 +27,8 @@ namespace ESVS.WebUi
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
+        public Startup(IConfiguration configuration) => 
             Configuration = configuration;
-        }
 
         public IConfiguration Configuration { get; }
 
@@ -43,15 +41,16 @@ namespace ESVS.WebUi
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+              services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // Add DbContext using SQL Server Provider
             services.AddDbContext<IESVSDbContext, ESVSDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("ESVSDatabase")));
+
+            services.AddDbContext<ESVSDbContext>(options => options.UseSqlServer(
+            Configuration.GetConnectionString("ESVSDatabase")));
             services.AddIdentity<User,IdentityRole<Guid>>()
-             .AddEntityFrameworkStores<ESVSDbContext>();
+                .AddEntityFrameworkStores<ESVSDbContext>();
 
             // Add AutoMapper
             services.AddAutoMapper(typeof(AutoMapperProfile).GetTypeInfo().Assembly);
@@ -59,11 +58,6 @@ namespace ESVS.WebUi
             // Add framework services.
             services.AddTransient<INotificationService, NotificationService>();
             services.AddTransient<IDateTime, MachineDateTime>();
-
-            // Add MediatR
-            services.AddMediatR(typeof(GetCatalogQueryHandler).GetTypeInfo().Assembly);
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPerformanceBehaviour<,>));
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
 
             services
                 .AddMvc(options => options.Filters.Add(typeof(CustomExceptionFilterAttribute)))
@@ -77,11 +71,16 @@ namespace ESVS.WebUi
             });
 
 
-       
+
             services.AddSpaStaticFiles(configuration =>
           {
               configuration.RootPath = "ClientApp/dist";
           });
+            // Add MediatR
+            services.AddMediatR(typeof(GetCatalogQueryHandler).GetTypeInfo().Assembly);
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPerformanceBehaviour<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -96,7 +95,7 @@ namespace ESVS.WebUi
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
-            //app.UseAuthentication();
+    
             //app.UseCookiePolicy();
             //app.UseCors(builder => builder
             //   .AllowAnyOrigin()
@@ -111,6 +110,7 @@ namespace ESVS.WebUi
            {
                settings.Path = "/api";
            });
+            app.UseAuthentication();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

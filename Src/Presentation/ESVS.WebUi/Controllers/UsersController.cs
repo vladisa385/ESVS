@@ -10,12 +10,15 @@ using ESVS.Application.Users.Commands.Logoff;
 using ESVS.Application.Users.Commands.RegisterUser;
 using ESVS.Application.Users.Queries;
 using ESVS.Application.Users.Queries.GetAllUsers;
+using ESVS.Domain.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ESVS.WebUi.Controllers
 {
     public class UsersController : BaseController
     {
+
         [HttpGet]
         public async Task<ActionResult<ListResponse<UserViewModel>>> GetAll([FromQuery]GetListUsersQuery query) =>
 

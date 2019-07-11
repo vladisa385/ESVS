@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29020.237
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESVS", "ESVS\ESVS.csproj", "{0F864D65-185B-4E7F-8FF3-68C5322238F8}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{D5039F6A-0B95-48B7-89CC-CDE230074631}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B6E834DC-7F70-4759-B094-1B2BE22FFA52}"
@@ -35,10 +33,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0F864D65-185B-4E7F-8FF3-68C5322238F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0F864D65-185B-4E7F-8FF3-68C5322238F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0F864D65-185B-4E7F-8FF3-68C5322238F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0F864D65-185B-4E7F-8FF3-68C5322238F8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E4EF8E7B-E918-48E0-926D-47C94F62D282}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E4EF8E7B-E918-48E0-926D-47C94F62D282}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4EF8E7B-E918-48E0-926D-47C94F62D282}.Release|Any CPU.ActiveCfg = Release|Any CPU
