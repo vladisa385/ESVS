@@ -12,7 +12,7 @@ namespace ESVS.Persistence.Configurations
         public void Configure(EntityTypeBuilder<Catalog> builder)
         {
              builder.HasKey(e => e.Id);
-          
+             builder.HasQueryFilter(p => !p.IsDeleted);
         }
     }
 }

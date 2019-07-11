@@ -9,7 +9,11 @@ namespace ESVS.Persistence.Configurations
 {
     public class FieldConfiguration: IEntityTypeConfiguration<Field>
     {
-        public void Configure(EntityTypeBuilder<Field> builder) => 
-            builder.HasKey(e => e.Id);
+        public void Configure(EntityTypeBuilder<Field> builder)
+        {
+             builder.HasQueryFilter(p => !p.IsDeleted);
+             builder.HasKey(e => e.Id);
+        }
+            
     }
 }

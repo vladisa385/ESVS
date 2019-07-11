@@ -10,6 +10,7 @@ namespace ESVS.Persistence.Configurations
         {
              builder.HasKey(e => e.Id);
              builder.Property(e=>e.Name).IsRequired();
+             builder.HasQueryFilter(p => !p.IsDeleted);
         }
     }
 }

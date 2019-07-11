@@ -19,6 +19,7 @@ namespace ESVS.Persistence
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
              base.OnModelCreating(modelBuilder);
+
              modelBuilder.ApplyConfigurationsFromAssembly(typeof(ESVSDbContext).Assembly);
         }
 
