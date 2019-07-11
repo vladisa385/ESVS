@@ -6,7 +6,7 @@ namespace ESVS.Application.Users.Queries.GetAllUsers
 {
     public class GetListUsersQuery : IRequest<ListResponse<UserViewModel>>, IListQuery
     {
-        public ListOptions Options { get; set; }
+        public ListOptions Options { get; set; } = new ListOptions();
         public Guid? Id { get; set; }
         public string Email { get; set; }
         public string FirstName { get; set; }

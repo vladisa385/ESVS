@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using ESVS.Application.Infrastructure.Query;
 using ESVS.Application.Interfaces;
@@ -11,12 +12,16 @@ namespace ESVS.Application.Users.Queries.GetAllUsers
 {
     public class GetListUsersQueryHandler:BaseListQueryHandler<GetListUsersQuery,UserViewModel>
     {
-         private readonly IESVSDbContext _context;
+        private readonly IESVSDbContext _context;
+        private readonly IMapper _mapper;
 
-         public GetListUsersQueryHandler(IESVSDbContext context) => 
-             _context = context;
+        public GetListUsersQueryHandler(IESVSDbContext context, IMapper mapper)
+        {
+            _context = context;
+            _mapper = mapper;
+        }
 
-         protected override IQueryable<UserViewModel> ApplyFilter(IQueryable<UserViewModel> query, GetListUsersQuery filter)
+        protected override IQueryable<UserViewModel> ApplyFilter(IQueryable<UserViewModel> query, GetListUsersQuery filter)
         {
             if (filter.Id != null)
                 query = query.Where(p => p.Id == filter.Id);
@@ -36,6 +41,6 @@ namespace ESVS.Application.Users.Queries.GetAllUsers
         }
 
         protected override IQueryable<UserViewModel> GetQuery() =>
-            _context.Catalogs.ProjectTo<UserViewModel>();
+            _context.Users.ProjectTo<UserViewModel>(_mapper.ConfigurationProvider);
     }
 }

@@ -11,7 +11,6 @@
   <ItemGroup>
     <Folder Include="Infrastructure\AutoMapper\" />
     <Folder Include="Interfaces\Mapping\" />
-    <Folder Include="Users\Models\" />
   </ItemGroup>
 
   <ItemGroup>

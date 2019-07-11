@@ -9,7 +9,7 @@ namespace ESVS.Application.Fields.Queries.GetListFields
 {
     public class GetListFieldsQuery:IRequest<ListResponse<FieldViewModel>>,IListQuery
     {
-        public ListOptions Options { get; set; }
+        public ListOptions Options { get; set; }= new ListOptions();
 
         public Guid? Id { get; set; }
 

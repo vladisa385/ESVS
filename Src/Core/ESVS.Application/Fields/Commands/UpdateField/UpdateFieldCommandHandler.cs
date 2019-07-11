@@ -24,14 +24,12 @@ namespace ESVS.Application.Fields.Commands.UpdateField
 
         public async Task<Guid> Handle(UpdateFieldCommand request, CancellationToken cancellationToken)
         {
-            var entity = _mapper.Map<UpdateFieldCommand, Field>(request);
-            if (await _context.Fields.FindAsync(entity.Id) == null)
+            var entity = await _context.Fields.FindAsync(request.Id);
+            if (entity == null)
                 throw new NotFoundException(nameof(Field), request.Id);
-
-            if (await _context.Types.AnyAsync(x => x.Id != entity.TypeId, cancellationToken))
-                throw new NotFoundException(nameof(Type), entity.TypeId);
-
-            _context.Fields.Update(entity);
+            var mappedEntity = _mapper.Map<UpdateFieldCommand, Field>(request);
+            mappedEntity.CatalogId = entity.CatalogId;
+            _context.UpdateEntity(entity, mappedEntity);
             await _context.SaveChangesAsync(cancellationToken);
             return entity.Id;
         }

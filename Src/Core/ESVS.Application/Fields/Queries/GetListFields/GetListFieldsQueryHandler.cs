@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using ESVS.Application.Infrastructure.Query;
 using ESVS.Application.Interfaces;
@@ -11,9 +12,12 @@ namespace ESVS.Application.Fields.Queries.GetListFields
     public class GetListFieldsQueryHandler:BaseListQueryHandler<GetListFieldsQuery,FieldViewModel>
     {
         private readonly IESVSDbContext _context;
-
-        public GetListFieldsQueryHandler(IESVSDbContext context) => 
+        private readonly IMapper _mapper;
+        public GetListFieldsQueryHandler(IESVSDbContext context, IMapper mapper)
+        {
             _context = context;
+            _mapper = mapper;
+        }
 
         protected override IQueryable<FieldViewModel> ApplyFilter(IQueryable<FieldViewModel> query, GetListFieldsQuery filter)
         {
@@ -57,6 +61,6 @@ namespace ESVS.Application.Fields.Queries.GetListFields
         }
 
         protected override IQueryable<FieldViewModel> GetQuery() => 
-            _context.Catalogs.ProjectTo<FieldViewModel>();
+            _context.Fields.ProjectTo<FieldViewModel>(_mapper.ConfigurationProvider);
     }
 }

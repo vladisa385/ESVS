@@ -7,6 +7,7 @@ using ESVS.Application.Infrastructure;
 using ESVS.Application.Infrastructure.AutoMapper;
 using ESVS.Application.Interfaces;
 using ESVS.Common;
+using ESVS.Domain.Entities;
 using ESVS.Infrastructure;
 using ESVS.Persistence;
 using ESVS.WebUi.Filters;
@@ -15,6 +16,7 @@ using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -48,6 +50,8 @@ namespace ESVS.WebUi
             // Add DbContext using SQL Server Provider
             services.AddDbContext<IESVSDbContext, ESVSDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("ESVSDatabase")));
+            services.AddIdentity<User,IdentityRole<Guid>>()
+             .AddEntityFrameworkStores<ESVSDbContext>();
 
             // Add AutoMapper
             services.AddAutoMapper(typeof(AutoMapperProfile).GetTypeInfo().Assembly);
