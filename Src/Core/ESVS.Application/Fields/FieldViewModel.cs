@@ -4,7 +4,6 @@ using System.Text;
 using AutoMapper;
 using ESVS.Application.Interfaces.Mapping;
 using ESVS.Domain.Entities;
-using ESVS.Domain.ValueObjects;
 
 namespace ESVS.Application.Fields
 {

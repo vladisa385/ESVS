@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using ESVS.Domain.ValueObjects;
 
 namespace ESVS.Domain.Entities
 {
     public class Field
     {
-        
-
+        public Field() => 
+            FieldValues = new HashSet<FieldValue>();
         public Guid Id { get; set; }
 
         public string Name { get; set; }
@@ -26,6 +25,6 @@ namespace ESVS.Domain.Entities
         public Guid CatalogId { get; set; }
         public Catalog Catalog { get; set; }
         public bool IsDeleted { get; set; }
-        public FieldValue FieldValues { get; set; }
+        public ICollection<FieldValue> FieldValues { get; set; }
     }
 }

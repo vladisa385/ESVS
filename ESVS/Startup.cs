@@ -5,9 +5,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Threading.Tasks;
 using AutoMapper;
-
-using DB;
-using Entities;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Swashbuckle.AspNetCore.Swagger;
@@ -34,9 +31,7 @@ namespace ESVS
             // Auto Mapper Configurations
             services.AddAutoMapper(typeof(Startup));
             var connection = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connection));
-            services.AddIdentity<User, Role>()
-                .AddEntityFrameworkStores<AppDbContext>();
+    
             services.ConfigureApplicationCookie(options =>
             {
                 options.Events.OnRedirectToLogin = context =>

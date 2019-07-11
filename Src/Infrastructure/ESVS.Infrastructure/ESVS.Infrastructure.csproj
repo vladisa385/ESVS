@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ESVS.Application\ESVS.Application.csproj" />
-    <ProjectReference Include="..\ESVS.Common\ESVS.Common.csproj" />
+    <ProjectReference Include="..\..\Common\ESVS.Common.csproj" />
+    <ProjectReference Include="..\..\Core\ESVS.Application\ESVS.Application.csproj" />
   </ItemGroup>
 
 </Project>

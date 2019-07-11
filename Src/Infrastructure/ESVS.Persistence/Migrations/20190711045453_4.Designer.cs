@@ -4,14 +4,16 @@ using ESVS.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ESVS.Persistence.Migrations
 {
     [DbContext(typeof(ESVSDbContext))]
-    partial class ESVSDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190711045453_4")]
+    partial class _4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -69,6 +71,19 @@ namespace ESVS.Persistence.Migrations
                     b.HasIndex("TypeId");
 
                     b.ToTable("Fields");
+                });
+
+            modelBuilder.Entity("ESVS.Domain.Entities.FieldValue", b =>
+                {
+                    b.Property<Guid>("FieldId");
+
+                    b.Property<DateTime>("Date");
+
+                    b.Property<string>("Value");
+
+                    b.HasKey("FieldId", "Date");
+
+                    b.ToTable("FieldValue");
                 });
 
             modelBuilder.Entity("ESVS.Domain.Entities.Type", b =>
@@ -148,22 +163,14 @@ namespace ESVS.Persistence.Migrations
                         .WithMany()
                         .HasForeignKey("TypeId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
 
-                    b.OwnsOne("System.Collections.Generic.List<ESVS.Domain.ValueObjects.FieldValue>", "FieldValues", b1 =>
-                        {
-                            b1.Property<Guid>("FieldId");
-
-                            b1.Property<int>("Capacity");
-
-                            b1.HasKey("FieldId");
-
-                            b1.ToTable("Fields");
-
-                            b1.HasOne("ESVS.Domain.Entities.Field")
-                                .WithOne("FieldValues")
-                                .HasForeignKey("System.Collections.Generic.List<ESVS.Domain.ValueObjects.FieldValue>", "FieldId")
-                                .OnDelete(DeleteBehavior.Cascade);
-                        });
+            modelBuilder.Entity("ESVS.Domain.Entities.FieldValue", b =>
+                {
+                    b.HasOne("ESVS.Domain.Entities.Field", "Field")
+                        .WithMany("FieldValues")
+                        .HasForeignKey("FieldId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

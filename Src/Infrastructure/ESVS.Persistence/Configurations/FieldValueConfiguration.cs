@@ -7,12 +7,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace ESVS.Persistence.Configurations
 {
-    public class FieldConfiguration: IEntityTypeConfiguration<Field>
+    public class FieldValueConfiguration:IEntityTypeConfiguration<FieldValue>
     {
-        public void Configure(EntityTypeBuilder<Field> builder)
-        {
-               builder.HasKey(e => e.Id);
-                builder.OwnsOne(u => u.FieldValues);
-        }
+        public void Configure(EntityTypeBuilder<FieldValue> builder) => 
+            builder.HasKey(o => new { o.FieldId, o.Date });
     }
 }
