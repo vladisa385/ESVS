@@ -2,11 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ESVS.Application.Interfaces;
+using ESVS.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -33,6 +36,12 @@ namespace ESVS.WebUi
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            // Add DbContext using SQL Server Provider
+            services.AddDbContext<IESVSDbContext, ESVSDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("ESVSDatabase")));
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

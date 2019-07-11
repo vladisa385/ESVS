@@ -20,8 +20,9 @@ namespace ESVS.Application.Fields
         public Guid CatalogId { get; set; }
         public int FieldValuesCount { get; set; }
         public ICollection<FieldValue> FieldValues { get; set; }
+
         public void CreateMappings(Profile configuration) =>
-            configuration.CreateMap<Field, FieldViewModel>()
-                .ForMember(d => d.FieldValuesCount, o => o.MapFrom(src => src.FieldValues.Count));
+            configuration.CreateMap<Field, FieldViewModel>();
+
     }
 }

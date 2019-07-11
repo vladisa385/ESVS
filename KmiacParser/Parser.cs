@@ -12,11 +12,8 @@ namespace KmiacParser
     {
         private readonly HttpClient _client;
 
-        public Parser()
-        {
+        public Parser() => 
             _client = new HttpClient();
-
-        }
 
         public ICollection<T> GetEntities<T>(string url, Func<string, string> filter)
         {
@@ -25,17 +22,12 @@ namespace KmiacParser
             return JsonConvert.DeserializeObject<ICollection<T>>(resultData);
         }
 
-        public ICollection<Catalog> GetCatalogs(string url)
-        {
-            return GetEntities<Catalog>(url,
+        public ICollection<Catalog> GetCatalogs(string url) =>
+            GetEntities<Catalog>(url,
                 x => JsonConvert.DeserializeObject<JObject>(x)["children"].ToString());
-        }
 
-        public ICollection<Field> GetFields(string url)
-        {
-            return GetEntities<Field>(url,
+        public ICollection<Field> GetFields(string url) =>
+            GetEntities<Field>(url,
                 x => JsonConvert.DeserializeObject<JObject>(x)["fields"].ToString());
-        }
-
     }
 }

@@ -6,8 +6,7 @@ namespace ESVS.Domain.Entities
 {
     public class Field
     {
-        public Field() => 
-            FieldValues = new HashSet<FieldValue>();
+        
 
         public Guid Id { get; set; }
 
@@ -27,6 +26,6 @@ namespace ESVS.Domain.Entities
         public Guid CatalogId { get; set; }
         public Catalog Catalog { get; set; }
         public bool IsDeleted { get; set; }
-        public ICollection<FieldValue> FieldValues { get; }
+        public FieldValue FieldValues { get; set; }
     }
 }

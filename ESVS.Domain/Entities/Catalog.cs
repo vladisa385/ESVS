@@ -19,7 +19,7 @@ namespace ESVS.Domain.Entities
 
         public string Type { get; set; }
 
-         public Guid ParentCatalogId { get; set; }
+         public Guid? ParentCatalogId { get; set; }
 
         public Catalog ParentCatalog { get; set; }
 
