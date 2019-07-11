@@ -17,7 +17,6 @@
 
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\ESVS.Common.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ESVS.Infrastructure\ESVS.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ESVS.Persistence\ESVS.Persistence.csproj" />
   </ItemGroup>
