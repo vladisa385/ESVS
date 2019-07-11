@@ -1,17 +1,30 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
+using AutoMapper;
+using ESVS.Application.Catalogs.Commands.CreateCatalog;
+using ESVS.Application.Catalogs.Queries.GetCatalog;
+using ESVS.Application.Infrastructure;
+using ESVS.Application.Infrastructure.AutoMapper;
 using ESVS.Application.Interfaces;
+using ESVS.Common;
+using ESVS.Infrastructure;
 using ESVS.Persistence;
+using ESVS.WebUi.Filters;
+using FluentValidation.AspNetCore;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace ESVS.WebUi
 {
@@ -41,28 +54,89 @@ namespace ESVS.WebUi
             services.AddDbContext<IESVSDbContext, ESVSDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("ESVSDatabase")));
 
+            // Add AutoMapper
+            services.AddAutoMapper(typeof(AutoMapperProfile).GetTypeInfo().Assembly);
 
+            // Add framework services.
+            services.AddTransient<INotificationService, NotificationService>();
+            services.AddTransient<IDateTime, MachineDateTime>();
+
+            // Add MediatR
+            services.AddMediatR(typeof(GetCatalogQueryHandler).GetTypeInfo().Assembly);
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPerformanceBehaviour<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
+
+            services
+                .AddMvc(options => options.Filters.Add(typeof(CustomExceptionFilterAttribute)))
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CreateCatalogCommandValidator>());
+
+            // Customise default API behavour
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.SuppressModelStateInvalidFilter = true;
+            });
+
+
+            services.AddSwaggerGen(c =>
+           {
+               c.SwaggerDoc("v1", new Info
+               {
+                   Title = "ESVS",
+                   Version = "v1",
+                   Description = "ESVS",
+                   TermsOfService = "None"
+
+               });
+           });
+
+            services.AddSpaStaticFiles(configuration =>
+          {
+              configuration.RootPath = "ClientApp/dist";
+          });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
-            {
                 app.UseDeveloperExceptionPage();
-            }
             else
             {
                 app.UseExceptionHandler("/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
             app.UseHttpsRedirection();
+            //app.UseAuthentication();
+            //app.UseCookiePolicy();
+            //app.UseCors(builder => builder
+            //   .AllowAnyOrigin()
+            //   .AllowAnyMethod()
+            //   .AllowAnyHeader()
+            //   .AllowCredentials());
+            //app.UseDefaultFiles();
             app.UseStaticFiles();
-            app.UseCookiePolicy();
+            app.UseSwagger();
 
-            app.UseMvc();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
+
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller}/{action=Index}/{id?}");
+            });
+            //app.UseSpa(spa =>
+            //{
+            //    spa.Options.SourcePath = "ClientApp";
+
+            //    if (env.IsDevelopment())
+            //        spa.UseReactDevelopmentServer("start");
+            //});
         }
     }
 }
