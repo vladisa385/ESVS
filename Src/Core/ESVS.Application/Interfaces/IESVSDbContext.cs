@@ -12,5 +12,6 @@ namespace ESVS.Application.Interfaces
         DbSet<User> Users { get; set; }
         DbSet<Type> Types { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
+        void UpdateEntity<T,TX>(T entity,TX mappedEntity) where T : class;
     }
 }

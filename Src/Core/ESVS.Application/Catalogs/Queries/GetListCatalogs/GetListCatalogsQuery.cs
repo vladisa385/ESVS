@@ -8,7 +8,7 @@ namespace ESVS.Application.Catalogs.Queries.GetListCatalogs
 {
     public class GetListCatalogsQuery:IRequest<ListResponse<CatalogViewModel>>,IListQuery
     {
-        public ListOptions Options { get; set; }
+        public ListOptions Options { get; set; } = new ListOptions();
         public Guid? Id { get; set; }
         public string Name { get; set; }
 

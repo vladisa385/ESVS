@@ -20,7 +20,7 @@ namespace ESVS.Application.Infrastructure.Query
         ///     2. Sort descending: "-propName"
         ///     3. Multiple: "prop1Name, -prop2Name"
         /// </summary>
-        public string Sort { get; set; }
+        public string Sort { get; set; } = "Id";
 
         public IEnumerable<SortDesc> GetSorts()
         {

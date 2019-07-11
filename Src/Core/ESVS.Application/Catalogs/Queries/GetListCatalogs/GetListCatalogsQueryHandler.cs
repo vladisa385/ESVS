@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using ESVS.Application.Catalogs.Queries.GetCatalog;
 using ESVS.Application.Infrastructure.Query;
@@ -16,10 +17,12 @@ namespace ESVS.Application.Catalogs.Queries.GetListCatalogs
     public class GetListCatalogsQueryHandler:BaseListQueryHandler<GetListCatalogsQuery,CatalogViewModel>
     {
         private readonly IESVSDbContext _context;
+        private readonly IMapper _mapper;
 
-        public GetListCatalogsQueryHandler(IESVSDbContext context)
+        public GetListCatalogsQueryHandler(IESVSDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         protected override IQueryable<CatalogViewModel> ApplyFilter(IQueryable<CatalogViewModel> query, GetListCatalogsQuery filter)
@@ -59,6 +62,6 @@ namespace ESVS.Application.Catalogs.Queries.GetListCatalogs
         }
 
         protected override IQueryable<CatalogViewModel> GetQuery() => 
-            _context.Catalogs.ProjectTo<CatalogViewModel>();
+            _context.Catalogs.ProjectTo<CatalogViewModel>(_mapper.ConfigurationProvider);
     }
 }

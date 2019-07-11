@@ -23,8 +23,6 @@ namespace ESVS.Application.Infrastructure.Query
             var query = GetQuery();
             query = ApplyFilter(query, request);
             var totalCount = await query.CountAsync(cancellationToken: cancellationToken);
-            if (request.Options.Sort == null)
-                request.Options.Sort = "Id";
             query = request.Options.ApplySort(query);
             query = request.Options.ApplyPaging(query);
             var items = await query.ToListAsync(cancellationToken: cancellationToken);
