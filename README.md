@@ -2,11 +2,9 @@
 
 This system has been developed for working with existing medical catalogs. You can also create, modify and add fields.
 <p float="left">
-  <img src="https://pp.userapi.com/c857632/v857632026/145e8/-WbsZrNpPGY.jpg" width="350" />
-  <img src="https://pp.userapi.com/c857632/v857632026/145fc/8SH0hCXUaJo.jpg" width="500" /> 
+  <img src="https://pp.userapi.com/c857632/v857632026/145e8/-WbsZrNpPGY.jpg" width="380" />
+  <img src="https://pp.userapi.com/c857632/v857632026/145fc/8SH0hCXUaJo.jpg" width="450" /> 
 </p>
-.
-
 ## Getting Started
 
 Use these instructions to get the project up and running.
