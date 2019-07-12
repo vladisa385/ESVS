@@ -1,10 +1,9 @@
 # ESVS
 
 This system has been developed for working with existing medical catalogs. You can also create, modify and add fields.
-![](https://pp.userapi.com/c857632/v857632026/14616/TdPZgGiWmdg.jpg)![](https://pp.userapi.com/c857632/v857632026/1461d/ZBxjF3v0xuw.jpg)
 <p float="left">
-  <img src="https://pp.userapi.com/c857632/v857632026/14616/TdPZgGiWmdg.jpg" width="100" />
-  <img src="https://pp.userapi.com/c857632/v857632026/1461d/ZBxjF3v0xuw.jpg" width="100" /> 
+  <img src="https://pp.userapi.com/c857632/v857632026/145e8/-WbsZrNpPGY.jpg" width="300" />
+  <img src="https://pp.userapi.com/c857632/v857632026/145fc/8SH0hCXUaJo.jpg" width="300" /> 
 </p>
 ## Getting Started
 
