@@ -5,6 +5,7 @@ This system has been developed for working with existing medical catalogs.Moreov
   <img src="https://pp.userapi.com/c857632/v857632026/145e8/-WbsZrNpPGY.jpg" width="380" />
   <img src="https://pp.userapi.com/c857632/v857632026/145fc/8SH0hCXUaJo.jpg" width="450" /> 
 </p>
+
 ## Getting Started
 
 Use these instructions to get the project up and running.
