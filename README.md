@@ -46,6 +46,8 @@ Follow these steps to get your development environment set up:
 * .NET Core 2.2
 * ASP.NET Core 2.2
 * Entity Framework Core 2.2
+* MediatR 7.0.0
+* AutoMapper 8.1.1
 
 ## Authors
 
