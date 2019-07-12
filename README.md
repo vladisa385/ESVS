@@ -49,10 +49,10 @@ Follow these steps to get your development environment set up:
 
 ## Authors
 
-* **Vladislav Konyukhov** - (https://github.com/vladisa385)
-* **Kirill Yashenkov** - (https://github.com/MrMagic24)
-* **Vitalii Domantsevich** - (https://github.com/Septimius21)
-* **Daniil Melekh** - (https://github.com/Shiphravka)
+* [**Vladislav Konyukhov**](https://github.com/vladisa385)
+* [**Kirill Yashenkov**](https://github.com/MrMagic24)
+* [**Vitalii Domantsevich**](https://github.com/Septimius21)
+* [**Daniil Melekh**](https://github.com/Shiphravka)
 
 See also the list of [contributors](https://github.com/vladisa385/ESVS/graphs/contributors) who participated in this project.
 
